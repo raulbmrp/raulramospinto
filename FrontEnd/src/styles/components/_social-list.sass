@@ -1,0 +1,55 @@
+@use "sass:math"
+
+@use "../abstracts"
+
+
+$radius: 23px // Radius of SVG circle
+$dash: 2 * math.$pi * $radius // Perimeter of circle
+
+// =============================================================================
+// Socials
+// =============================================================================
+
+.social-list
+	display: flex
+	gap: 8px
+
+	&__button
+		padding: 12px
+		position: relative
+		display: block
+		+abstracts.color(neutral dirty-white)
+		display: flex
+
+
+	svg:not(.button__icon)
+		position: absolute
+		left: 50%
+		top: 50%
+		transform: translate(-50%, -50%) rotate(-90deg)
+		width: calc(100% + 1px)
+		height: calc(100% + 1px)
+
+		circle
+			stroke: abstracts.color(neutral dirty-white)
+			stroke-width: 1px
+			fill: none
+
+	+abstracts.media(hover)
+		// Hover animations
+		.social-list__button circle.progress
+			stroke-dasharray: $dash
+			stroke-dashoffset: -$dash
+			animation: progress .4s ease-out forwards
+
+			&-inverse
+				stroke-dasharray: $dash
+				stroke-dashoffset: 0
+				animation: progress-inverse .25s ease-out forwards
+
+	// =============================================================================
+	// Desktop
+	// =============================================================================
+
+	+abstracts.media(desktop)
+		display: none

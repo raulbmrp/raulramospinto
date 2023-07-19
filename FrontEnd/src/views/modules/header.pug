@@ -1,0 +1,16 @@
+extends ../_layouts/base
+
+
+
+block variables
+	- title = 'Header'
+
+
+
+block header
+
+	+header({
+		menu: ['about', 'resume', 'portfolio', 'contact'],
+		cv: true,
+		socials: true
+	})

@@ -1,0 +1,28 @@
+mixin link(options)
+	-
+		const target = ['_blank', '_parent', '_top'].includes(options.target) ? options.target : '_self';
+		const rel = [];
+		if (target === '_blank') rel.push('noreferrer noopener');
+
+	if typeof options === 'string'
+		-
+			options = {
+				text: options,
+			}
+
+	a.link(
+		href=options.url
+		hreflang=options.urlLang
+		target=target
+		rel=rel.join(' ') || null
+		title=options.title
+		class=setModifiers(options.modifiers, 'link--')
+	)&attributes(attributes)
+		if options.icon
+			+symbol(options.iconFile || null, options.icon, options.iconSize || 24).button__icon
+
+		if options.text
+			| !{options.text}
+
+		if block
+			block

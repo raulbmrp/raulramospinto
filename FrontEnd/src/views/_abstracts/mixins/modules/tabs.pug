@@ -1,0 +1,216 @@
+mixin tabs(options)
+
+	block variables
+
+	section.module.tabs(class=setModifiers(options.modifiers, 'tabs--'))&attributes(attributes)
+		.tabs__layout
+			menu.tabs__buttons-list#tabs__buttons-list(
+				aria-label='Resumé tabs'
+				aria-orientation='vertical'
+			)
+				each item, index in options.items
+					li
+						+button({
+							url: `#${item.url}`,
+							text: `${item.name}`,
+							modifiers: 'secondary',
+							iconFile: 'resume',
+							icon: `${item.url}`,
+							title: `Go to ${item.name}`
+						})(
+							id=`tab--${index}`
+							aria-label=`${item.name}`
+							aria-describedby='tabs__buttons-description'
+						).tabs__button
+				p#tabs__buttons-description.sr-only Press tab to move to the tabpanel.
+
+			.tabs__panels#tabs__panels
+				each item, index in options.items
+					if item.name == 'Professional Experience'
+						article.tabs__panel(
+							class=`tabs__panel--${item.url}`
+							id=`${item.url}`
+							aria-labelledby=`tab--${index}`
+						)
+							h3.sr-only
+								| !{item.name}
+							each job in item.jobs
+								.tabs__panel-content
+									h4.heading.heading--4.tabs__panel-title
+										| !{job.role}
+									.tabs__panel-subtitle
+										h5.heading.heading--5
+											+link({
+												url: `${job.companyURL}`,
+												urlLang: `${job.companyURLlang}`,
+												text: `${job.company}`,
+												target: '_blank',
+												title: `Open ${job.company} website on a new tab`,
+												modifiers: `${section}`
+											})
+										span.heading--5
+											span &nbsp;|
+											time(datetime=`${job.startDateTime}`)
+												| !{job.startDate}
+											span &nbsp;-
+											time(datetime=`${job.endDateTime == 'Present' ? new Date().toISOString().slice(0, 10) : job.endDateTime}`)
+												| !{job.endDate}
+									.tabs__panel-description
+										p
+											| !{job.description}
+
+					if item.name == 'Education'
+						article.tabs__panel(
+							class=`tabs__panel--${item.url}`
+							id=`${item.url}`
+							aria-labelledby=`tab--${index}`
+						)
+							h3.sr-only
+								| !{item.name}
+							each course in item.courses
+								.tabs__panel-content
+									h4.heading.heading--4.tabs__panel-title
+										| !{course.course}
+									.tabs__panel-subtitle
+										h5.heading.heading--5
+											+link({
+												url: `${course.schoolURL}`,
+												urlLang: `${course.schoolURLlang}`,
+												text: `${course.school}`,
+												target: '_blank',
+												title: `Open ${course.school} website on a new tab`,
+												modifiers: `${section}`
+											})
+										span.heading--5
+											span &nbsp;|
+											time(datetime=`${course.startDateTime}`)
+												| !{course.startDate}
+											span &nbsp;-
+											time(datetime=`${course.endDateTime == 'Present' ? new Date().toISOString().slice(0, 10) : course.endDateTime}`)
+												| !{course.endDate}
+									.tabs__panel-description
+										p
+											| !{course.description}
+
+					if item.name == 'Skills'
+						article.tabs__panel(
+							class=`tabs__panel--${item.url}`
+							id=`${item.url}`
+							aria-labelledby=`tab--${index}`
+						)
+							h3.sr-only
+								| !{item.name}
+							each category in item.categories
+								.tabs__panel-content
+									h4.heading.heading--4.tabs__panel-title
+										| !{category.name}
+									ul.tabs__panel-list(aria-label=`${category.name} skills list`)
+										each skill in category.skills
+											li.tabs__panel-list-item
+												h5.heading.heading--5
+													| !{skill}
+
+					if item.name == 'Certifications'
+						article.tabs__panel(
+							class=`tabs__panel--${item.url}`
+							id=`${item.url}`
+							aria-labelledby=`tab--${index}`
+						)
+							h3.sr-only
+								| !{item.name}
+							each certificate in item.certificates
+								.tabs__panel-content
+									h4.heading.heading--4.tabs__panel-title
+										| !{certificate.name}
+									.tabs__panel-subtitle
+										h5.heading.heading--5
+											+link({
+												url: `${certificate.companyURL}`,
+												urlLang: `${certificate.companyURLlang}`,
+												text: `${certificate.company}`,
+												target: '_blank',
+												title: `Open ${certificate.company} website on a new tab`,
+												modifiers: `${section}`
+											})
+										span.heading--5
+											span &nbsp;|
+											time(datetime=`${certificate.date}`)
+												| !{certificate.date}
+
+					if item.name == 'Languages'
+						article.tabs__panel(
+							class=`tabs__panel--${item.url}`
+							id=`${item.url}`
+							aria-labelledby=`tab--${index}`
+						)
+							h3.sr-only
+								| !{item.name}
+							each idiom in item.idioms
+								.tabs__panel-content
+									h4.heading.heading--4.tabs__panel-title
+										| !{idiom.idiom}
+									.tabs__panel-description
+										p !{idiom.level}
+
+					if item.name == 'Volunteering'
+						article.tabs__panel(
+							class=`tabs__panel--${item.url}`
+							id=`${item.url}`
+							aria-labelledby=`tab--${index}`
+						)
+							h3.sr-only
+								| !{item.name}
+							each program in item.programs
+								.tabs__panel-content
+									h4.heading.heading--4.tabs__panel-title
+										| !{program.role}
+									.tabs__panel-subtitle
+										h5.heading.heading--5
+											+link({
+												url: `${program.companyURL}`,
+												urlLang: `${program.companyURLlang}`,
+												text: `${program.company}`,
+												target: '_blank',
+												title: `Open ${program.company} website on a new tab`,
+												modifiers: `${section}`
+											})
+										span.heading--5
+											span &nbsp;|
+											time(datetime=`${program.startDateTime}`)
+												| !{program.startDate}
+											span &nbsp;-
+											time(datetime=`${program.endDateTime == 'Present' ? new Date().toISOString().slice(0, 10) : program.endDateTime}`)
+												| !{program.endDate}
+									.tabs__panel-description
+										p
+											| !{program.description}
+
+					if item.name == 'Sports'
+						article.tabs__panel(
+							class=`tabs__panel--${item.url}`
+							id=`${item.url}`
+							aria-labelledby=`tab--${index}`
+						)
+							h3.sr-only
+								| !{item.name}
+							each achievement in item.achievements
+								.tabs__panel-content
+									h4.heading.heading--4.tabs__panel-title
+										| !{achievement.role}
+									.tabs__panel-subtitle
+										h5.heading.heading--5
+											+link({
+												url: `${achievement.teamURL}`,
+												urlLang: `${achievement.teamURLlang}`,
+												text: `${achievement.team}`,
+												target: '_blank',
+												title: `Open ${achievement.team} website on a new tab`,
+												modifiers: `${section}`
+											})
+										span.heading--5
+											span &nbsp;|
+											time(datetime=`${achievement.date}`)
+												| !{achievement.date}
+									.tabs__panel-description
+										p
+											| !{achievement.description}

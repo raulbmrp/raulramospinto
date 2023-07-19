@@ -1,0 +1,204 @@
+@use "sass:math"
+
+@use "../abstracts"
+
+
+
+// =============================================================================
+// Header
+// =============================================================================
+
+.header
+	$block: &
+	$header-height: 64px
+
+	padding-inline: 24px
+	padding-bottom: 24px
+	height: 100vh
+	position: fixed
+	inset: 0 0 auto
+	z-index: 10
+
+	// Layout
+	// -----------------------------------------------------------------------------
+	&__layout
+		max-width: abstracts.columns(12)
+		margin-inline: auto
+		align-items: center
+
+		&--top
+			display: flex
+			justify-content: space-between
+			height: $header-height
+
+		&--menu
+			display: grid
+			pointer-events: none
+			height: calc(100% - $header-height)
+
+			&.on
+				opacity: 1
+				pointer-events: all
+
+				.header__menu-item
+					transform: translateX(0)
+					opacity: 1
+					filter: blur(0)
+
+				.header__cv-button
+					opacity: 1
+					filter: blur(0)
+					+abstracts.transition(opacity filter, .5s ease 1s)
+
+				.social-list__item
+					opacity: 1
+					filter: blur(0)
+					+abstracts.transition(opacity filter, .5s ease calc(1.2s + 0.15s * var(--index)))
+
+	// Logo
+	// -----------------------------------------------------------------------------
+	&__logo
+		color: abstracts.color(neutral dirty-white)
+		padding-block: .75em
+
+	// Burger
+	// -----------------------------------------------------------------------------
+	&__burger
+		padding-left: 16px
+		padding-block: 16px
+		&::before,
+		&::after
+			content: ''
+			display: block
+			+abstracts.background(neutral white)
+			width: 32px
+			height: 3px
+			margin-bottom: 5px
+			+abstracts.transition(transform width, .2s ease)
+
+		+abstracts.media(hover)
+			&::before
+				width: 20px
+
+			&:hover::before
+				width: 32px
+
+		&.on
+			&::before
+				transform: translateY(4px)
+			&::after
+				transform: translateY(-4px)
+
+	// Menu Links
+	// -----------------------------------------------------------------------------
+	&__menu
+		&-item
+			transform: translateX(-40vw)
+			opacity: 0
+			filter: blur(10px)
+			+abstracts.transition(opacity transform filter, .8s ease calc(0.15s * var(--index)))
+
+		&-shape
+			display: none
+
+		&-button
+			gap: unset
+			text-transform: capitalize
+
+			.button__letter
+				+abstracts.transition(transform, .3s ease calc(0.03s * var(--index)))
+
+			&:hover .button__letter
+				+abstracts.transition(transform, .3s ease calc(0.04s * var(--index)))
+				transform: skew(-15deg, 0deg) translateX(.5em)
+
+	&__cv-button
+		opacity: 0
+		filter: blur(10px)
+		+abstracts.transition(opacity filter, .5s ease .4s)
+
+	.social-list__item
+		opacity: 0
+		filter: blur(10px)
+		+abstracts.transition(opacity filter, .5s ease calc(.75s + -0.15s * var(--index)))
+
+
+	// =============================================================================
+	// Desktop
+	// =============================================================================
+
+	+abstracts.media(desktop)
+		height: auto
+		display: flex
+		justify-content: space-between
+		align-items: center
+
+		// Layout
+		// -----------------------------------------------------------------------------
+		&__layout
+			margin-inline: unset
+			gap: 16px
+
+			&--menu
+				display: flex
+				opacity: 1
+				pointer-events: all
+				+abstracts.transition(opacity)
+
+		&__menu
+			position: relative
+
+			&-button
+				mix-blend-mode: difference
+				z-index: 2
+
+			&-item
+				transform: unset
+				opacity: 1
+				filter: unset
+
+			&-shape
+				position: absolute
+				top: 0
+				left: 0
+				width: 94px
+				height: 100%
+				z-index: 1
+				display: flex
+				justify-content: flex-start
+
+				&-bg
+					position: relative
+					width: 100%
+					height: 100%
+					+abstracts.background(neutral dirty-white)
+					// border: 1px solid abstracts.color(neutral dirty-white)
+					border-radius: 100vmax
+					flex-shrink: 0
+					flex-grow: 0
+
+		&__burger
+			display: none
+
+		&__menu-list
+			display: flex
+			position: relative
+			gap: 8px
+
+		&__cv-button
+			opacity: 1
+			filter: blur(0)
+
+		&__social-list
+			display: none
+
+
+	// =============================================================================
+	// Desktop & Hover
+	// =============================================================================
+
+	@media (width >= 992px) and (hover: hover)
+		&__menu-button
+			&:hover:not(.header__menu-button--current)
+				+abstracts.background(alpha semi-transparent-dirty-white)
+

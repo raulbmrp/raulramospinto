@@ -1,0 +1,75 @@
+@use "sass:selector"
+
+@use "../abstracts"
+
+$cursor: false !default
+
+
+// =============================================================================
+// Skip Link
+// =============================================================================
+
+@if $cursor
+	*
+		cursor: none
+
+	.cursor
+		$size: 16px
+
+		opacity: 0
+		position: absolute
+		width: $size
+		height: $size
+		border-radius: 50%
+		+abstracts.background(brand orange)
+		mix-blend-mode: difference
+		transform: translate(-50%, -50%)
+		z-index: 200
+		+abstracts.transition(width height, .3s ease)
+		pointer-events: none
+
+		&.on
+			opacity: 1
+
+		&.hover-text
+			border-radius: $size
+			width: 3px
+			height: calc($size * 2)
+
+		&.grow
+			width: calc($size * 2)
+			height: calc($size * 2)
+
+		&.not-allowed
+			width: calc($size * 1.5)
+			height: calc($size * 1.5)
+			background: none
+			border-radius: 50%
+			border: 3px solid red
+			mix-blend-mode: unset
+
+			&::after
+				content: 'Not Allowed'
+				display: block
+				width: max-content
+				position: absolute
+				left: calc($size * 1.5)
+				top: calc($size / 5 * -1)
+				+abstracts.background(neutral black)
+				background: red
+				padding: 0px 4px
+				border-radius: 8px
+				+abstracts.typography(body small)
+				opacity: 0
+				+abstracts.transition(opacity, .3s ease)
+
+			&.tip
+				&::after
+					opacity: 1
+					+abstracts.transition(opacity, 1s ease)
+
+
+
+		+abstracts.media(no-hover)
+			display: none
+

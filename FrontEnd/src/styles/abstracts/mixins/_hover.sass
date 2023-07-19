@@ -1,0 +1,67 @@
+@use "sass:string"
+@use "sass:list"
+@use "sass:meta"
+@use "sass:selector"
+
+
+
+=hover($pseudo-classes: (), $at-parent: null)
+
+	@if meta.type-of($pseudo-classes) == string
+		$pseudo-classes: ($pseudo-classes,)
+
+	$pseudo-classes: list.join((hover,), $pseudo-classes)
+
+	@if meta.type-of($at-parent) == list
+		@if list.length($at-parent) != list.length(&)
+			@error "The argument 'at-parent' must have the same number of items as '&'. 'at-parent' has #{list.length($at-parent)} items (`#{meta.inspect($at-parent)}`), but '&' has #{list.length(&)} (`#{meta.inspect(&)}`)."
+
+		@each $parent in $at-parent
+			@if list.length($parent) != 1
+				@error "The argument 'at-parent' must nove have complex selectors. Got #{meta.inspect($at-parent)}."
+
+	@else
+		$temp-parent: $at-parent
+		$at-parent: ()
+
+		@for $index from 1 through list.length(&)
+			$at-parent: list.append($at-parent, $temp-parent)
+
+
+	$new-selectors: ()
+
+
+	@for $index from 1 through list.length(&)
+		$selector: list.nth(&, $index)
+		$parent: list.nth($at-parent, $index)
+
+		@each $pseudo in $pseudo-classes
+			$new-selector: $selector
+
+			@if $pseudo != ""
+				$new-parent: if(meta.type-of($parent) == "null", "", $parent) + ":#{$pseudo}"
+				$new-selector: if(meta.type-of($parent) == "null", selector.append($selector, $new-parent), selector.replace($selector, $parent, $new-parent))
+
+			@if $pseudo != "" and #{$selector} == #{$new-selector}
+				@warn "No parent `#{$parent}` found in the selector `#{$selector}`."
+
+			$new-selectors: list.append($new-selectors, $new-selector)
+
+
+	$hover-selectors: ()
+	$other-selectors: ()
+
+	@each $new-selector in $new-selectors
+		@if string.index(#{$new-selector}, ":hover") != null
+			$hover-selectors: list.append($hover-selectors, $new-selector, comma)
+		@else
+			$other-selectors: list.append($other-selectors, $new-selector, comma)
+
+	@if list.length($hover-selectors) >= 1
+		@media (hover: hover)
+			@at-root #{$hover-selectors}
+				@content
+
+	@if list.length($other-selectors) >= 1
+		@at-root #{$other-selectors}
+			@content

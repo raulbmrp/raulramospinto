@@ -3,7 +3,16 @@ include ../_abstracts/index
 
 
 -
+	const startWorkingDate = new Date(2020, 6); // July is represented by month index 6 (0-indexed)
+	const currentWorkingDate = new Date();
+	let yearsOfExperience = currentWorkingDate.getFullYear() - startWorkingDate.getFullYear();
+	if (currentWorkingDate.getMonth() < startWorkingDate.getMonth()) yearsOfExperience--;
+
+	const mainTitle = 'Raul Ramos Pinto'
 	let title
+	const mainDescription = `${mainTitle} is a UX Designer and Front-End Developer with ${yearsOfExperience} years of experience and a very strong concern for web accessibility.`
+	let pageDescription
+	const mainKeywords = 'UX, UI, Design, User Experience, User Interface, Designer, Digital, Frontend, Developer, Development, Web, Accessibility, A11y, HTML, CSS, JavaScript, Figma'
 
 
 
@@ -12,17 +21,41 @@ block variables
 
 
 doctype html
-html(lang="en" dir="ltr")
+html(lang="en" dir="ltr" prefix="og: https://ogp.me/ns#")
 	head
 		meta(charset="UTF-8")
 		meta(name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover")
-		title= (title ? `${title} | ` : '') + 'raulramospinto'
+		title= (title ? `${title} | ` : '') + `${mainTitle}` + ' - UX/UI & Front-End Developer'
+		meta(name="description" content=`${mainDescription}`)
+		meta(name="keywords" content=(pageKeywords ? `${pageKeywords}` : `${mainKeywords}`))
+		meta(name="author" content=`${mainTitle}`)
+
+		//- Open Graph
+		meta(property="og:site_name" content=`${mainTitle}`)
+		meta(property="og:title" content=`${title}`)
+		meta(property="og:description" content=(pageDescription ? `${pageDescription}` : `${mainDescription}`))
+		meta(property="og:type" content="website")
+		meta(property="og:url" content="https://www.raul-ramos-pinto.com")
+		meta(property="og:image" content="/atlas/examples/assets/images/open-graph/og-image.png")
+		meta(property="og:image:alt" content=`${mainTitle} Website thumbnail`)
+		link(rel="/atlas/examples/assets/images/open-graph/og-image.png" href="/atlas/examples/assets/images/open-graph/og-image.png" type="image/png")
+		meta(property="og:image:width" content="1200")
+		meta(property="og:image:height" content="630")
+		meta(property="og:image:type" content="image/png")
+
+		link(rel="canonical" href="http://raul-ramos-pinto.com/")
+
+		//- Styles
 		block styles
 			link(href="/assets/styles/main.css" rel="stylesheet")
+
+		//- Scripts
 		block scripts-head
 
 	body
-		a.skip-link(href="#main") Skip to content.
+		a.skip-link(href="#main" title="Skip to main content")
+			span.skip-link__text Skip to main content
+		//- #cursor.cursor
 
 		block header
 

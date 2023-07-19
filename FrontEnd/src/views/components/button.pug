@@ -1,0 +1,80 @@
+extends ../_layouts/base
+
+
+
+block variables
+	- title = 'Button'
+
+
+
+block main
+
+	+button({
+		text: 'Primary Button',
+		modifiers: 'primary'
+	})
+
+	br
+	br
+
+	+button({
+		text: 'Primary Button Link',
+		url: '#'
+	})
+
+	br
+	br
+
+	+button({
+		text: 'Primary Button Disabled'
+	})(
+		disabled="disabled"
+	)
+
+	br
+	br
+	br
+	br
+
+	+button({
+		text: 'Secondary Button',
+		modifiers: 'secondary'
+	})
+
+	br
+	br
+
+	+button({
+		text: 'Secondary Button Link',
+		url: '#',
+		modifiers: 'secondary'
+	})
+
+	br
+	br
+
+	+button({
+		text: 'Secondary Button Disabled',
+		modifiers: 'secondary'
+	})(
+		disabled="disabled"
+	)
+
+	br
+	br
+	br
+	br
+
+	+button({
+		text: 'About',
+		url: '#',
+		modifiers: 'menu'
+	})
+
+	br
+
+	+button({
+		text: 'Resume',
+		url: '#',
+		modifiers: 'menu'
+	})

@@ -1,0 +1,21 @@
+mixin figure(options)
+	figure.figure(class=setModifiers(options.modifiers, 'figure--'))&attributes(attributes)
+		picture.picture
+
+			-
+				const path = '../assets/images/';
+				const desktopExtension = ['-desktop@1x.webp', '-desktop@1x.jpg', '-desktop@2x.webp', '-desktop@2x.jpg'];
+				const mobileExtension = ['-mobile@1x.webp', '-mobile@1x.jpg', '-mobile@2x.webp', '-mobile@2x.jpg'];
+
+			source(media='(min-width: 992px)' srcset=`${path + options.file + '/' + options.name + desktopExtension[0] + ' ' + options.widthDesktopX1 + 'w' + ', ' + path + options.file + '/' + options.name + desktopExtension[1] + ' ' + options.widthDesktopX1 + 'w' + ', ' + path + options.file + '/' + options.name + desktopExtension[2] + ' ' + options.widthDesktopX2 + 'w' + ', ' + path + options.file + '/' + options.name + desktopExtension[3] + ' ' + options.widthDesktopX2 + 'w'}` sizes=`${options.sizesDesktop + 'vw'}`)
+			source(srcset=`${path + options.file + '/' + options.name + mobileExtension[0] + ' ' + options.widthMobileX1 + 'w' + ', ' + path + options.file + '/' + options.name + mobileExtension[1] + ' ' + options.widthMobileX1 + 'w' + ', ' + path + options.file + '/' + options.name + mobileExtension[2] + ' ' + options.widthMobileX2 + 'w' + ', ' + path + options.file + '/' + options.name + mobileExtension[3] + ' ' + options.widthMobileX2 + 'w'}` sizes=`${options.sizesMobile + 'vw'}`)
+			img(
+				src=path + options.file + '/' + options.name + mobileExtension[1]
+				alt=(options.alt || '')
+				loading=(options.loading ? 'lazy' : null)
+				title=options.title
+			)
+
+		if options.figcaption
+			figcaption
+				| !{options.figcaption}

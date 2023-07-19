@@ -1,0 +1,20 @@
+/// Visually hide an element, without affecting the acessibility tree.
+///
+/// @output The declarations used to visually hide an element.
+
+=visually-hidden
+
+	// Prepare output.
+	// -----------------------------------------------------------------------------
+	border: 0
+	width: 1px
+	height: 1px
+	margin: -1px
+	padding: 0
+	position: absolute
+	white-space: nowrap
+	overflow: hidden
+	clip: rect(1px, 1px, 1px, 1px)
+	clip-path: inset(100%)
+	pointer-events: none
+	user-select: none

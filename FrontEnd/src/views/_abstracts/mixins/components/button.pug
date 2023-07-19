@@ -1,0 +1,25 @@
+mixin button(options)
+
+	if typeof options === 'string'
+		-
+			options = {
+				text: options,
+			}
+
+	#{options.url ? 'a' : options.element || 'button'}.button(
+		href=options.url
+		hreflang=options.urlLang
+		title=options.title
+		class=setModifiers(options.modifiers || 'primary', 'button--')
+	)&attributes(attributes)
+		if options.icon
+			+symbol(options.iconFile || null, options.icon, options.iconSize || 24).button__icon
+
+		if options.text
+			span.button__text
+				| !{options.text}
+		else if options.textMenu
+			| !{options.textMenu}
+
+		if block
+			block

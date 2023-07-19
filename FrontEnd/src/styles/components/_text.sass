@@ -1,0 +1,52 @@
+@use "sass:map"
+@use "sass:math"
+
+@use "abstracts"
+
+
+
+// =============================================================================
+// TEXT
+// =============================================================================
+
+
+p
+	margin-block: 0
+
+
+ul,
+ol
+	list-style: none
+
+h1, h2, h3, h4, h5, h6, p, span, li
+	width: fit-content
+
+.heading
+	&--1
+		+abstracts.typography(heading 1)
+	&--2
+		+abstracts.typography(heading 2)
+	&--3
+		+abstracts.typography(heading 3)
+	&--4
+		+abstracts.typography(heading 4)
+	&--5
+		+abstracts.typography(heading 5)
+
+p
+	+abstracts.typography(body normal)
+
+	&:not(:first-child)
+		margin-top: 1em
+
+	&:not(:last-child)
+		margin-bottom: 1em
+
+strong
+	+abstracts.typography(body strong)
+
+small
+	+abstracts.typography(body small)
+
+.nowrap
+	white-space: nowrap

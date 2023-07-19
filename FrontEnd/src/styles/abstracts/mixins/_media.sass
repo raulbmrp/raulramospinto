@@ -1,0 +1,12 @@
+@use "sass:map"
+
+@use "../functions/media" as *
+
+
+
+=media($list)
+
+	// Prepare output.
+	// -----------------------------------------------------------------------------
+	@media #{media($list)}
+		@content

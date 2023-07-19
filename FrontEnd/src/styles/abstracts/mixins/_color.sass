@@ -1,0 +1,17 @@
+@use "../functions/color" as *
+
+
+
+/// Output a color token.
+///
+/// @argument {list} $token - The path for the color token.
+///
+/// @output The `color` declaration with the color token value.
+
+=color($token)
+
+	// Prepare output.
+	// -----------------------------------------------------------------------------
+
+	// Use `color()` which already handles all normalizations and validations.
+	color: color($token)

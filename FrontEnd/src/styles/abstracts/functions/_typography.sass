@@ -1,0 +1,53 @@
+@use "sass:list"
+@use "sass:map"
+@use "sass:meta"
+
+@use "../tokens"
+
+
+/// Get a typography style property.
+///
+/// @argument {list} $token - The path for the typography token.
+/// @argument {string} $property - The typography property.
+/// 	It accepts `font-size`, `tex-decoration`, `font-family`, `font-weight`, `font-style`, `font-stretch`, `letter-spacing`, `line-height`, and `text-transform`.
+///
+/// @return {any} The typography token value.
+
+@function typography($token, $property)
+
+	// Normalize arguments
+	// -----------------------------------------------------------------------------
+
+	// Ensure that each $token item is a string.
+	@for $index from 1 through list.length($token)
+		$token: list.set-nth($token, $index, list.nth($token, $index) + '')
+
+	// Map CSS properties to token properties.
+	$properties: ()
+
+	$properties: map.set($properties, font-size, fontSize)
+	$properties: map.set($properties, text-decoration, textDecoration)
+	$properties: map.set($properties, font-family, fontFamily)
+	$properties: map.set($properties, font-weight, fontWeight)
+	$properties: map.set($properties, font-style, fontStyle)
+	$properties: map.set($properties, font-stretch, fontStretch)
+	$properties: map.set($properties, letter-spacing, letterSpacing)
+	$properties: map.set($properties, line-height, lineHeight)
+	$properties: map.set($properties, text-transform, textCase)
+
+
+	// Validate arguments.
+	// -----------------------------------------------------------------------------
+
+	// Throw if token doesn't exist.
+	@if map.has-key(tokens.$tokens, typography, $token...) == false
+		@error "Unrecognized typography token `#{meta.inspect($token)}`."
+
+	@if map.has-key($properties, $property) == false
+		@error "Unrecognized property `#{meta.inspect($property)}`."
+
+
+	// Prepare result.
+	// -----------------------------------------------------------------------------
+
+	@return map.get(tokens.$tokens, typography, list.join($token, map.get($properties, $property))...)

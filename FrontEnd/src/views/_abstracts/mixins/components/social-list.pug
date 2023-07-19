@@ -1,0 +1,25 @@
+mixin social-list
+
+	-
+		const socials = {linkedin: 'https://www.linkedin.com/in/raul-ramos-pinto/', behance: 'https://www.behance.net/raulramospinto', github: 'https://github.com/raulbmrp'};
+
+		const socialEntries = Object.entries(socials);
+
+	ul.social-list(aria-label='Social Media list')&attributes(attributes)
+		each social, index in socialEntries
+
+			- const [key, url] = social
+
+			li.social-list__item(style=`--index:${index};`)
+				+button({
+					url: `${url}`,
+					modifiers: 'icon',
+					iconFile: 'socials',
+					icon: `${key}`
+				})(
+					target='_blank'
+					title=`${key}`
+					aria-label=`Open Raul's ${key} on a new tab`
+				).social-list__button
+					svg
+						circle.progress-inverse(cx="24" cy="24" r="23")

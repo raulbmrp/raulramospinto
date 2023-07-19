@@ -1,0 +1,36 @@
+extends ../_layouts/base
+
+
+
+block variables
+	- title = 'Text'
+
+
+
+block main
+
+	+heading({
+		htmlTag: 'h1',
+		text: 'Heading 1',
+		textModifiers: '1'
+	})
+	+heading({
+		htmlTag: 'h2',
+		text: 'Heading 2',
+		textModifiers: '2'
+	})
+	+heading({
+		htmlTag: 'h3',
+		text: 'Heading 3',
+		textModifiers: '3'
+	})
+	+heading({
+		htmlTag: 'h4',
+		text: 'Heading 4',
+		textModifiers: '4'
+	})
+	+heading({
+		htmlTag: 'h5',
+		text: 'Heading 5',
+		textModifiers: '5'
+	})

@@ -1,0 +1,25 @@
+@use "sass:math"
+
+@use "../abstracts"
+
+
+
+// =============================================================================
+// Animations
+// =============================================================================
+
+// Social Links
+$radius: 23px // Radius of SVG circle
+$dash: 2 * math.$pi * $radius // Perimeter of circle
+
+@keyframes progress
+	from
+		stroke-dashoffset: $dash
+	to
+		stroke-dashoffset: 0
+
+@keyframes progress-inverse
+	from
+		stroke-dashoffset: 0
+	to
+		stroke-dashoffset: -$dash

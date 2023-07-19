@@ -1,0 +1,28 @@
+@use "sass:map"
+
+
+
+@function media($list)
+
+	// Normalize arguments.
+	// -----------------------------------------------------------------------------
+
+	// Set list templates.
+	$templates: ()
+
+	$templates: map.set($templates, large-desktop, "(width >= 2048px)")
+	$templates: map.set($templates, desktop, "(width >= 992px)")
+	$templates: map.set($templates, mobile, "(width < 992px)")
+	$templates: map.set($templates, hover, "(hover: hover)")
+	$templates: map.set($templates, no-hover, "(hover: none)")
+	$templates: map.set($templates, fine, "(pointer: fine)")
+	$templates: map.set($templates, coarse, "(pointer: coarse)")
+
+	// Apply template.
+	@if map.has-key($templates, $list)
+		$list: map.get($templates, $list)
+
+
+	// Prepare result.
+	// -----------------------------------------------------------------------------
+	@return $list

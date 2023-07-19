@@ -1,0 +1,21 @@
+@use "sass:list"
+
+
+
+/// Generate multiple transitions.
+///
+/// @argument {string | list} $property-names - The property names to use. It will be used as value for `transition-property`.
+/// @argument {any | list | null} $remaining-transition-properties [.25s] - The remaining transition shorthand values to use.
+/// 	If used as a list of shorthand values, each list item will match each of the transition-property values.
+///
+/// @output The `transition` and `transition-property` declarations.
+
+@mixin transition($property-names, $remaining-transition-properties: .25s)
+
+	@if list.length($property-names) == 1 and (list.separator($remaining-transition-properties) == space or list.length($remaining-transition-properties) == 1)
+		$remaining-transition-properties: list.join($property-names, $remaining-transition-properties, space)
+		$property-names: null
+
+	transition: $remaining-transition-properties
+		@if $property-names
+			property: list.join((), $property-names, comma)

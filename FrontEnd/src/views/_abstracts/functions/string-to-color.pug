@@ -1,0 +1,26 @@
+-
+	/**
+	 * Generates a color given a string.
+	 *
+	 * @param {String} string - The string to use as hash reference.
+	 *
+	 * @returns {String} The color in hexadecimal notation.
+	 */
+
+	function stringToColor(string) {
+		let hash = 0;
+
+		for (let i = 0; i < string.length; i++) {
+			hash = string.codePointAt(i) + ((hash << 5) - hash);
+		}
+
+		let color = '#';
+
+		for (let i = 0; i < 3; i++) {
+			const value = (hash >> (i * 8)) & 0xFF;
+
+			color += ('00' + value.toString(16)).slice(-2);
+		}
+
+		return color;
+	}

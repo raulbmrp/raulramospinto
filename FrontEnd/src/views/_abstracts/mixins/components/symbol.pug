@@ -1,0 +1,28 @@
+mixin symbol(file, id, width, height)
+
+	if ['undefined', 'number'].includes(typeof id) || /^\.?\d/.test(id)
+		- [file, id, width, height] = [undefined, file, id, width]
+
+	if file === undefined
+		- file = 'symbols'
+
+	if /^\.{0,2}\//.test(file) === false
+		- file = `/atlas/examples/assets/images/${file}`
+
+	if file.endsWith('.svg') === false
+		- file += '.svg'
+
+	if width !== undefined && height === undefined
+		- height = width
+
+	each value, name in {width, height}
+		if attributes[name]
+			- throw new Error(`[Symbol Mixin] The argument '${name}' and the attribute '${name}' are both defined (\`${value}\` and \`${attributes[name]}\`). You should use only one.`)
+
+		else if value
+			- attributes[name] = value
+
+	- const hasAria = Object.keys(attributes).some(attribute => attribute.startsWith('aria-'))
+
+	svg(aria-hidden=(hasAria ? null : "true"))&attributes(attributes)
+		use(href=`${file}#${id}`)

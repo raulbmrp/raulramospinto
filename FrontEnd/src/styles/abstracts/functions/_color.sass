@@ -1,0 +1,35 @@
+@use "sass:list"
+@use "sass:map"
+@use "sass:meta"
+
+@use "../tokens"
+
+
+
+/// Get a color token.
+///
+/// @argument {list} $token - The path for the color token.
+///
+/// @return {color} The color token value.
+
+@function color($token)
+
+	// Normalize arguments
+	// -----------------------------------------------------------------------------
+
+	// Ensure that each $token item is a string.
+	@for $index from 1 through list.length($token)
+		$token: list.set-nth($token, $index, list.nth($token, $index) + '')
+
+
+	// Validate arguments.
+	// -----------------------------------------------------------------------------
+
+	// Throw if token doesn't exist.
+	@if map.has-key(tokens.$tokens, color, $token...) == false
+		@error "Unrecognized color token `#{meta.inspect($token)}`."
+
+
+	// Prepare result.
+	// -----------------------------------------------------------------------------
+	@return map.get(tokens.$tokens, color, $token...)

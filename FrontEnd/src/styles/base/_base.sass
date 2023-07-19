@@ -1,16 +1,210 @@
+@use "abstracts"
+
+
 *,
 *::before,
 *::after
 	box-sizing: inherit
 
+*
+	outline-offset: .2em
+
 html
 	box-sizing: border-box
-	font: 400 16px/1.5 system-ui, -apple-system, sans-serif
+	+abstracts.color(neutral dirty-white)
+	+abstracts.typography(body normal)
 	-webkit-font-smoothing: antialiased
 	-moz-osx-font-smoothing: grayscale
 	-webkit-text-size-adjust: 100%
 	-webkit-tap-highlight-color: transparent
+	line-height: 1.5
+	-webkit-text-size-adjust: 100%
 
 body
 	margin: 0
 	text-align: left
+	+abstracts.background(neutral black)
+
+	&::before,
+	&::after
+		content: ''
+		display: block
+		position: fixed
+		z-index: -1
+		transform: translate(-50%, -50%)
+
+	&::before
+		top: calc(50% + 20vh)
+		left: calc(50% + 5vw)
+		width: 90vh
+		height: 90vh
+		background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand blue) 0%, rgba(abstracts.color(brand blue), .4) 50%, transparent 100%)
+		+abstracts.transition(width height opacity, .8s)
+
+	&::after
+		top: calc(50% - 25vh)
+		left: calc(50% + 30vw)
+		width: 130vh
+		height: 130vh
+		background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand orange) 0%, rgba(abstracts.color(brand orange), .5) 50%, transparent 100%)
+		+abstracts.transition(width height top left, .5s)
+
+	&.menu-on
+		overflow: hidden
+		&::before
+			width: 0
+			height: 0
+			opacity: 0
+			+abstracts.transition(width height opacity, .5s)
+
+		&::after
+			top: calc(50% - 15vh)
+			left: calc(50% + 15vw)
+			width: 160vh
+			height: 160vh
+			+abstracts.transition(width height top left, .8s)
+
+::selection
+	+abstracts.background(brand blue)
+
+main
+	display: block
+	opacity: 1
+	pointer-events: all
+	+abstracts.transition(opacity)
+
+	&.off
+		opacity: 0
+		pointer-events: none
+		+abstracts.transition(opacity)
+
+h1, h2, h3, h4, h5, h6
+	margin: 0
+	font-weight: normal
+
+hr
+	box-sizing: content-box
+	height: 0
+	overflow: visible
+
+pre
+	font-family: monospace, monospace
+	font-size: 1em
+
+abbr[title]
+	border-bottom: none
+	text-decoration: none
+
+b, strong
+	font-weight: bolder
+
+code,
+kbd,
+samp
+	font-family: monospace, monospace
+	font-size: 1em
+
+small
+	font-size: 80%
+
+sub,
+sup
+	font-size: 75%
+	line-height: 0
+	position: relative
+	vertical-align: baseline
+
+sub
+	bottom: -0.25em
+
+sup
+	top: -0.5em
+
+img
+	border-style: none
+
+button,
+input,
+optgroup,
+select,
+textarea
+	font-family: inherit
+	font-size: 100%
+	line-height: 1.5
+	margin: 0
+
+button,
+input
+	overflow: visible
+
+button,
+select
+	text-transform: none
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"]
+	-webkit-appearance: button
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner
+	border-style: none
+	padding: 0
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring
+	outline: 1px dotted ButtonText
+
+fieldset
+	padding: 0.35em 0.75em 0.625em
+
+legend
+	box-sizing: border-box
+	color: inherit
+	display: table
+	max-width: 100%
+	padding: 0
+	white-space: normal
+
+progress
+	vertical-align: baseline
+
+textarea
+	overflow: auto
+
+[type="checkbox"],
+[type="radio"]
+	box-sizing: border-box
+	padding: 0
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button
+	height: auto
+
+[type="search"]
+	-webkit-appearance: textfield
+	outline-offset: -2px
+
+[type="search"]::-webkit-search-decoration
+	-webkit-appearance: none
+
+::-webkit-file-upload-button
+	-webkit-appearance: button
+	font: inherit
+
+details
+	display: block
+
+summary
+	display: list-item
+
+template
+	display: none
+
+[hidden]
+	display: none

@@ -34,12 +34,16 @@ function instantiateModule(elements, path) {
 const modules = {
 	// High Priority
 	// 'selector': './filename.js',
+	header: './modules/header.js',
+	'social-list': './components/social-list.js',
 
 	// Medium Priority
 	// 'selector': './filename.js',
+	tabs: './modules/tabs.js',
 
 	// Low Priority
 	// 'selector': './filename.js',
+	cursor: './layout/cursor.js',
 };
 
 

@@ -1,0 +1,44 @@
+mixin header(options)
+
+	header.header&attributes(attributes)
+		.header__layout.header__layout--top
+			a.header__logo(href="#" title='Back to the homepage' target='_self')
+				+symbol('logos', 'logo-raul-ramos-pinto', 190, 17).header__logo-image
+
+			button.header__burger(
+				aria-label='Open menu'
+				aria-expanded='false'
+				aria-haspopup='true'
+			)
+
+		.header__layout.header__layout--menu
+
+			nav.header__menu(aria-label='main menu')
+				ul.header__menu-list
+					each item, index in options.menu
+						li.header__menu-item(style=`--index:${index};`)
+							+button({
+								url: `#${item}`,
+								textMenu: item,
+								modifiers: 'menu',
+								title: `Go to ${item}`
+							})(
+								target='_self'
+								data-index=index
+								class= `${index == 0 ? 'header__menu-button--current' : ''}`
+							).header__menu-button
+					.header__menu-shape
+						.header__menu-shape-bg
+			if options.cv
+				.header__cv-button
+					+button({
+						url: 'https://drive.google.com/file/d/1Gig3N9-O4pVQj9VUC_N5qR7dqy5uHve7/view',
+						text: 'Open CV <span class="sr-only">on a new tab</span>',
+						modifiers: 'menu',
+						title: "Open Raul's CV on a new tab"
+					})(target='_blank').cta
+
+			if options.socials
+				.header__social-list
+					+social-list
+

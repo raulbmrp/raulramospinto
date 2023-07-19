@@ -1,0 +1,38 @@
+mixin image-text(options)
+
+	section.module.image-text(class=setModifiers(options.modifiers, 'image-text--'))&attributes(attributes)
+		.image-text__layout
+			article.image-text__content
+
+				+heading({
+					htmlTag: options.htmlTag,
+					text: options.text,
+					textModifiers: options.textModifiers
+				}).image-text__heading
+
+				if options.description
+					.image-text__description
+						block description
+
+				if options.buttons
+					.image-text__buttons
+						each button in options.buttons
+							+button(button).image-text__button(class=button.class)
+
+
+				+figure({
+					file: options.file,
+					name: options.name,
+					alt: options.alt,
+					title: options.title,
+					sizesMobile: options.sizesMobile,
+					sizesDesktop: options.sizesDesktop,
+					widthMobileX1: options.widthMobileX1,
+					widthMobileX2: options.widthMobileX2,
+					widthDesktopX1: options.widthDesktopX1,
+					widthDesktopX2: options.widthDesktopX2,
+					loading: options.loading
+				}).image-text__figure
+
+				if block
+					block

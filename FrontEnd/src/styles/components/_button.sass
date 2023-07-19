@@ -1,0 +1,138 @@
+@use "sass:selector"
+
+@use "../abstracts"
+
+
+
+// =============================================================================
+// Button
+// =============================================================================
+
+// 1. Reset for `a` elements.
+// 2. Visually align the icon to the border-radius.
+
+.button
+	$block: &
+	$border-width: 2px
+	$border-width-small: 1px
+	$padding-block: .5em
+	$padding-block-small: .2em
+	$padding-inline: 2em
+	$padding-inline-small: 1em
+	$gap: .5em
+	$icon-size: 1em
+
+	border-radius: 100vmax
+	min-width: 0
+	display: inline-flex
+	gap: $gap
+	justify-content: center
+	align-items: center
+	position: relative
+	max-width: max-content
+	text-decoration: none
+	+abstracts.transition(background color border-color)
+
+	&:not(&--menu, &--icon)
+		padding: $padding-block $padding-inline
+
+	&:focus-visible
+		outline: $border-width solid abstracts.color(neutral white)
+			// offset: 0 // [1]
+
+	&:disabled,
+	&[disabled]
+		cursor: not-allowed
+		opacity: .2
+
+
+	// Icon
+	// -----------------------------------------------------------------------------
+	&__icon
+		// Nothing for now.
+
+
+	// Text
+	// -----------------------------------------------------------------------------
+	&__text
+		overflow: hidden
+		text-overflow: ellipsis
+		white-space: nowrap
+		margin-block: $padding-block * -1
+		padding-block: $padding-block
+
+	&__letter
+		text-transform: none
+
+		&--0
+			text-transform: uppercase
+
+	// Modifier: Primary
+	// -----------------------------------------------------------------------------
+	&--primary
+		+abstracts.color(neutral dirty-white)
+		border:
+			width: $border-width
+			style: solid
+			color: abstracts.color(brand orange)
+
+		&:not(:disabled)
+			+abstracts.hover(focus-visible)
+				+abstracts.background(brand orange)
+				+abstracts.color(neutral black)
+			&:active
+				+abstracts.background(brand dark-orange)
+				border:
+					color: abstracts.color(brand dark-orange)
+
+	// Modifier: Secondary
+	// -----------------------------------------------------------------------------
+	&--secondary
+		+abstracts.color(neutral dirty-white)
+		border:
+			width: $border-width
+			style: solid
+			color: abstracts.color(neutral dirty-white)
+
+		&:not(:disabled)
+			+abstracts.hover(focus-visible)
+				+abstracts.background(alpha semi-transparent-dirty-white)
+			&:active
+				+abstracts.background(neutral dirty-white)
+				+abstracts.color(neutral black)
+
+	// Modifier: Menu
+	// -----------------------------------------------------------------------------
+	&--menu
+		+abstracts.color(neutral dirty-white)
+		+abstracts.typography(button menu mobile)
+
+		+abstracts.media(desktop)
+			+abstracts.typography(button normal)
+			// border:
+			// 	width: $border-width-small
+			// 	style: solid
+			// 	color: abstracts.color(neutral dirty-white)
+			padding: $padding-block-small $padding-inline-small
+
+		&.cta
+			border:
+				color: abstracts.color(brand orange)
+				style: solid
+				width: $border-width
+			+abstracts.typography(button normal)
+			// +abstracts.background(brand orange)
+			// +abstracts.color(neutral black)
+			padding: $padding-block $padding-inline
+
+			&:not(:disabled)
+				+abstracts.hover(focus-visible)
+					+abstracts.background(brand orange)
+					+abstracts.color(neutral black)
+				&:active
+					+abstracts.background(brand dark-orange)
+					border:
+						color: abstracts.color(brand dark-orange)
+
+			+abstracts.media(desktop)
+				padding: $padding-block-small $padding-inline-small

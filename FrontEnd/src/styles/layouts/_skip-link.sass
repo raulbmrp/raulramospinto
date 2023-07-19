@@ -1,3 +1,5 @@
+@use "sass:selector"
+
 @use "../abstracts"
 
 
@@ -7,19 +9,43 @@
 // =============================================================================
 
 .skip-link
-	position: absolute
-	top: 0
+	$block: &
+	$padding-block: .5em
+	$padding-inline: 2em
+
+	text-decoration: none
+	outline: 0
+	box-shadow: 0 4px 20px rgba(#000, .25)
+	border-radius: 100vmax
+	min-width: 0
+	display: inline-flex
+	justify-content: center
+	align-items: center
+	padding: $padding-block $padding-inline
+	position: fixed
+	top: 10px
+	left: 50%
+	transform: translateX(-50%)
+	z-index: 200
+	+abstracts.background(brand orange)
+	+abstracts.typography(button normal)
+	+abstracts.transition(background color)
+
+	&__text
+		+abstracts.color(neutral black)
+		overflow: hidden
+		text-overflow: ellipsis
+		white-space: nowrap
+		margin-block: $padding-block * -1
+		padding-block: $padding-block
 
 	&:not(:focus)
-		border: 0
-		width: 1px
-		height: 1px
-		margin: -1px
-		padding: 0
-		position: absolute
-		white-space: nowrap
-		overflow: hidden
-		clip: rect(1px, 1px, 1px, 1px)
-		clip-path: inset(100%)
-		pointer-events: none
-		user-select: none
+		+abstracts.visually-hidden
+
+	+abstracts.hover(hover)
+		+abstracts.background(brand dark-orange)
+
+		#{$block}__text
+			+abstracts.color(neutral white)
+
+

@@ -1,0 +1,4 @@
+mixin heading(options)
+
+	#{options.htmlTag || 'h2'}.heading(class=setModifiers(options.textModifiers, 'heading--'))&attributes(attributes)
+		| !{options.text}

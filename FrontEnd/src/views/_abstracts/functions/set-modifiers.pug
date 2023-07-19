@@ -1,0 +1,70 @@
+-
+	/**
+	 * Add prefix and/or suffix to a list of strings.
+	 *
+	 * @param {String | Array} [strings] - The string, or list of strings to be modified.
+	 * 	It also accept a string of space-separated expressions.
+	 * 	If not defined, it will return the same value, as is.
+	 * @param {String} [prefix] - The prefix to be prepended to the strings.
+	 * @param {String} [suffix] - The suffix to be appended to the strings.
+	 * @param {String} [output] - The output style.
+	 * 	It accepts `string` and `array`.
+	 * 	If not defined, it will use the same type as the type of `strings`.
+	 *
+	 * @returns {String | Array} The string or array with the modified strings.
+	 */
+
+	function setModifiers(strings, prefix, suffix, output) {
+
+		//- Validate arguments.
+		//- ----------------------------------------------------------------------------
+
+		// Validate `strings`.
+		if (strings && typeof strings !== 'string' && Array.isArray(strings) === false) {
+			throw new TypeError(`[setModifiers Function] The argument 'strings' only accepts strings and arrays. Got the ${typeof strings} \`${strings}\`.`)
+		}
+
+		if (strings) {
+			// Validate `prefix` and `suffix`.
+			for (const [name, value] of Object.entries([prefix, suffix])) {
+				if (value && typeof value !== 'string') {
+					throw new TypeError(`[setModifiers Function] The argument '${name}' only accepts strings. Got the ${typeof value} \`${value}\`.`)
+				}
+			}
+
+			// Validate `output`.
+			if (output && typeof output !== 'string') {
+				throw new TypeError(`[setModifiers Function] The argument 'output' only accepts strings. Got the ${typeof output} \`${output}\`.`)
+			} else if (typeof output === 'string' && ['string', 'array'].includes(output) === false) {
+				throw new Error(`[setModifiers Function] The argument 'output' only accepts the values \`string\` and \`array\`. Got \`${output}\`.`)
+			}
+		}
+
+
+		//- Normalize arguments.
+		//- ----------------------------------------------------------------------------
+		if (strings) {
+			// Ensure that `output` has always a value.
+			undefined ||= typeof strings
+
+			// Ensure that `strings` is always an array.
+			if (typeof strings === 'string')
+				strings = strings.split(' ')
+
+			// Ensure that `prefix` and `suffix` are always strings.
+			prefix ||= ''
+			suffix ||= ''
+		}
+
+
+		//- Prepare result.
+		//- ----------------------------------------------------------------------------
+		if (strings) {
+			strings = strings.map(value => prefix + value + suffix)
+
+			if (output === 'string')
+				strings = strings.join(' ')
+		}
+
+		return strings
+	}

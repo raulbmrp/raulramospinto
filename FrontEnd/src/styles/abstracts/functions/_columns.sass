@@ -1,0 +1,42 @@
+@use "sass:math"
+@use "sass:meta"
+
+
+
+/// Convert columns to a length.
+///
+/// @argument {number} $amount - The amount of columns the length should have.
+/// 	It accepts unitless numbers from `1` through `12`.
+///
+/// @return {number} The length equivalent to the amount of columns in `$amount`.
+
+@function columns($amount)
+
+	$column-number: 12
+	$column-width: 94px
+	$gap: 24px
+	$viewport-padding: 24px
+
+
+	// Validate arguments.
+	// -----------------------------------------------------------------------------
+
+	// Ensure that `$amount` is a unitless number.
+	@if (meta.type-of($amount) == number and math.is-unitless($amount)) == false
+		@error "The argument $amount only accepts unitless numbers. Got the #{meta.type-of($amount)} `#{meta.inspect($amount)}`."
+
+	// Ensure that `$amount` is an integer.
+	@if math.round($amount) != $amount
+		@error "The argument $amount only accepts round numbers. Got the number `#{$amount}`."
+
+	// Ensure that `$amount` is within bounds.
+	@if $amount < 1 or $amount > $column-number
+		@error "The argument $amount only accepts numbers from `1` through `#{$column-number}`. Got the number `#{$amount}`."
+
+
+	// Prepare result.
+	// -----------------------------------------------------------------------------
+
+	$result: calc(((min(100vw - $viewport-padding * 2, $column-width * $column-number + $gap * 11) - ($gap * ($column-number - 1))) / $column-number) * $amount + $gap * ($amount - 1))
+
+	@return $result

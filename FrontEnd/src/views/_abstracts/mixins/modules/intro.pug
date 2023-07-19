@@ -1,0 +1,13 @@
+mixin intro(options)
+
+	section.module.intro(class=setModifiers(options.modifiers, 'intro--'))&attributes(attributes)
+		.intro__layout
+			+heading({
+				htmlTag: options.htmlTag,
+				text: options.text,
+				textModifiers: options.textModifiers
+			}).intro__heading
+
+			if block
+				.intro__description
+					block

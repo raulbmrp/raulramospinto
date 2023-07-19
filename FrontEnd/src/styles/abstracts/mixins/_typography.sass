@@ -1,0 +1,42 @@
+@use "sass:list"
+@use "sass:map"
+@use "sass:meta"
+
+@use "../tokens"
+
+@use "../functions/typography" as *
+
+
+
+/// Output a typography style.
+///
+/// @argument {list} $token - The path for the typography token.
+///
+/// @output The typography style using the `font`, `letter-spacing`, `text-decoration`, and `text-transform` declarations.
+
+=typography($token)
+
+	// Normalize arguments
+	// -----------------------------------------------------------------------------
+
+	// Ensure that each $token item is a string.
+	@for $index from 1 through list.length($token)
+		$token: list.set-nth($token, $index, list.nth($token, $index) + '')
+
+
+	// Validate arguments.
+	// -----------------------------------------------------------------------------
+
+	// Throw if token doesn't exist.
+	@if map.has-key(tokens.$tokens, typography, $token...) == false
+		@error "Unrecognized typography token `#{meta.inspect($token)}`."
+
+
+	// Prepare output.
+	// -----------------------------------------------------------------------------
+
+	font: typography($token, font-style) typography($token, font-weight) typography($token, font-stretch) list.slash(typography($token, font-size), typography($token, line-height)) typography($token, font-family)
+	letter-spacing: typography($token, letter-spacing)
+	text:
+		decoration: typography($token, text-decoration)
+		transform: typography($token, text-transform)

@@ -1,0 +1,110 @@
+@use "../abstracts"
+
+
+
+// =============================================================================
+// Image Text
+// =============================================================================
+
+.tabs
+	$block: &
+
+	padding-inline: 24px
+
+
+	// Layout
+	// -----------------------------------------------------------------------------
+	&__layout
+		max-width: abstracts.columns(12)
+		margin-inline: auto
+		position: relative
+		display: grid
+		gap: 32px
+
+	// Buttons
+	// -----------------------------------------------------------------------------
+	&__buttons-list
+		display: flex
+		gap: 8px
+		overflow-x: scroll
+		margin-inline: -24px
+		padding-inline: 24px
+		padding-block: 8px
+		+abstracts.background(neutral black)
+		position: sticky
+		top: 0
+
+	&__button
+		padding: 12px !important
+
+		&[aria-selected='true']
+			+abstracts.background(neutral dirty-white)
+			+abstracts.color(neutral black)
+
+			.button__text
+				display: block
+				opacity: 1
+
+			+abstracts.hover(hover focus-visible)
+				+abstracts.background(neutral dirty-white)
+
+		.button__text
+			display: none
+			opacity: 0
+
+
+	// Panels
+	// -----------------------------------------------------------------------------
+	&__panels
+		padding-block: 8px
+
+	&__panel:not([hidden])
+
+		display: grid
+		gap: 24px
+		margin-bottom: 128px
+
+	&__panel-content
+		padding: 8px 24px 16px
+		border: 1px solid abstracts.color(alpha semi-transparent-dirty-white)
+		border-radius: 32px
+
+	// Headings
+	// -----------------------------------------------------------------------------
+	.heading--5
+		display: inline
+
+	// =============================================================================
+	// Desktop
+	// =============================================================================
+
+	+abstracts.media(desktop)
+		// Layout
+		// -----------------------------------------------------------------------------
+		&__layout
+			display: grid
+			grid-template-columns: 1fr 2fr
+			gap: 32px
+
+		&__buttons-list
+			display: flex
+			flex-direction: column
+			gap: 24px
+			position: static
+
+		// Buttons
+		// -----------------------------------------------------------------------------
+		&__button
+			padding: .5em 2em !important
+			border: 2px solid
+
+			.button__text
+				display: block
+				opacity: 1
+
+		// Items
+		// -----------------------------------------------------------------------------
+		&__panel
+
+			&--skills
+				grid-template-columns: repeat(2, 1fr)
