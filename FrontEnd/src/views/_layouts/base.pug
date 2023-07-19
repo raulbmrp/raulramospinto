@@ -1,0 +1,35 @@
+include ../_abstracts/index
+
+
+
+-
+	let title
+
+
+
+block variables
+
+
+
+doctype html
+html(lang="en" dir="ltr")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover")
+		title= (title ? `${title} | ` : '') + 'raulramospinto'
+		block styles
+			link(href="/assets/styles/main.css" rel="stylesheet")
+		block scripts-head
+
+	body
+		a.skip-link(href="#main") Skip to content.
+
+		block header
+
+		main.main#main
+			block main
+
+		block footer
+
+		block scripts
+			script(src="/assets/scripts/main.js" type="module")

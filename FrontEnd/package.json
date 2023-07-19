@@ -1,0 +1,121 @@
+{
+  "name": "raulramospinto",
+  "version": "0.0.0",
+  "description": "Raul Ramos Pinto portfolio website",
+  "author": "WYcreative Engineering Team",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "gulp-cli": ">=2.3",
+    "node": ">=18.17",
+    "npm": ">=9.6"
+  },
+  "scripts": {
+    "start": "gulp",
+    "serve": "gulp serve",
+    "test": "xo",
+    "dist": "gulp dist",
+    "clean": "gulp clean",
+    "deploy": "gulp deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://dev.azure.com/Bycom/_git/raulramospinto"
+  },
+  "homepage": "raulramospinto.com",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^*",
+    "@babel/preset-env": "^*",
+    "@rollup/plugin-babel": "^*",
+    "@rollup/plugin-commonjs": "^*",
+    "@rollup/plugin-node-resolve": "^*",
+    "@wycreative/atlas": "^*",
+    "basic-ftp": "^*",
+    "browser-sync": "^*",
+    "chalk": "^*",
+    "conf": "^*",
+    "cssnano": "^*",
+    "del": "^*",
+    "execa": "^*",
+    "glob-parent": "^*",
+    "globby": "^*",
+    "gulp": "^*",
+    "gulp-imagemin": "^*",
+    "gulp-plumber": "^*",
+    "gulp-postcss": "^*",
+    "gulp-pug": "^*",
+    "gulp-rename": "^*",
+    "gulp-rev": "^*",
+    "gulp-rev-rewrite": "^*",
+    "gulp-sass": "^*",
+    "gulp-svgstore": "^*",
+    "gulp-tap": "^*",
+    "gulp-uglify-es": "^*",
+    "imagemin-webp": "^*",
+    "inquirer": "^*",
+    "jsdom": "^*",
+    "ora": "^*",
+    "postcss": "^*",
+    "postcss-preset-env": "^*",
+    "pug-walk": "^*",
+    "read-pkg-up": "^*",
+    "resolve.exports": "^*",
+    "rollup": "^*",
+    "sass": "^*",
+    "semver": "^*",
+    "style-dictionary": "^*",
+    "xo": "^*"
+  },
+  "browserslist": [
+    "defaults and last 2 years",
+    "not op_mob >= 0"
+  ],
+  "babel": {
+    "presets": [
+      [
+        "@babel/env",
+        {
+          "modules": false
+        }
+      ]
+    ],
+    "only": [
+      "./@(config|data|src)/**"
+    ]
+  },
+  "xo": {
+    "envs": [
+      "browser",
+      "node"
+    ],
+    "rules": {
+      "no-multiple-empty-lines": [
+        "warn",
+        {
+          "max": 3
+        }
+      ],
+      "import/order": [
+        "error",
+        {
+          "newlines-between": "always"
+        }
+      ],
+      "no-console": [
+        "error",
+        {
+          "allow": [
+            "info",
+            "warn",
+            "error"
+          ]
+        }
+      ]
+    }
+  },
+  "genesis": {
+    "version": "3.0.1"
+  }
+}
