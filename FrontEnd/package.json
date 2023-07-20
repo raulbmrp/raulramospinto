@@ -24,7 +24,9 @@
     "url": "git+https://dev.azure.com/Bycom/_git/raulramospinto"
   },
   "homepage": "raulramospinto.com",
-  "dependencies": {},
+  "dependencies": {
+    "@wycreative/symbol": "^0.2.0"
+  },
   "devDependencies": {
     "@babel/core": "^*",
     "@babel/preset-env": "^*",

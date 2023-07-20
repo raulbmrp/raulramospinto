@@ -3,7 +3,12 @@ mixin header(options)
 	header.header&attributes(attributes)
 		.header__layout.header__layout--top
 			a.header__logo(href="#" title='Back to the homepage' target='_self')
-				+symbol('logos', 'logo-raul-ramos-pinto', 190, 17).header__logo-image
+				+symbol({
+					file: '/assets/images/logos.svg',
+					id: 'logo-raul-ramos-pinto',
+					width: 190,
+					height: 17
+				}).header__logo-image
 
 			button.header__burger(
 				aria-label='Open menu'
@@ -41,4 +46,3 @@ mixin header(options)
 			if options.socials
 				.header__social-list
 					+social-list
-

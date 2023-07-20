@@ -1,4 +1,4 @@
-extends ../_layouts/base
+extends ../../../src/views/_layouts/base
 
 
 
@@ -11,15 +11,24 @@ block main
 
 	+button({
 		text: 'Primary Button',
-		modifiers: 'primary'
-	})
+		modifiers: 'primary',
+		url: '#',
+		urlLang: 'en',
+		title: 'Primary Button',
+		iconFile: '/assets/images/socials.svg',
+		iconId: 'behance'
+	})(
+		target="_self"
+	)
 
 	br
 	br
 
 	+button({
 		text: 'Primary Button Link',
-		url: '#'
+		url: '#',
+		iconFile: '/assets/images/resume.svg',
+		iconId: 'education'
 	})
 
 	br

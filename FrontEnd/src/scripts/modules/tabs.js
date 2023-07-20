@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-at */
 class Tabs {
 	/**
 	 * The `tabs` element.
@@ -151,7 +152,7 @@ class Tabs {
 			if (currentTab.parentElement.previousElementSibling) {
 				switchTab(currentTab.parentElement.previousElementSibling.querySelector('a'));
 			} else {
-				switchTab(tabsButtons[tabsButtons.length - 1]);
+				switchTab(tabsButtons.at(-1));
 			}
 		}
 

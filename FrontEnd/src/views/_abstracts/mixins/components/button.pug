@@ -12,8 +12,13 @@ mixin button(options)
 		title=options.title
 		class=setModifiers(options.modifiers || 'primary', 'button--')
 	)&attributes(attributes)
-		if options.icon
-			+symbol(options.iconFile || null, options.icon, options.iconSize || 24).button__icon
+		if options.iconId
+			+symbol({
+				file: options.iconFile || null,
+				id: options.iconId,
+				width: options.iconWidth || 24,
+				height: options.iconHeight || 24
+			}).button__icon
 
 		if options.text
 			span.button__text
