@@ -1,0 +1,64 @@
+@use "sass:selector"
+
+@use "../abstracts"
+
+
+// =============================================================================
+// Project
+// =============================================================================
+
+.project
+	$block: &
+
+	padding-inline: 24px
+
+	// Layout
+	// -----------------------------------------------------------------------------
+	&__layout
+		max-width: abstracts.columns(12)
+		margin-inline: auto
+		height: 100vh
+		position: relative
+
+	// Intro
+	// -----------------------------------------------------------------------------
+	&__intro
+		display: flex
+		flex-direction: column
+		position: absolute
+		bottom: 5vh
+		width: -webkit-fill-available
+
+	// Heading
+	// -----------------------------------------------------------------------------
+	&__heading
+		order: 2
+
+	// Labels
+	// -----------------------------------------------------------------------------
+	&__labels
+		order: 1
+
+	.heading--label
+		padding: .1em .8em
+		border-radius: 100vh
+		border: 1px solid abstracts.color(neutral dirty-white)
+
+	// Tags
+	// -----------------------------------------------------------------------------
+	&__tags
+		order: 3
+		display: grid
+		grid-template-columns: repeat(2, auto)
+		height: min-content
+		margin-top: 64px
+
+	// =============================================================================
+	// Desktop
+	// =============================================================================
+
+	+abstracts.media(desktop)
+		// Tags
+		// -----------------------------------------------------------------------------
+		&__tags
+			grid-template-columns: repeat(3, 1fr)

@@ -12,12 +12,11 @@
 	},
 	"files.insertFinalNewline": true,
 	"files.readonlyInclude": {
-		"FrontEnd/node_modules/**": true,
-		"FrontEnd/package-lock.json": true,
-		"FrontEnd/config/atlas/tokens/tokens.json": true,
-		"FrontEnd/src/styles/abstracts/_tokens.scss": true,
 		"FrontEnd/build/**": true,
+		"FrontEnd/config/atlas/tokens/tokens.json": true,
 		"FrontEnd/dist/**": true,
+		"FrontEnd/node_modules/**": true,
+		"FrontEnd/package-lock.json": true
 	},
 	"files.trimFinalNewlines": true,
 	"files.trimTrailingWhitespace": true,

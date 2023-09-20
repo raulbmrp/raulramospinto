@@ -1,0 +1,27 @@
+section.project
+	.project__layout
+		.project__intro
+
+			.project__heading
+				+heading({
+					htmlTag: 'h1',
+					text: `${title}`,
+					textModifiers: '1'
+				})
+
+			.project__labels
+				each label in labels
+					+heading({
+						htmlTag: 'h2',
+						text: `${label}`,
+						textModifiers: 'label'
+					})
+
+			ul.project__tags
+				each tag in tags.slice(0, 9)
+					li.project__tag
+						p
+							| !{tag}
+
+
+		.project__content

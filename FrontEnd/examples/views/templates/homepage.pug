@@ -1,6 +1,545 @@
 extends ../../../src/views/_layouts/base
 
+block variables
+	- title = 'Homepage'
+	- pageDescription = `${mainTitle} is a UX/UI Designer and Front-End Developer with ${yearsOfExperience} years of experience and a very strong concern for web accessibility.`
 
+block header
+
+	+header({
+		menu: ['about', 'resume', 'portfolio', 'contact'],
+		cv: true,
+		socials: true
+	})
 
 block main
-	h1 Welcome to the Raul Ramos Pinto homepage!
+
+	+intro({
+		htmlTag: 'h1',
+		text: 'Welcome to Raul Ramos Pinto Portfolio Website',
+		textModifiers: '1',
+		modifiers: 'landing-page'
+	})
+
+	+image-text({
+		htmlTag: 'h2',
+		text: "I'm a UX/UI Designer and Front-End Web Developer based in Porto.",
+		textModifiers: '1',
+		file: 'profile',
+		name: 'raul-ramos-pinto',
+		alt: 'Raul Ramos Pinto black and white portrait',
+		title: 'Raul Ramos Pinto portrait',
+		sizesMobile: 100,
+		sizesDesktop: 50,
+		widthMobileX1: 320,
+		widthMobileX2: 475,
+		widthDesktopX1: 768,
+		widthDesktopX2: 1200,
+		loading: 'lazy',
+		modifiers: 'about'
+	})(id='about')
+		p
+			| As a passionate Front-End Developer, I have expertise in HTML, CSS, and JavaScript, placing a strong emphasis on creating accessible and user-friendly websites. By combining a keen eye for UX and UI Design, I seamlessly blend aesthetics with functionality to deliver captivating and responsive digital experiences. Employing a problem-solving mindset, I tackle challenges head-on, discovering innovative solutions for optimal results.
+		p
+			| In my free time, I enjoy painting and have been creating murals under the name Kilos since 2016.
+			br
+			| As a professional basketball player since 2007, I have represented 6 teams, 1 association, and 1 university.
+
+	+tabs({
+		modifiers: `${section}`,
+		items: [
+			{
+				name: 'Professional Experience',
+				url: 'professional-experience',
+				jobs: [
+					{
+						role: 'Front-End Web Developer',
+						company: 'WYcreative',
+						companyURL: 'https://wycreative.com/',
+						companyURLlang: 'en',
+						startDate: '<abbr title="March">Mar</abbr> 2022',
+						startDateTime: '2022-03-24',
+						endDate: 'Present',
+						endDateTime: 'Present',
+						description: 'I&apos;m mostly working with PugJS, Sass and JavaScript for web development projects. I&apos;m also responsible for QA tests and newsletters, in which I write Handlebars and Less.'
+					},
+					{
+						role: 'Graffiti Artist',
+						company: 'Kilos',
+						companyURL: 'https://linktr.ee/kilosgraffiti',
+						companyURLlang: 'en',
+						startDate: '2016',
+						startDateTime: '2016',
+						endDate: 'Present',
+						endDateTime: 'Present',
+						description: 'Started my own artistic expression. Since then, I&apos;ve painted walls in Porto, Lisbon, Algarve, Barcelona, London, Wiesbaden, and Rio de Janeiro. I&apos;ve had three exhibitions so far, from which one of them I was also the curator. More than ten commissioned murals and one participation in the largest international graffiti festival - Meeting Of Styles.'
+					},
+					{
+						role: 'Graphic Designer',
+						company: 'Dice.pt',
+						companyURL: 'https://dice.pt/',
+						companyURLlang: 'pt-PT',
+						startDate: '<abbr title="July">Jul</abbr> 2020',
+						startDateTime: '2020-07',
+						endDate: '<abbr title="June">Jun</abbr> 2021',
+						endDateTime: '2021-06',
+						description: 'I&apos;ve enhanced my skills in Illustration, SEO, Branding, Editorial, Motion, and Web Design, by using tools such as Adobe Illustrator, Photoshop, After Effects, InDesign and Figma.'
+					}
+				]
+			},
+			{
+				name: 'Education',
+				url: 'education',
+				courses: [
+					{
+						course: 'Digital Experience Design',
+						school: '<abbr title="Faculty of Fine Arts of the University of Lisbon">FBAUL</abbr>',
+						schoolURL: 'https://www.belasartes.ulisboa.pt/en/',
+						schoolURLlang: 'en-US',
+						startDate: '2021',
+						startDateTime: '2021',
+						endDate: '2022',
+						endDateTime: '2022',
+						description: 'Completed a specialized course in Digital Experience Design, where I honed my skills in Visual Design, User Experience and Coding. Gained a deeper understanding of Digital Marketing and Entrepreneurship. This immersive program allowed me to put my knowledge into practice and become well-rounded in the digital design industry.'
+					},
+					{
+						course: 'Web Design',
+						school: '<abbr title="Lisbon School of Design Porto">LSD Porto</abbr>',
+						schoolURL: 'https://www.lsd.pt/',
+						schoolURLlang: 'en',
+						startDate: '2020',
+						startDateTime: '2020',
+						endDate: '2021',
+						endDateTime: '2021',
+						description: 'Completed a comprehensive course that introduced me to the world of web development and digital marketing. This program covered a wide range of topics, including UI/UX design, digital marketing, and programming languages such as HTML, CSS, JavaScript, PHP, and MySQL. With hands-on experience and a solid foundation in these technologies, I became equipped to commit myself to the field of web development.'
+					},
+					{
+						course: 'Communication Design',
+						school: '<abbr title="College of Art and Design">ESAD Matosinhos</abbr>',
+						schoolURL: 'https://esad.pt/',
+						schoolURLlang: 'pt',
+						startDate: '2016',
+						startDateTime: '2016',
+						endDate: '2019',
+						endDateTime: '2019',
+						description: 'I&apos;ve enhanced my skills in Illustration, SEO, Branding, Editorial, Motion, and Web Design, by using tools such as Adobe Illustrator, Photoshop, After Effects, InDesign and Figma.'
+					},
+					{
+						course: 'Graphic Design',
+						school: 'Kingston University',
+						schoolURL: 'https://www.kingston.ac.uk/',
+						schoolURLlang: 'en-GB',
+						startDate: '<abbr title="September">Sep</abbr> 2018',
+						startDateTime: '2018-09',
+						endDate: '<abbr title="January">Jan</abbr> 2019',
+						endDateTime: '2019-01',
+						description: 'Had the opportunity to study Graphic Design as part of my third academic year at Kingston University, London, UK through the ERASMUS program. This experience provided me with a comprehensive education in the field of graphic design and a deeper understanding of the creative process.'
+					},
+				]
+			},
+			{
+				name: 'Skills',
+				url: 'skills',
+				categories: [
+					{
+						name: 'Programming',
+						skills: [
+							'<abbr title="Hypertext Markup Language">HTML</abbr> / PugJS / <abbr title="Handlebars">HBS</abbr>',
+							'<abbr title="Cascading Style Sheets">CSS</abbr> / SASS / Less',
+							'JavaScript',
+							'Git',
+							'Liquid',
+							'<abbr title="Accessibility">A11y</abbr>',
+							'<abbr title="Search Engine Optimization">SEO</abbr>'
+						]
+					},
+					{
+						name: 'Design',
+						skills: [
+							'Figma',
+							'Adobe XD',
+							'Adobe Illustrator',
+							'Adobe Photoshop',
+							'Adobe InDesign',
+							'Adobe After Effects'
+						]
+					}
+				]
+			},
+			{
+				name: 'Certifications',
+				url: 'certifications',
+				certificates: [
+					{
+						name: 'Introduction to Web Accessibility',
+						company: 'edX',
+						companyURL: 'https://www.edx.org/',
+						date: '2023',
+						documentURL: 'https://courses.edx.org/certificates/c46f8cba34284e68ab11c55e3293ff44'
+					},
+					{
+						name: 'Microsoft Excel',
+						company: 'LinkedIn Skill Assessment badge',
+						companyURL: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						date: '2023',
+						documentURL: ''
+					},
+					{
+						name: 'Adobe InDesign',
+						company: 'LinkedIn Skill Assessment badge',
+						companyURL: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						date: '2022',
+						documentURL: ''
+					},
+					{
+						name: 'Dreamweaver',
+						company: 'LinkedIn Skill Assessment badge',
+						companyURL: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						date: '2022',
+						documentURL: ''
+					},
+					{
+						name: 'Front-End Development',
+						company: 'LinkedIn Skill Assessment badge',
+						companyURL: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						date: '2022',
+						documentURL: ''
+					},
+					{
+						name: 'JavaScript',
+						company: 'LinkedIn Skill Assessment badge',
+						companyURL: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						date: '2022',
+						documentURL: ''
+					},
+					{
+						name: 'Search Engine Optimization (SEO)',
+						company: 'LinkedIn Skill Assessment badge',
+						companyURL: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						date: '2022',
+						documentURL: ''
+					},
+					{
+						name: 'The Fundamentals of Digital Marketing',
+						company: 'Google Digital Garage',
+						companyURL: 'https://learndigital.withgoogle.com/digitalgarage/',
+						date: '2021',
+						documentURL: 'https://drive.google.com/file/d/1-mPhZWcPbK84V6Z-mqUa8J-XosbBpi0M/view'
+					},
+					{
+						name: 'Adobe Illustrator',
+						company: 'LinkedIn Skill Assessment badge',
+						companyURL: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						date: '2021',
+						documentURL: ''
+					},
+					{
+						name: 'Adobe Photoshop',
+						company: 'LinkedIn Skill Assessment badge',
+						companyURL: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						date: '2021',
+						documentURL: ''
+					},
+					{
+						name: 'Adobe XD',
+						company: 'LinkedIn Skill Assessment badge',
+						companyURL: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						date: '2021',
+						documentURL: ''
+					},
+					{
+						name: 'Cascading Style Sheets (CSS)',
+						company: 'LinkedIn Skill Assessment badge',
+						companyURL: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						date: '2021',
+						documentURL: ''
+					},
+					{
+						name: '<abbr title="Hypertext Markup Language">HTML</abbr>',
+						company: 'LinkedIn Skill Assessment badge',
+						companyURL: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						date: '2021',
+						documentURL: ''
+					},
+					{
+						name: 'After Effects',
+						company: 'LinkedIn Skill Assessment badge',
+						companyURL: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						date: '2020',
+						documentURL: ''
+					},
+				]
+			},
+			{
+				name: 'Languages',
+				url: 'languages',
+				idioms: [
+					{
+						idiom: 'Portuguese',
+						level: 'Native'
+					},
+					{
+						idiom: 'English',
+						level: 'Fluent'
+					},
+					{
+						idiom: 'Spanish',
+						level: 'Conversational'
+					},
+				]
+			},
+			{
+				name: 'Volunteering',
+				url: 'volunteering',
+				programs: [
+					{
+						role: 'Coordinator',
+						company: 'Just a Change',
+						companyURL: 'https://justachange.pt/',
+						startDate: '<abbr title="August">Aug</abbr> 22, 2022',
+						startDateTime: '2022-08-22',
+						endDate: '<abbr title="September">Sep</abbr> 04, 2022',
+						endDateTime: '2022-09-04',
+						description: 'Rebuilding homes for needy people in Miranda do Douro.'
+					},
+					{
+						role: 'Coordinator',
+						company: 'Just a Change',
+						companyURL: 'https://justachange.pt/',
+						startDate: '<abbr title="October">Oct</abbr> 18, 2022',
+						startDateTime: '2022-10-18',
+						endDate: '<abbr title="October">Oct</abbr> 21, 2022',
+						endDateTime: '2022-10-21',
+						description: 'Rebuilding homes for needy people in Lisbon.'
+					},
+					{
+						role: 'Coordinator',
+						company: 'Just a Change',
+						companyURL: 'https://justachange.pt/',
+						startDate: '<abbr title="July">Jul</abbr> 11, 2021',
+						startDateTime: '2021-07-11',
+						endDate: '<abbr title="July">Jul</abbr> 25, 2021',
+						endDateTime: '2021-07-25',
+						description: 'Rebuilding homes for needy people in Faro.'
+					},
+					{
+						role: 'Volunteer (Design Department)',
+						company: '<abbr title="Erasmus Student Network">ESN</abbr> Porto',
+						companyURL: 'https://esnporto.org/',
+						startDate: '<abbr title="February">Feb</abbr> 2019',
+						startDateTime: '2019-02',
+						endDate: '<abbr title="December">Dec</abbr> 2019',
+						endDateTime: '2019-12',
+						description: 'Welcoming international students providing opportunities for cultural understanding and self development.'
+					},
+					{
+						role: 'Volunteer',
+						company: 'Missão País',
+						companyURL: 'https://www.missaopais.pt/',
+						startDate: '<abbr title="January">Jan</abbr> 26, 2019',
+						startDateTime: '2019-01-26',
+						endDate: '<abbr title="February">Feb</abbr> 2, 2019',
+						endDateTime: '2019-02-02',
+						description: ''
+					},
+					{
+						role: 'Volunteer',
+						company: 'Just a Change',
+						companyURL: 'https://justachange.pt/',
+						startDate: '<abbr title="August">Aug</abbr> 27, 2019',
+						startDateTime: '2019-08-27',
+						endDate: '<abbr title="September">Sep</abbr> 8, 2019',
+						endDateTime: '2019-09-08',
+						description: 'Rebuilding homes for needy people in Torres Vedras.'
+					},
+					{
+						role: 'Volunteer',
+						company: 'Just a Change',
+						companyURL: 'https://justachange.pt/',
+						startDate: '<abbr title="September">Sep</abbr> 2, 2018',
+						startDateTime: '2018-09-02',
+						endDate: '<abbr title="September">Sep</abbr> 9, 2018',
+						endDateTime: '2018-09-09',
+						description: 'Rebuilding homes for needy people in Tondela.'
+					},
+				]
+			},
+			{
+				name: 'Sports',
+				url: 'sports',
+				achievements: [
+					{
+						role: 'Basketball Athlete',
+						team: '<abbr title="Porto Basketball Association">A.B.Porto</abbr>',
+						teamURL: 'https://www.abp.pt/',
+						date: '2014',
+						description: 'National championship winner.'
+					},
+					{
+						role: 'Basketball Athlete',
+						team: 'Club 5 Basket',
+						teamURL: 'https://club5basket.wixsite.com/club-5basket/',
+						date: '2014',
+						description: 'District championship winner.'
+					},
+					{
+						role: 'Basketball Athlete',
+						team: '<abbr lang="pt-PT" title="Futebol Clube do Porto">F.C.Porto</abbr>',
+						teamURL: 'https://www.fcporto.pt/en/',
+						date: '2011',
+						description: 'District championship winner.'
+					},
+				]
+			}
+		]
+	})
+
+	+cards-grid({
+		modifiers: 'portfolio',
+		hasImage: true,
+		cards: [
+			{
+				title: 'Dope',
+				url: '/dope',
+				figureName: 'dope-cover',
+				figureAlt: 'Dope - A safer trip advisor | For an informed drug consumption and testing.',
+				figureTitle: 'Dope - A safer trip advisor',
+				figureFigcaption: '',
+				headings: [
+					{
+						htmlTag: 'h4',
+						text: 'Dope',
+						textModifiers: '4'
+					}
+				],
+				labels: [
+					{
+						htmlTag: 'h5',
+						text: 'UX/UI Design',
+						textModifiers: 'label design'
+					},
+				],
+				description: 'A service to promote a safer and more informed use of drugs through testing, monitoring consumption sessions and providing information on drug types and strains, as well as emergency procedures.'
+			},
+			{
+				title: 'Airbnb <br>Guestbook Feature',
+				url: '/airbnb',
+				figureName: 'airbnb-cover',
+				figureAlt: 'Airbnb - Guestbook Feature',
+				figureTitle: 'Airbnb - Guestbook Feature',
+				figureFigcaption: '',
+				headings: [
+					{
+						htmlTag: 'h4',
+						text: 'Airbnb',
+						textModifiers: '4'
+					}
+				],
+				labels: [
+					{
+						htmlTag: 'h5',
+						text: 'UX/UI Design',
+						textModifiers: 'label design'
+					}
+				],
+				description: 'This feature allows users to share with other guests the experiences they have had not only at the residence but also at the place they are visiting, encouraging others to visit and experience the same.'
+			},
+			{
+				title: 'Sango',
+				url: '/sango',
+				figureName: 'airbnb-cover',
+				figureAlt: 'Airbnb - Guestbook Feature',
+				figureTitle: 'Airbnb - Guestbook Feature',
+				figureFigcaption: '',
+				headings: [
+					{
+						htmlTag: 'h4',
+						text: 'Sango',
+						textModifiers: '4'
+					}
+				],
+				labels: [
+					{
+						htmlTag: 'h5',
+						text: 'UX/UI Design',
+						textModifiers: 'label design'
+					},
+					{
+						htmlTag: 'h5',
+						text: 'Front-End',
+						textModifiers: 'label code'
+					}
+				],
+				description: 'This project was a total rebranding, from the logo to the website and online shop. The main aim was to develop the front-end of the whole Sango&apos;s website.'
+			},
+			{
+				title: 'FBAUL Alumni',
+				url: '/fbaul',
+				figureName: 'airbnb-cover',
+				figureAlt: 'FBAUL - Alumni website design',
+				figureTitle: 'FBAUL - Alumni website design',
+				figureFigcaption: '',
+				headings: [
+					{
+						htmlTag: 'h4',
+						text: 'FBAUL',
+						textModifiers: '4'
+					}
+				],
+				labels: [
+					{
+						htmlTag: 'h5',
+						text: 'UX/UI Design',
+						textModifiers: 'label design'
+					}
+				],
+				description: 'Designing an Alumni community website for the Faculty of Fine Arts of the University of Lisbon.'
+			},
+			{
+				title: 'Re-mind',
+				url: '/re-mind',
+				figureName: 'airbnb-cover',
+				figureAlt: 'Re-mind - Helping treat mental health disorders faster',
+				figureTitle: 'Re-mind - Helping treat mental health disorders faster',
+				figureFigcaption: '',
+				headings: [
+					{
+						htmlTag: 'h4',
+						text: 'Re-mind',
+						textModifiers: '4'
+					}
+				],
+				labels: [
+					{
+						htmlTag: 'h5',
+						text: 'UX/UI Design',
+						textModifiers: 'label design'
+					}
+				],
+				description: 'Re-mind is an AI powered app that bridges the gap between doctor/patient, helping to provide faster and more efficient diagnosis and treatment.'
+			},
+			{
+				title: 'Tinypink',
+				url: '/tinypink',
+				figureName: 'airbnb-cover',
+				figureAlt: 'Tinypink - Achieve incredible detail in your spray works ',
+				figureTitle: 'Tinypink - Achieve incredible detail in your spray works ',
+				figureFigcaption: '',
+				headings: [
+					{
+						htmlTag: 'h4',
+						text: 'Tinypink',
+						textModifiers: '4'
+					}
+				],
+				labels: [
+					{
+						htmlTag: 'h5',
+						text: 'UX/UI Design',
+						textModifiers: 'label design'
+					}
+				],
+				description: 'Creating a design system and redesigning the Tinypink stencil cap e-commerce website.'
+			},
+		]
+	})

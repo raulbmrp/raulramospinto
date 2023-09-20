@@ -1,0 +1,52 @@
+mixin cards-grid(options)
+
+	section.module.cards-grid(class=setModifiers(options.modifiers, 'cards-grid--'))&attributes(attributes)
+		.cards-grid__layout
+			each card in options.cards
+				a.card(
+					href=card.url
+					title=card.title
+					target='self'
+				)
+					.card__layout
+
+						if options.hasImage
+							.card__figure
+								+figure({
+									modifiers: 'card',
+									file: 'portfolio/thumbnails',
+									name: `${card.figureName}`,
+									alt: `${card.figureAlt}`,
+									title: `${card.figureTitle}`,
+									sizesMobile: 100,
+									sizesDesktop: 25,
+									widthMobileX1: 320,
+									widthMobileX2: 475,
+									widthDesktopX1: 768,
+									widthDesktopX2: 1200,
+									loading: 'lazy',
+									figcaption: `${card.figureFigcaption}`
+								})
+						.card__content
+							if card.headings
+								.card__headings
+									each heading in card.headings
+										+heading({
+											htmlTag: `${heading.htmlTag}`,
+											text: `${heading.text}`,
+											textModifiers: `${heading.textModifiers}`
+										})
+
+							if card.labels
+								.card__labels
+									each label in card.labels
+										+heading({
+											htmlTag: `${label.htmlTag}`,
+											text: `${label.text}`,
+											textModifiers: `${label.textModifiers}`
+										})
+
+							if card.description
+								.card__description
+									p
+										| !{card.description}

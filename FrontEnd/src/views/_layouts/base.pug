@@ -13,6 +13,7 @@ include ~@wycreative/symbol
 	const mainDescription = `${mainTitle} is a UX Designer and Front-End Developer with ${yearsOfExperience} years of experience and a very strong concern for web accessibility.`
 	let pageDescription
 	const mainKeywords = 'UX, UI, Design, User Experience, User Interface, Designer, Digital, Frontend, Developer, Development, Web, Accessibility, A11y, HTML, CSS, JavaScript, Figma'
+	let pageKeywords
 
 
 
@@ -25,8 +26,9 @@ html(lang="en" dir="ltr" prefix="og: https://ogp.me/ns#")
 	head
 		meta(charset="UTF-8")
 		meta(name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover")
+		base(href="/")
 		title= (title ? `${title} | ` : '') + `${mainTitle}` + ' - UX/UI & Front-End Developer'
-		meta(name="description" content=`${mainDescription}`)
+		meta(name="description" content=(pageDescription ? `${pageDescription}` : `${mainDescription}`))
 		meta(name="keywords" content=(pageKeywords ? `${pageKeywords}` : `${mainKeywords}`))
 		meta(name="author" content=`${mainTitle}`)
 
@@ -60,6 +62,9 @@ html(lang="en" dir="ltr" prefix="og: https://ogp.me/ns#")
 		block header
 
 		main.main#main
+			if project
+				include project
+
 			block main
 
 		block footer

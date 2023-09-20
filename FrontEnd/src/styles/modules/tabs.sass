@@ -20,7 +20,6 @@
 		position: relative
 		display: grid
 		gap: 32px
-		min-height: 100vh
 
 	// Buttons
 	// -----------------------------------------------------------------------------
@@ -66,7 +65,7 @@
 		margin-bottom: 128px
 
 	&__panel-content
-		padding: 8px 24px 16px
+		padding: 8px 16px 16px
 		border: 1px solid abstracts.color(alpha semi-transparent-dirty-white)
 		border-radius: 32px
 
@@ -86,6 +85,7 @@
 			display: grid
 			grid-template-columns: 1fr 2fr
 			gap: 32px
+			min-height: 100vh
 
 		&__buttons-list
 			display: flex
@@ -106,6 +106,8 @@
 		// Items
 		// -----------------------------------------------------------------------------
 		&__panel
+			&-content
+				padding: 8px 24px 16px
 
 			&--skills
 				grid-template-columns: repeat(2, 1fr)

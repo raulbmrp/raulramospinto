@@ -1,0 +1,68 @@
+@use "sass:selector"
+
+@use "../abstracts"
+
+
+// =============================================================================
+// Card
+// =============================================================================
+
+.card
+	$block: &
+
+	+abstracts.color(neutral dirty-white)
+	text-decoration: none
+
+	// Layout
+	// -----------------------------------------------------------------------------
+	&__layout
+		max-width: abstracts.columns(12)
+		margin-inline: auto
+		position: relative
+		display: grid
+		border: 1px solid abstracts.color(alpha semi-transparent-dirty-white)
+		border-radius: 32px
+		overflow: hidden
+
+	&__content
+		display: grid
+		gap: 4px
+		padding: 16px
+
+	// Headings
+	// -----------------------------------------------------------------------------
+	&__headings
+		display: flex
+		flex-direction: column
+		gap: 4px
+		order: 2
+
+	// Labels
+	// -----------------------------------------------------------------------------
+	&__labels
+		display: flex
+		gap: 4px
+		order: 1
+
+	.heading
+		&--label
+			padding: 2px 12px
+			border-radius: 100vmax
+
+		&--design
+			+abstracts.background(brand blue)
+			+abstracts.color(neutral black)
+
+		&--code
+			+abstracts.background(brand orange)
+			+abstracts.color(neutral black)
+
+	// Description
+	// -----------------------------------------------------------------------------
+	&__description
+		overflow: hidden
+		display: -webkit-box
+		-webkit-line-clamp: 3
+		line-clamp: 3
+		-webkit-box-orient: vertical
+		order: 3

@@ -218,18 +218,21 @@ class Header {
 
 		function splitMenuButtonString() {
 			const buttonTexts = document.querySelectorAll('.header__menu-button');
+
 			if (window.matchMedia('(width < 992px)').matches && window.matchMedia('(hover: hover)').matches) {
 				for (const button of buttonTexts) {
-					button.innerHTML = [...button.textContent]
-						.map(
-							(char, i) =>
-								`<span class="button__letter button__letter--${i}" style="--index:${i};">${char}</span>`,
-						)
-						.join('');
+					const words = button.textContent.trim().split(' '); // Split text into words
+					const newContent = words.map(word => {
+						const letters = [...word];
+						return letters.map(
+							(char, i) => `<span class="button__letter button__letter--${i}" style="--index:${i};">${char}</span>`,
+						).join('');
+					}).join(' '); // Join words back together with spaces
+					button.innerHTML = newContent;
 				}
 			} else {
 				for (const button of buttonTexts) {
-					button.innerHTML = [button.textContent];
+					button.innerHTML = button.textContent;
 				}
 			}
 		}

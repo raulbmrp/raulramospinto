@@ -1,0 +1,160 @@
+extends ../../../src/views/_layouts/base
+
+
+
+block variables
+	- title = 'Card'
+
+
+
+block main
+
+	+cards-grid({
+		modifiers: 'portfolio',
+		hasImage: true,
+		cards: [
+			{
+				title: 'Dope',
+				url: '/dope',
+				figureName: 'dope-cover',
+				figureAlt: 'Dope - A safer trip advisor | For an informed drug consumption and testing.',
+				figureTitle: 'Dope - A safer trip advisor',
+				figureFigcaption: '',
+				headings: [
+					{
+						htmlTag: 'h4',
+						text: 'Dope',
+						textModifiers: '4'
+					}
+				],
+				labels: [
+					{
+						htmlTag: 'h5',
+						text: 'UX/UI Design',
+						textModifiers: 'label design'
+					},
+				],
+				description: 'A service to promote a safer and more informed use of drugs through testing, monitoring consumption sessions and providing information on drug types and strains, as well as emergency procedures.'
+			},
+			{
+				title: 'Airbnb <br>Guestbook Feature',
+				url: '/airbnb',
+				figureName: 'airbnb-cover',
+				figureAlt: 'Airbnb - Guestbook Feature',
+				figureTitle: 'Airbnb - Guestbook Feature',
+				figureFigcaption: '',
+				headings: [
+					{
+						htmlTag: 'h4',
+						text: 'Airbnb',
+						textModifiers: '4'
+					}
+				],
+				labels: [
+					{
+						htmlTag: 'h5',
+						text: 'UX/UI Design',
+						textModifiers: 'label design'
+					}
+				],
+				description: 'This feature allows users to share with other guests the experiences they have had not only at the residence but also at the place they are visiting, encouraging others to visit and experience the same.'
+			},
+			{
+				title: 'Sango',
+				url: '/sango',
+				figureName: 'airbnb-cover',
+				figureAlt: 'Airbnb - Guestbook Feature',
+				figureTitle: 'Airbnb - Guestbook Feature',
+				figureFigcaption: '',
+				headings: [
+					{
+						htmlTag: 'h4',
+						text: 'Sango',
+						textModifiers: '4'
+					}
+				],
+				labels: [
+					{
+						htmlTag: 'h5',
+						text: 'UX/UI Design',
+						textModifiers: 'label design'
+					},
+					{
+						htmlTag: 'h5',
+						text: 'Front-End',
+						textModifiers: 'label code'
+					}
+				],
+				description: 'This project was a total rebranding, from the logo to the website and online shop. The main aim was to develop the front-end of the whole Sango&apos;s website.'
+			},
+			{
+				title: 'FBAUL Alumni',
+				url: '/fbaul',
+				figureName: 'airbnb-cover',
+				figureAlt: 'FBAUL - Alumni website design',
+				figureTitle: 'FBAUL - Alumni website design',
+				figureFigcaption: '',
+				headings: [
+					{
+						htmlTag: 'h4',
+						text: 'FBAUL',
+						textModifiers: '4'
+					}
+				],
+				labels: [
+					{
+						htmlTag: 'h5',
+						text: 'UX/UI Design',
+						textModifiers: 'label design'
+					}
+				],
+				description: 'Designing an Alumni community website for the Faculty of Fine Arts of the University of Lisbon.'
+			},
+			{
+				title: 'Re-mind',
+				url: '/re-mind',
+				figureName: 'airbnb-cover',
+				figureAlt: 'Re-mind - Helping treat mental health disorders faster',
+				figureTitle: 'Re-mind - Helping treat mental health disorders faster',
+				figureFigcaption: '',
+				headings: [
+					{
+						htmlTag: 'h4',
+						text: 'Re-mind',
+						textModifiers: '4'
+					}
+				],
+				labels: [
+					{
+						htmlTag: 'h5',
+						text: 'UX/UI Design',
+						textModifiers: 'label design'
+					}
+				],
+				description: 'Re-mind is an AI powered app that bridges the gap between doctor/patient, helping to provide faster and more efficient diagnosis and treatment.'
+			},
+			{
+				title: 'Tinypink',
+				url: '/tinypink',
+				figureName: 'airbnb-cover',
+				figureAlt: 'Tinypink - Achieve incredible detail in your spray works ',
+				figureTitle: 'Tinypink - Achieve incredible detail in your spray works ',
+				figureFigcaption: '',
+				headings: [
+					{
+						htmlTag: 'h4',
+						text: 'Tinypink',
+						textModifiers: '4'
+					}
+				],
+				labels: [
+					{
+						htmlTag: 'h5',
+						text: 'UX/UI Design',
+						textModifiers: 'label design'
+					}
+				],
+				description: 'Creating a design system and redesigning the Tinypink stencil cap e-commerce website.'
+			},
+		]
+	})
