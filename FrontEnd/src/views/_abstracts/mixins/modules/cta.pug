@@ -1,0 +1,19 @@
+mixin cta(options)
+
+	section.module.cta(class=setModifiers(options.modifiers, 'cta--'))&attributes(attributes)
+		.cta__layout
+			.cta__content
+				.cta__buttons
+					each button in options.buttons
+						+button({
+							text: button.text,
+							modifiers: button.modifiers,
+							url: button.url,
+							urlLang: button.urlLang,
+							title: button.title,
+							iconFile: button.iconFile,
+							iconId: button.iconId
+						})(target='_blank' rel='nofollow, noopener')
+
+				if block
+					block

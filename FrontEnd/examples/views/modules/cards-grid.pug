@@ -4,13 +4,14 @@ extends ../../../src/views/_layouts/base
 
 block variables
 	- title = 'Card'
+	- section = 'portfolio'
 
 
 
 block main
 
 	+cards-grid({
-		modifiers: 'portfolio',
+		modifiers: `${section}`,
 		hasImage: true,
 		cards: [
 			{

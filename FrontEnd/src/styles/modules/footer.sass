@@ -1,41 +1,32 @@
+@use "sass:selector"
+
 @use "../abstracts"
 
-
-
 // =============================================================================
-// Image Text
+// Footer
 // =============================================================================
 
-.image-text
-	$block: &
-
-	padding-inline: 24px
-
-
+.footer
 	// Layout
 	// -----------------------------------------------------------------------------
 	&__layout
 		max-width: abstracts.columns(12)
 		margin-inline: auto
-		height: 100vh
 		position: relative
 
 	// Content
 	// -----------------------------------------------------------------------------
 	&__content
-		display: grid
+		display: flex
+		flex-direction: column
+		align-items: center
+		justify-content: center
+		gap: 24px
 
-	// Heading
-	// -----------------------------------------------------------------------------
-	&__heading
-		margin-bottom: 16px
-
-		.highlight
-			+abstracts.color(brand orange)
-			font-family: Degular, Helvetica, Arial, sans-serif
-			font-weight: 600
-			font-size: 1.1em
-
+	&__copyrights
+		justify-self: center
+		p
+			text-align: center
 
 	// =============================================================================
 	// Desktop
@@ -45,5 +36,15 @@
 		// Content
 		// -----------------------------------------------------------------------------
 		&__content
-			grid-template-columns: 2fr 1fr
-			gap: 48px
+			display: grid
+			grid-template-columns: 1fr 2fr 1fr
+
+		&__social-list
+			order: 3
+			justify-self: right
+
+		&__copyrights
+			order: 2
+
+		&__back-to-top
+			order: 1

@@ -1,0 +1,23 @@
+mixin footer
+
+	- let currentYear = currentWorkingDate.getFullYear();
+
+	footer.footer&attributes(attributes)
+		.footer__layout
+			.footer__content
+				.footer__social-list
+					+social-list
+
+				.footer__copyrights
+					p= `© ${currentYear} Raul Ramos Pinto - All rights reserved`
+
+				.footer__back-to-top
+					+button({
+						text: '<span class="sr-only>"Back to Top</span>',
+						modifiers: 'tertiary icon icon-small jump',
+						url: '#',
+						urlLang: 'en',
+						title: 'Back to Top',
+						iconFile: '/assets/images/other.svg',
+						iconId: 'arrow'
+					})(target='_self')

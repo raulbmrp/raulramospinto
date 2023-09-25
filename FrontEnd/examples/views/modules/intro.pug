@@ -4,6 +4,7 @@ extends ../../../src/views/_layouts/base
 
 block variables
 	- title = 'Intro'
+	- section = 'intro'
 
 
 
@@ -11,8 +12,8 @@ block variables
 block main
 
 	+intro({
+		modifiers: `${section}`,
 		htmlTag: 'h1',
 		text: 'Welcome to Raul Ramos Pinto Portfolio Website',
-		textModifiers: '1',
-		modifiers: 'landing-page'
-	})
+		textModifiers: '1'
+	})(id="intro")

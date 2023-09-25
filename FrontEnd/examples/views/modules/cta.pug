@@ -1,0 +1,27 @@
+extends ../../../src/views/_layouts/base
+
+
+
+block variables
+	- title = 'CTA'
+	- section = 'contacts'
+
+
+
+block main
+
+	+cta({
+		modifiers: `${section}`,
+		buttons: [
+			{
+				url: 'mailto:raulbmrp@gmail.com',
+				title: 'Write Raul an email',
+				text: 'Get in touch <span class="sr-only">with Raul</span>',
+				modifiers: 'secondary',
+				iconFile: '/assets/images/contacts.svg',
+				iconId: 'mail'
+			}
+		]
+	})(id="contacts")
+		.cta__text
+			p.heading--1 Let's Work Together!
