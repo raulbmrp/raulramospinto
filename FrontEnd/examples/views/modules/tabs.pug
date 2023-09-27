@@ -11,6 +11,11 @@ block variables
 
 block main
 
+	+heading({
+		htmlTag: 'h2',
+		text: `${section}`
+	})(class='sr-only')
+
 	+tabs({
 		modifiers: `${section}`,
 		items: [
@@ -358,4 +363,4 @@ block main
 				]
 			}
 		]
-	})
+	})(id=`${section}`)

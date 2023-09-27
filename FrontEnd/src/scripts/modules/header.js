@@ -89,6 +89,7 @@ class Header {
 		// -------------------------------------------------------------
 
 		this.#burger.addEventListener('click', () => {
+			this.#header.classList.toggle('on');
 			this.#burger.classList.toggle('on');
 			this.#menu.classList.toggle('on');
 			this.#main.classList.toggle('off');
@@ -143,7 +144,6 @@ class Header {
 				}
 			});
 		}
-
 
 		// Run on Load
 		// -------------------------------------------------------------

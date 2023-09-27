@@ -60,6 +60,12 @@ html(lang="en" dir="ltr" prefix="og: https://ogp.me/ns#")
 		//- #cursor.cursor
 
 		block header
+			if homePage
+				+header({
+					menu: ['about', 'resume', 'portfolio', 'contact'],
+					cv: true,
+					socials: true
+				})
 
 		main.main#main
 			if project
@@ -68,6 +74,7 @@ html(lang="en" dir="ltr" prefix="og: https://ogp.me/ns#")
 			block main
 
 		block footer
+			+footer
 
 		block scripts
 			script(src="/assets/scripts/main.js" type="module")

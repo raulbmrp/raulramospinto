@@ -10,9 +10,14 @@ block variables
 
 block main
 
+	+heading({
+		htmlTag: 'h2',
+		text: `${section}`
+	})(class='sr-only')
+
 	+image-text({
 		modifiers: `${section}`,
-		htmlTag: 'h2',
+		htmlTag: 'h3',
 		text: 'I&apos;m a <span class="highlight highlight--design">UX/UI Designer</span> and <span class="highlight highlight--code">Front-End Web Developer</span> based in Porto.',
 		textModifiers: '1',
 		file: 'profile',
@@ -26,7 +31,7 @@ block main
 		widthDesktopX1: 768,
 		widthDesktopX2: 1200,
 		loading: 'lazy'
-	})(id='about')
+	})(id=`${section}`)
 		p
 			| As a passionate Front-End Developer, I have expertise in HTML, CSS, and JavaScript, placing a strong emphasis on creating accessible and user-friendly websites. By combining a keen eye for UX and UI Design, I seamlessly blend aesthetics with functionality to deliver captivating and responsive digital experiences. Employing a problem-solving mindset, I tackle challenges head-on, discovering innovative solutions for optimal results.
 		p

@@ -13,11 +13,11 @@ mixin social-list
 			li.social-list__item(style=`--index:${index};`)
 				+button({
 					url: `${url}`,
+					target: '_blank',
 					modifiers: 'icon',
 					iconFile: '/assets/images/socials.svg',
 					iconId: `${key}`
 				})(
-					target='_blank'
 					title=`${key}`
 					aria-label=`Open Raul's ${key} on a new tab`
 				).social-list__button

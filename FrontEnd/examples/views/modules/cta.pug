@@ -10,11 +10,17 @@ block variables
 
 block main
 
+	+heading({
+		htmlTag: 'h2',
+		text: `${section}`
+	})(class='sr-only')
+
 	+cta({
 		modifiers: `${section}`,
 		buttons: [
 			{
 				url: 'mailto:raulbmrp@gmail.com',
+				target: '_blank',
 				title: 'Write Raul an email',
 				text: 'Get in touch <span class="sr-only">with Raul</span>',
 				modifiers: 'secondary',
@@ -22,6 +28,6 @@ block main
 				iconId: 'mail'
 			}
 		]
-	})(id="contacts")
+	})(id=`${section}`)
 		.cta__text
-			p.heading--1 Let's Work Together!
+			h3.heading--1 Let's Work Together!

@@ -12,17 +12,23 @@
 	$block: &
 	$header-height: 64px
 
-	padding-inline: 24px
-	padding-bottom: 24px
-	height: 100vh
+	height: $header-height
 	position: fixed
 	inset: 0 0 auto
 	z-index: 10
+	background: linear-gradient(180deg, abstracts.color(alpha semi-transparent-black) 0%, transparent 100%)
+	backdrop-filter: blur(2px)
+	+abstracts.transition(height, 1s ease 1s)
+
+	&.on
+		height: 100vh
+		background: transparent
+		+abstracts.transition(height, 0s ease 0s)
 
 	// Layout
 	// -----------------------------------------------------------------------------
 	&__layout
-		max-width: abstracts.columns(12)
+		// max-width: abstracts.columns(12)
 		margin-inline: auto
 		align-items: center
 
@@ -30,11 +36,13 @@
 			display: flex
 			justify-content: space-between
 			height: $header-height
+			padding-inline: 24px
 
 		&--menu
 			display: grid
 			pointer-events: none
 			height: calc(100% - $header-height)
+			padding-inline: 24px
 
 			&.on
 				opacity: 1
@@ -192,7 +200,6 @@
 		&__social-list
 			display: none
 
-
 	// =============================================================================
 	// Desktop & Hover
 	// =============================================================================
@@ -201,4 +208,3 @@
 		&__menu-button
 			&:hover:not(.header__menu-button--current)
 				+abstracts.background(alpha semi-transparent-dirty-white)
-

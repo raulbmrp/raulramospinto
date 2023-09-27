@@ -32,6 +32,7 @@
 	max-width: max-content
 	text-decoration: none
 	+abstracts.transition(background color border-color)
+	height: fit-content
 
 	&:not(&--menu, &--icon, &--tertiary)
 		padding: $padding-block $padding-inline
@@ -110,6 +111,9 @@
 	// -----------------------------------------------------------------------------
 	&--tertiary
 		+abstracts.color(neutral dirty-white)
+
+		&:not(.button--icon)
+			padding: $padding-block-small $padding-inline-small
 
 		&:not(:disabled)
 			+abstracts.hover(focus-visible)

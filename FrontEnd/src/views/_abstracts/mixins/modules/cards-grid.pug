@@ -5,8 +5,8 @@ mixin cards-grid(options)
 			each card in options.cards
 				a.card(
 					href=card.url
-					title=card.title
-					target='self'
+					title=`Open ${card.title} project`
+					target='_self'
 				)
 					.card__layout
 

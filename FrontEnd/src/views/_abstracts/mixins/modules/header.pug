@@ -2,7 +2,7 @@ mixin header(options)
 
 	header.header&attributes(attributes)
 		.header__layout.header__layout--top
-			a.header__logo(href="#" title='Back to the homepage' target='_self')
+			a.header__logo(href="/homepage" title='Back to the homepage' target='_self')
 				+symbol({
 					file: '/assets/images/logos.svg',
 					id: 'logo-raul-ramos-pinto',
@@ -24,11 +24,11 @@ mixin header(options)
 						li.header__menu-item(style=`--index:${index};`)
 							+button({
 								url: `#${item}`,
+								target: '_self',
 								textMenu: item,
 								modifiers: 'menu',
 								title: `Go to ${item}`
 							})(
-								target='_self'
 								data-index=index
 								class= `${index == 0 ? 'header__menu-button--current' : ''}`
 							).header__menu-button
@@ -37,11 +37,12 @@ mixin header(options)
 			if options.cv
 				.header__cv-button
 					+button({
-						url: 'https://drive.google.com/file/d/1Gig3N9-O4pVQj9VUC_N5qR7dqy5uHve7/view',
+						url: 'https://drive.google.com/file/d/1Uc-wgqqPp4Uw2_E73tsM8BS1mNxl-8Gs/view?usp=sharing',
+						target: '_blank',
 						text: 'Open CV <span class="sr-only">on a new tab</span>',
 						modifiers: 'menu',
 						title: "Open Raul's CV on a new tab"
-					})(target='_blank').cta
+					}).cta
 
 			if options.socials
 				.header__social-list

@@ -9,11 +9,12 @@ mixin cta(options)
 							text: button.text,
 							modifiers: button.modifiers,
 							url: button.url,
+							target: button.target,
 							urlLang: button.urlLang,
 							title: button.title,
 							iconFile: button.iconFile,
 							iconId: button.iconId
-						})(target='_blank' rel='nofollow, noopener')
+						})
 
 				if block
 					block

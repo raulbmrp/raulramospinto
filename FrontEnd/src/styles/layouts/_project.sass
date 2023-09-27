@@ -17,17 +17,33 @@
 	&__layout
 		max-width: abstracts.columns(12)
 		margin-inline: auto
-		height: 100vh
 		position: relative
 
-	// Intro
+	// Cover
 	// -----------------------------------------------------------------------------
-	&__intro
+	&__cover
+		height: 100vh
 		display: flex
 		flex-direction: column
-		position: absolute
-		bottom: 5vh
-		width: -webkit-fill-available
+		justify-content: space-between
+		// width: -webkit-fill-available
+
+	// Top Container
+	// -----------------------------------------------------------------------------
+	&__top-container
+		margin-top: 24px
+
+		.button__icon
+			transform: rotate(-90deg)
+
+	// Bottom Container
+	// -----------------------------------------------------------------------------
+	&__bottom-container
+		display: flex
+		flex-direction: column
+		padding-bottom: 48px
+		// width: -webkit-fill-available
+		gap: 16px
 
 	// Heading
 	// -----------------------------------------------------------------------------
@@ -42,9 +58,9 @@
 		gap: 8px
 		flex-wrap: wrap
 
-	.heading--label
+	&__label
 		padding: .1em .8em
-		border-radius: 100vh
+		border-radius: 100vmax
 		border: 1px solid abstracts.color(neutral dirty-white)
 
 	// Tags
@@ -54,7 +70,21 @@
 		display: grid
 		grid-template-columns: repeat(2, auto)
 		height: min-content
-		margin-top: 64px
+		margin-top: 48px
+
+	// Intro
+	// -----------------------------------------------------------------------------
+	&__intro
+		margin-block: 120px
+		display: grid
+		gap: 24px
+
+	// Buttons
+	// -----------------------------------------------------------------------------
+	&__buttons
+		display: flex
+		gap: 24px
+		flex-wrap: wrap
 
 	// =============================================================================
 	// Desktop
@@ -65,3 +95,8 @@
 		// -----------------------------------------------------------------------------
 		&__tags
 			grid-template-columns: repeat(3, 1fr)
+
+		// Intro
+		// -----------------------------------------------------------------------------
+		&__intro
+			grid-template-columns: 2fr 1fr

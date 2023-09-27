@@ -9,15 +9,17 @@ mixin footer
 					+social-list
 
 				.footer__copyrights
-					p= `© ${currentYear} Raul Ramos Pinto - All rights reserved`
+					p
+						small= `© ${currentYear} Raul Ramos Pinto - All rights reserved`
 
 				.footer__back-to-top
 					+button({
 						text: '<span class="sr-only>"Back to Top</span>',
 						modifiers: 'tertiary icon icon-small jump',
 						url: '#',
+						target: '_self',
 						urlLang: 'en',
 						title: 'Back to Top',
 						iconFile: '/assets/images/other.svg',
 						iconId: 'arrow'
-					})(target='_self')
+					})

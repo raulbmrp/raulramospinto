@@ -1,5 +1,9 @@
 mixin button(options)
 
+	-
+		const rel = [];
+		if (options.target === '_blank') rel.push('noreferrer noopener');
+
 	if typeof options === 'string'
 		-
 			options = {
@@ -8,6 +12,8 @@ mixin button(options)
 
 	#{options.url ? 'a' : options.element || 'button'}.button(
 		href=options.url
+		target=options.target
+		rel=rel.join(' ') || null
 		hreflang=options.urlLang
 		title=options.title
 		class=setModifiers(options.modifiers || 'primary', 'button--')

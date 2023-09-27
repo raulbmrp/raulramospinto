@@ -17,7 +17,16 @@ mixin image-text(options)
 				if options.buttons
 					.image-text__buttons
 						each button in options.buttons
-							+button(button).image-text__button(class=button.class)
+							+button({
+								text: button.text,
+								modifiers: button.modifiers,
+								url: button.url,
+								target: button.target,
+								urlLang: button.urlLang,
+								title: button.title,
+								iconFile: button.iconFile,
+								iconId: button.iconId
+							}).image-text__button
 
 
 				+figure({

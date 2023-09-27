@@ -13,6 +13,7 @@ mixin tabs(options)
 						li
 							+button({
 								url: `#${item.url}`,
+								target: '_self',
 								text: `${item.name}`,
 								modifiers: 'secondary',
 								iconFile: '/assets/images/resume.svg',

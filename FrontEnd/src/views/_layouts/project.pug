@@ -1,27 +1,55 @@
 section.project
 	.project__layout
-		.project__intro
+		.project__cover
 
-			.project__heading
-				+heading({
-					htmlTag: 'h1',
-					text: `${title}`,
-					textModifiers: '1'
-				})
+			.project__top-container
+				+button({
+					url: '/homepage.html/#portfolio',
+					target: '_self',
+					urlLang: 'en',
+					title: 'Go back to the Homepage',
+					modifiers: 'tertiary',
+					iconFile: '/assets/images/other.svg',
+					iconId: 'arrow',
+					text: 'Back <span class="sr-only">to the Homepage</span>'
+				}).button__back
 
-			.project__labels
-				each label in labels
+			.project__bottom-container
+				.project__heading
 					+heading({
-						htmlTag: 'h2',
-						text: `${label}`,
-						textModifiers: 'label'
+						htmlTag: 'h1',
+						text: `${title}${slogan ? '<br>' + slogan : ''}`,
+						textModifiers: '1'
 					})
 
-			ul.project__tags
-				each tag in tags.slice(0, 9)
-					li.project__tag
-						p
-							| !{tag}
+				.project__labels
+					each label in labels
+						span.project__label
+							| !{label}
 
+				ul.project__tags
+					each tag in tags.slice(0, 9)
+						li.project__tag
+							p
+								| !{tag}
+
+		.project__intro
+			.project__description
+				p
+					| !{pageDescription}
+
+			if buttons
+				.project__buttons
+					each button in buttons
+						+button({
+							url: `${button.url}`,
+							target: '_blank',
+							urlLang: `${button.urlLang}`,
+							title: `Open ${title} project on ${button.social}`,
+							modifiers: 'primary',
+							iconFile: '/assets/images/socials.svg',
+							iconId: `${button.social}`,
+							text: `Open <span class="sr-only">${title}</span> project on <span style="text-transform: capitalize;">${button.social}</span>`
+						})
 
 		.project__content

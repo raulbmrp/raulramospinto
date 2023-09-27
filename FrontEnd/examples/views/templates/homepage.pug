@@ -1,29 +1,28 @@
 extends ../../../src/views/_layouts/base
 
 block variables
+	- homePage = true
 	- title = 'Homepage'
 	- pageDescription = `${mainTitle} is a UX/UI Designer and Front-End Developer with ${yearsOfExperience} years of experience and a very strong concern for web accessibility.`
-
-block header
-
-	+header({
-		menu: ['about', 'resume', 'portfolio', 'contact'],
-		cv: true,
-		socials: true
-	})
 
 block main
 
 	+intro({
+		modifiers: 'intro',
 		htmlTag: 'h1',
 		text: 'Welcome to Raul Ramos Pinto Portfolio Website',
-		textModifiers: '1',
-		modifiers: 'landing-page'
-	})
+		textModifiers: '1'
+	})(id='intro')
+
+	+heading({
+		htmlTag: 'h2',
+		text: 'About'
+	})(class='sr-only')
 
 	+image-text({
-		htmlTag: 'h2',
-		text: "I'm a UX/UI Designer and Front-End Web Developer based in Porto.",
+		modifiers: 'about',
+		htmlTag: 'h3',
+		text: 'I&apos;m a <span class="highlight highlight--design">UX/UI Designer</span> and <span class="highlight highlight--code">Front-End Web Developer</span> based in Porto.',
 		textModifiers: '1',
 		file: 'profile',
 		name: 'raul-ramos-pinto',
@@ -35,8 +34,7 @@ block main
 		widthMobileX2: 475,
 		widthDesktopX1: 768,
 		widthDesktopX2: 1200,
-		loading: 'lazy',
-		modifiers: 'about'
+		loading: 'lazy'
 	})(id='about')
 		p
 			| As a passionate Front-End Developer, I have expertise in HTML, CSS, and JavaScript, placing a strong emphasis on creating accessible and user-friendly websites. By combining a keen eye for UX and UI Design, I seamlessly blend aesthetics with functionality to deliver captivating and responsive digital experiences. Employing a problem-solving mindset, I tackle challenges head-on, discovering innovative solutions for optimal results.
@@ -45,8 +43,13 @@ block main
 			br
 			| As a professional basketball player since 2007, I have represented 6 teams, 1 association, and 1 university.
 
+	+heading({
+		htmlTag: 'h2',
+		text: 'Resume'
+	})(class='sr-only')
+
 	+tabs({
-		modifiers: `${section}`,
+		modifiers: 'resume',
 		items: [
 			{
 				name: 'Professional Experience',
@@ -392,7 +395,12 @@ block main
 				]
 			}
 		]
-	})
+	})(id='resume')
+
+	+heading({
+		htmlTag: 'h2',
+		text: 'Portfolio'
+	})(class='sr-only')
 
 	+cards-grid({
 		modifiers: 'portfolio',
@@ -407,14 +415,14 @@ block main
 				figureFigcaption: '',
 				headings: [
 					{
-						htmlTag: 'h4',
+						htmlTag: 'h3',
 						text: 'Dope',
-						textModifiers: '4'
+						textModifiers: '3'
 					}
 				],
 				labels: [
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'UX/UI Design',
 						textModifiers: 'label design'
 					},
@@ -430,14 +438,14 @@ block main
 				figureFigcaption: '',
 				headings: [
 					{
-						htmlTag: 'h4',
+						htmlTag: 'h3',
 						text: 'Airbnb',
-						textModifiers: '4'
+						textModifiers: '3'
 					}
 				],
 				labels: [
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'UX/UI Design',
 						textModifiers: 'label design'
 					}
@@ -453,19 +461,19 @@ block main
 				figureFigcaption: '',
 				headings: [
 					{
-						htmlTag: 'h4',
+						htmlTag: 'h3',
 						text: 'Sango',
-						textModifiers: '4'
+						textModifiers: '3'
 					}
 				],
 				labels: [
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'UX/UI Design',
 						textModifiers: 'label design'
 					},
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'Front-End',
 						textModifiers: 'label code'
 					}
@@ -481,14 +489,14 @@ block main
 				figureFigcaption: '',
 				headings: [
 					{
-						htmlTag: 'h4',
+						htmlTag: 'h3',
 						text: 'FBAUL',
-						textModifiers: '4'
+						textModifiers: '3'
 					}
 				],
 				labels: [
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'UX/UI Design',
 						textModifiers: 'label design'
 					}
@@ -504,14 +512,14 @@ block main
 				figureFigcaption: '',
 				headings: [
 					{
-						htmlTag: 'h4',
+						htmlTag: 'h3',
 						text: 'Re-mind',
-						textModifiers: '4'
+						textModifiers: '3'
 					}
 				],
 				labels: [
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'UX/UI Design',
 						textModifiers: 'label design'
 					}
@@ -527,14 +535,14 @@ block main
 				figureFigcaption: '',
 				headings: [
 					{
-						htmlTag: 'h4',
+						htmlTag: 'h3',
 						text: 'Tinypink',
-						textModifiers: '4'
+						textModifiers: '3'
 					}
 				],
 				labels: [
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'UX/UI Design',
 						textModifiers: 'label design'
 					}
@@ -542,4 +550,25 @@ block main
 				description: 'Creating a design system and redesigning the Tinypink stencil cap e-commerce website.'
 			},
 		]
-	})
+	})(id='portfolio')
+
+	+heading({
+		htmlTag: 'h2',
+		text: 'Contact'
+	})(class='sr-only')
+
+	+cta({
+		modifiers: 'contact',
+		buttons: [
+			{
+				url: 'mailto:raulbmrp@gmail.com',
+				title: 'Write Raul an email',
+				text: 'Get in touch <span class="sr-only">with Raul</span>',
+				modifiers: 'secondary',
+				iconFile: '/assets/images/contacts.svg',
+				iconId: 'mail'
+			}
+		]
+	})(id='contacts')
+		.cta__text
+			h3.heading--1 Let's Work Together!

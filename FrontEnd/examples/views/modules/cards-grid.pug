@@ -10,6 +10,11 @@ block variables
 
 block main
 
+	+heading({
+		htmlTag: 'h2',
+		text: `${section}`
+	})(class='sr-only')
+
 	+cards-grid({
 		modifiers: `${section}`,
 		hasImage: true,
@@ -23,14 +28,14 @@ block main
 				figureFigcaption: '',
 				headings: [
 					{
-						htmlTag: 'h4',
+						htmlTag: 'h3',
 						text: 'Dope',
-						textModifiers: '4'
+						textModifiers: '3'
 					}
 				],
 				labels: [
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'UX/UI Design',
 						textModifiers: 'label design'
 					},
@@ -46,14 +51,14 @@ block main
 				figureFigcaption: '',
 				headings: [
 					{
-						htmlTag: 'h4',
+						htmlTag: 'h3',
 						text: 'Airbnb',
-						textModifiers: '4'
+						textModifiers: '3'
 					}
 				],
 				labels: [
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'UX/UI Design',
 						textModifiers: 'label design'
 					}
@@ -69,19 +74,19 @@ block main
 				figureFigcaption: '',
 				headings: [
 					{
-						htmlTag: 'h4',
+						htmlTag: 'h3',
 						text: 'Sango',
-						textModifiers: '4'
+						textModifiers: '3'
 					}
 				],
 				labels: [
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'UX/UI Design',
 						textModifiers: 'label design'
 					},
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'Front-End',
 						textModifiers: 'label code'
 					}
@@ -97,14 +102,14 @@ block main
 				figureFigcaption: '',
 				headings: [
 					{
-						htmlTag: 'h4',
+						htmlTag: 'h3',
 						text: 'FBAUL',
-						textModifiers: '4'
+						textModifiers: '3'
 					}
 				],
 				labels: [
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'UX/UI Design',
 						textModifiers: 'label design'
 					}
@@ -120,14 +125,14 @@ block main
 				figureFigcaption: '',
 				headings: [
 					{
-						htmlTag: 'h4',
+						htmlTag: 'h3',
 						text: 'Re-mind',
-						textModifiers: '4'
+						textModifiers: '3'
 					}
 				],
 				labels: [
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'UX/UI Design',
 						textModifiers: 'label design'
 					}
@@ -143,14 +148,14 @@ block main
 				figureFigcaption: '',
 				headings: [
 					{
-						htmlTag: 'h4',
+						htmlTag: 'h3',
 						text: 'Tinypink',
-						textModifiers: '4'
+						textModifiers: '3'
 					}
 				],
 				labels: [
 					{
-						htmlTag: 'h5',
+						htmlTag: 'h4',
 						text: 'UX/UI Design',
 						textModifiers: 'label design'
 					}
@@ -158,4 +163,4 @@ block main
 				description: 'Creating a design system and redesigning the Tinypink stencil cap e-commerce website.'
 			},
 		]
-	})
+	})(id=`${section}`)
