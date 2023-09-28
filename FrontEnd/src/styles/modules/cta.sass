@@ -13,7 +13,7 @@
 		max-width: abstracts.columns(12)
 		margin-inline: auto
 		position: relative
-		height: 100vh
+		height: calc(100vh - 190px - 64px)
 		display: flex
 		align-items: center
 		justify-content: center
@@ -26,3 +26,13 @@
 
 	&__text
 		text-align: center
+
+	// =============================================================================
+	// Desktop
+	// =============================================================================
+
+	+abstracts.media(desktop)
+		// Layout
+		// -----------------------------------------------------------------------------
+		&__layout
+			height: calc(100vh - 64px - 64px)
