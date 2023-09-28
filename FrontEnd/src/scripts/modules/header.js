@@ -145,6 +145,62 @@ class Header {
 			});
 		}
 
+		// -------------------------------------------------------------
+		// -------------------------------------------------------------
+		// Initialize Intersection Observer
+		// -------------------------------------------------------------
+		// -------------------------------------------------------------
+
+		const observerOptions = {
+			rootMargin: '-288px 0px -288px 0px', // Adjust the root margin as needed
+		};
+
+		const intersectionObserver = new IntersectionObserver(
+			entries => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						const targetId = entry.target.id;
+						const correspondingLink = this.#header.querySelector(`[href="#${targetId}"]`);
+
+						// Remove the 'header__menu-button--current' class from all menu links
+						for (const button of this.#menuButtons) {
+							button.classList.remove('header__menu-button--current');
+						}
+
+						// Add the 'header__menu-button--current' class to the corresponding menu link
+						correspondingLink.classList.add('header__menu-button--current');
+
+						for (const menuButton of this.#menuButtons) {
+							const transitionTime = 350;
+
+							if (Number.parseInt(menuButtonCurrent.dataset.index, 10) !== Number.parseInt(menuButton.dataset.index, 10)) {
+								this.#menuShapeBg.style.transition = `width ${transitionTime / 2}ms ease`;
+								this.#menuShapeBg.style.width = '130%';
+								setTimeout(() => {
+									this.#menuShapeBg.style.width = '100%';
+								}, transitionTime / 2);
+							}
+
+							this.#menuShape.style.transition = `all ${transitionTime}ms ease`;
+						}
+
+						menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
+
+						moveShape(menuButtonCurrent);
+
+						// Update the URL hash to match the module's ID
+						window.history.replaceState(null, null, `#${targetId}`);
+					}
+				}
+			},
+			observerOptions,
+		);
+
+		// Observe each module
+		for (const module of this.#main.querySelectorAll('section[id]')) {
+			intersectionObserver.observe(module);
+		}
+
 		// Run on Load
 		// -------------------------------------------------------------
 

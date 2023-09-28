@@ -21,9 +21,10 @@ mixin header(options)
 			nav.header__menu(aria-label='main menu')
 				ul.header__menu-list
 					each item, index in options.menu
+						- const itemWithoutAccents = removeAccents(item);
 						li.header__menu-item(style=`--index:${index};`)
 							+button({
-								url: `#${item}`,
+								url: `#${itemWithoutAccents}`,
 								target: '_self',
 								textMenu: item,
 								modifiers: 'menu',
@@ -32,6 +33,27 @@ mixin header(options)
 								data-index=index
 								class= `${index == 0 ? 'header__menu-button--current' : ''}`
 							).header__menu-button
+					-
+						function removeAccents(str) {
+							const accentsMap = {
+								'á': 'a',
+								'à': 'a',
+								'ã': 'a',
+								'â': 'a',
+								'é': 'e',
+								'è': 'e',
+								'ê': 'e',
+								'í': 'i',
+								'ì': 'i',
+								'ó': 'o',
+								'ò': 'o',
+								'õ': 'o',
+								'ô': 'o',
+								'ú': 'u',
+								'ù': 'u',
+							}
+							return str.replace(/[áàãâéèêíìóòõôúù]/g, (accentedChar) => accentsMap[accentedChar]);
+						};
 					.header__menu-shape
 						.header__menu-shape-bg
 			if options.cv
