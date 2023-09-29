@@ -41,11 +41,8 @@ mixin cards-grid(options)
 							if card.labels
 								.card__labels
 									each label in card.labels
-										+heading({
-											htmlTag: `${label.htmlTag}`,
-											text: `${label.text}`,
-											textModifiers: `${label.textModifiers}`
-										})
+										span.card__label(class=`card__label--${label.labelModifiers}`)
+											| !{label.text}
 
 							if card.description
 								.card__description
