@@ -62,6 +62,27 @@ class Header {
 	 */
 	#body;
 
+	/**
+     * Flag to control the first load transition.
+     *
+     * @type {boolean}
+     */
+	transitionOcurred = true;
+
+	/**
+     * ID of the last observed section.
+     *
+     * @type {string}
+     */
+	lastObservedSection = true;
+
+	/**
+     * Flag to control the first load transition.
+     *
+     * @type {boolean}
+     */
+	firstLoad = true;
+
 
 	/**
 	 * Instantiates the header.
@@ -152,24 +173,30 @@ class Header {
 		// -------------------------------------------------------------
 
 		const observerOptions = {
+			threshold: 0,
 			rootMargin: '-288px 0px -288px 0px', // Adjust the root margin as needed
 		};
 
-		const intersectionObserver = new IntersectionObserver(
-			entries => {
-				for (const entry of entries) {
-					if (entry.isIntersecting) {
-						const targetId = entry.target.id;
-						const correspondingLink = this.#header.querySelector(`[href="#${targetId}"]`);
+		const intersectionObserver = new IntersectionObserver(entries => {
+			for (const entry of entries) {
+				if (entry.isIntersecting) {
+					const targetId = entry.target.id;
+					const correspondingLink = this.#menu.querySelector(`[href="#${targetId}"]`);
 
-						// Remove the 'header__menu-button--current' class from all menu links
-						for (const button of this.#menuButtons) {
-							button.classList.remove('header__menu-button--current');
-						}
+					// Remove the 'header__menu-button--current' class from all menu links
+					for (const button of this.#menuButtons) {
+						button.classList.remove('header__menu-button--current');
+					}
 
-						// Add the 'header__menu-button--current' class to the corresponding menu link
-						correspondingLink.classList.add('header__menu-button--current');
+					// Add the 'header__menu-button--current' class to the corresponding menu link
+					correspondingLink.classList.add('header__menu-button--current');
 
+					if (targetId !== this.lastObservedSection) {
+						this.transitionOccurred = false;
+						this.lastObservedSection = targetId;
+					}
+
+					if (!this.transitionOccurred && targetId !== 'intro' && !this.firstLoad) {
 						for (const menuButton of this.#menuButtons) {
 							const transitionTime = 350;
 
@@ -183,18 +210,22 @@ class Header {
 
 							this.#menuShape.style.transition = `all ${transitionTime}ms ease`;
 						}
-
-						menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
-
-						moveShape(menuButtonCurrent);
-
-						// Update the URL hash to match the module's ID
-						window.history.replaceState(null, null, `#${targetId}`);
+					} else {
+						this.firstLoad = false;
 					}
+
+					menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
+
+					moveShape(menuButtonCurrent);
+
+					// Update the URL hash to match the module's ID
+					window.history.replaceState(null, null, `#${targetId}`);
+
+					this.transitionOccurred = true;
 				}
-			},
-			observerOptions,
-		);
+			}
+		},
+		observerOptions);
 
 		// Observe each module
 		for (const module of this.#main.querySelectorAll('section[id]')) {
