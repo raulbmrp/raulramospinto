@@ -4,7 +4,7 @@ mixin cards-grid(options)
 		.cards-grid__layout
 			each card in options.cards
 				a.card(
-					href=card.url
+					href=`/${card.title}`
 					title=`Open ${card.title} project`
 					target='_self'
 				)
@@ -15,9 +15,9 @@ mixin cards-grid(options)
 								+figure({
 									modifiers: 'card',
 									file: 'portfolio/thumbnails',
-									name: `${card.figureName}`,
+									name: `${card.title}-cover`,
 									alt: `${card.figureAlt}`,
-									title: `${card.figureTitle}`,
+									title: `${card.title} ${card.slogan ? ' - ' + card.slogan : ''}`,
 									format: 'jpg',
 									sizesMobile: 100,
 									sizesDesktop: 25,
@@ -26,17 +26,15 @@ mixin cards-grid(options)
 									widthDesktopX1: 768,
 									widthDesktopX2: 1200,
 									loading: 'lazy',
-									figcaption: `${card.figureFigcaption}`
+									figcaption: `${card.figureFigcaption ? card.figureFigcaption : ''}`
 								})
 						.card__content
-							if card.headings
-								.card__headings
-									each heading in card.headings
-										+heading({
-											htmlTag: `${heading.htmlTag}`,
-											text: `${heading.text}`,
-											textModifiers: `${heading.textModifiers}`
-										})
+							if card.title
+								+heading({
+									htmlTag: `${options.headingTag}`,
+									text: `${card.title} ${card.slogan ? '<span class="sr-only"> - ' + card.slogan + '</span>' : ''}`,
+									textModifiers: `${options.headingTextModifiers}`
+								}).card__heading
 
 							if card.labels
 								.card__labels

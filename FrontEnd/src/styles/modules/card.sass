@@ -12,6 +12,18 @@
 
 	+abstracts.color(neutral dirty-white)
 	text-decoration: none
+	+abstracts.transition(transform)
+
+	img
+		+abstracts.transition(transform)
+
+	+abstracts.hover(focus-visible)
+		transform: scale(1.05)
+		+abstracts.transition(transform)
+
+		img
+			transform: scale(1.05)
+			+abstracts.transition(transform)
 
 	// Layout
 	// -----------------------------------------------------------------------------
@@ -24,6 +36,8 @@
 		border-radius: 32px
 		overflow: hidden
 
+	// Content
+	// -----------------------------------------------------------------------------
 	&__content
 		display: grid
 		gap: 4px
@@ -31,10 +45,7 @@
 
 	// Headings
 	// -----------------------------------------------------------------------------
-	&__headings
-		display: flex
-		flex-direction: column
-		gap: 4px
+	&__heading
 		order: 2
 
 	// Labels

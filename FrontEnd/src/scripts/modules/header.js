@@ -83,6 +83,13 @@ class Header {
      */
 	firstLoad = true;
 
+	/**
+     * Flag to control the Intersection Observer state
+     *
+     * @type {boolean}
+     */
+	observerActive = true;
+
 
 	/**
 	 * Instantiates the header.
@@ -133,6 +140,7 @@ class Header {
 
 		for (const menuButton of this.#menuButtons) {
 			menuButton.addEventListener('click', () => {
+				this.observerActive = false;
 				this.#menuShape.style.justifyContent = Number.parseInt(menuButton.dataset.index, 10) > Number.parseInt(menuButtonCurrent.dataset.index, 10) ? 'flex-end' : '';
 
 				for (const button of this.#menuButtons) {
@@ -163,6 +171,10 @@ class Header {
 					this.#main.classList.remove('off');
 					this.#body.classList.remove('menu-on');
 				}
+
+				setTimeout(() => {
+					this.observerActive = true;
+				}, 700);
 			});
 		}
 
@@ -179,7 +191,7 @@ class Header {
 
 		const intersectionObserver = new IntersectionObserver(entries => {
 			for (const entry of entries) {
-				if (entry.isIntersecting) {
+				if (entry.isIntersecting && this.observerActive) {
 					const targetId = entry.target.id;
 					const correspondingLink = this.#menu.querySelector(`[href="#${targetId}"]`);
 
