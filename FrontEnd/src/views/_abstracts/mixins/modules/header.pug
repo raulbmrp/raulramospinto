@@ -54,8 +54,8 @@ mixin header(options)
 							}
 							return str.replace(/[áàãâéèêíìóòõôúù]/g, (accentedChar) => accentsMap[accentedChar]);
 						};
-					.header__menu-shape
-						.header__menu-shape-bg
+				.header__menu-shape(aria-hidden='true')
+					.header__menu-shape-bg(aria-hidden='true')
 			if options.cv
 				.header__cv-button
 					+button({

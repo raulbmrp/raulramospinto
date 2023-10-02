@@ -56,6 +56,14 @@ class Header {
 
 
 	/**
+	 * The `footer` element.
+	 *
+	 * @type {HTMLElement}
+	 */
+	#footer;
+
+
+	/**
 	 * The `body` element.
 	 *
 	 * @type {HTMLElement}
@@ -106,6 +114,7 @@ class Header {
 		this.#menuShapeBg = this.#header.querySelector('.header__menu-shape-bg');
 		this.#menuButtons = this.#header.querySelectorAll('.header__menu-button');
 		this.#main = document.querySelector('main');
+		this.#footer = document.querySelector('footer');
 		this.#body = document.querySelector('body');
 		let menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
 
@@ -121,6 +130,7 @@ class Header {
 			this.#burger.classList.toggle('on');
 			this.#menu.classList.toggle('on');
 			this.#main.classList.toggle('off');
+			this.#footer.classList.toggle('off');
 			this.#body.classList.toggle('menu-on');
 			if (this.#burger.classList.contains('on')) {
 				this.#burger.ariaLabel = 'Close menu';
@@ -169,6 +179,7 @@ class Header {
 					this.#burger.classList.remove('on');
 					this.#menu.classList.remove('on');
 					this.#main.classList.remove('off');
+					this.#footer.classList.remove('off');
 					this.#body.classList.remove('menu-on');
 				}
 
@@ -261,6 +272,7 @@ class Header {
 				this.#burger.classList.remove('on');
 				this.#menu.classList.remove('on');
 				this.#main.classList.remove('off');
+				this.#footer.classList.remove('off');
 				this.#body.classList.remove('menu-on');
 			}
 		});
@@ -281,6 +293,7 @@ class Header {
 				this.#burger.classList.remove('on');
 				this.#menu.classList.remove('on');
 				this.#main.classList.remove('off');
+				this.#footer.classList.remove('off');
 				this.#body.classList.remove('menu-on');
 			}
 		});

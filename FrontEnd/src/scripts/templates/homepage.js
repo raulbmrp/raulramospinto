@@ -57,29 +57,43 @@ class Homepage {
 		const intersectionObserver = new IntersectionObserver(entries => {
 			for (const entry of entries) {
 				if (entry.isIntersecting && entry.target.id === 'intro') {
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 20vh)');
+					this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 10vh)');
 					this.#blurCircleBlue.style.setProperty('--blurCircleBlueLeft', 'calc(50% + 5vw)');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '90vh');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '90vh');
+					this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '50vh');
+					this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '50vh');
 					this.#blurCircleBlue.style.setProperty('--blurCircleBlueOpacity', '1');
 					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 25vh)');
 					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeLeft', 'calc(50% + 30vw)');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '120vh');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '120vh');
+					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '70vh');
+					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '70vh');
 					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeOpacity', '1');
+					if (window.matchMedia('(width >= 992px)').matches) {
+						this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 20vh)');
+						this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '90vh');
+						this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '90vh');
+						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '120vh');
+						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '120vh');
+					}
 				}
 
 				if (entry.isIntersecting && entry.target.id === 'about') {
 					this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 10vh)');
 					this.#blurCircleBlue.style.setProperty('--blurCircleBlueLeft', 'calc(50% + 40vw)');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '80vh');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '80vh');
+					this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '40vh');
+					this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '40vh');
 					this.#blurCircleBlue.style.setProperty('--blurCircleBlueOpacity', '1');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 15vh)');
+					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 5vh)');
 					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeLeft', 'calc(50% + 25vw)');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '50vh');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '50vh');
+					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '35vh');
+					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '35vh');
 					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeOpacity', '1');
+					if (window.matchMedia('(width >= 992px)').matches) {
+						this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '80vh');
+						this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '80vh');
+						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 15vh)');
+						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '50vh');
+						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '50vh');
+					}
 				}
 
 				if (entry.isIntersecting && entry.target.id === 'resume') {
@@ -106,19 +120,35 @@ class Homepage {
 					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '60vh');
 					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '60vh');
 					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeOpacity', '0');
+					if (window.matchMedia('(width >= 992px)').matches) {
+						this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% - 0vh)');
+						this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '60vh');
+						this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '60vh');
+						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 5vh)');
+						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '60vh');
+						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '60vh');
+					}
 				}
 
 				if (entry.isIntersecting && entry.target.id === 'contact') {
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 0vh)');
+					this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% - 10vh)');
 					this.#blurCircleBlue.style.setProperty('--blurCircleBlueLeft', 'calc(50% - 10vw)');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '60vh');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '60vh');
+					this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '30vh');
+					this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '30vh');
 					this.#blurCircleBlue.style.setProperty('--blurCircleBlueOpacity', '1');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 5vh)');
+					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 15vh)');
 					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeLeft', 'calc(50% + 10vw)');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '60vh');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '60vh');
+					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '30vh');
+					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '30vh');
 					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeOpacity', '1');
+					if (window.matchMedia('(width >= 992px)').matches) {
+						this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% - 0vh)');
+						this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '60vh');
+						this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '60vh');
+						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 5vh)');
+						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '60vh');
+						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '60vh');
+					}
 				}
 			}
 		},
