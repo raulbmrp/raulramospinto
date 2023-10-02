@@ -126,13 +126,15 @@ html(lang="en" dir="ltr" prefix="og: https://ogp.me/ns#")
 		//- Scripts
 		block scripts-head
 
-	body
+	body(class=`${homepage ? 'homepage' : project ? 'project' : ''}`)
 		a.skip-link(href="#main" title="Skip to main content")
 			span.skip-link__text Skip to main content
 		//- #cursor.cursor
+		.blur-circle.blur-circle--blue
+		.blur-circle.blur-circle--orange
 
 		block header
-			if homePage
+			if homepage
 				+header({
 					menu: ['about', 'resumé', 'portfolio', 'contact'],
 					cv: true,

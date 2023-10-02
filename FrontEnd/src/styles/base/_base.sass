@@ -26,39 +26,39 @@ body
 	text-align: left
 	+abstracts.background(neutral black)
 
-	&::before,
-	&::after
-		content: ''
-		display: block
+	.blur-circle
 		position: fixed
 		z-index: -1
 		transform: translate(-50%, -50%)
+		+abstracts.transition(width height top left opacity, 2s)
 
-	&::before
-		top: calc(50% + 20vh)
-		left: calc(50% + 5vw)
-		width: 90vh
-		height: 90vh
-		background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand blue) 0%, rgba(abstracts.color(brand blue), .4) 50%, transparent 100%)
-		+abstracts.transition(width height opacity, .8s)
+		&--blue
+			top: var(--blurCircleBlueTop, calc(50% + 20vh))
+			left: var(--blurCircleBlueLeft, calc(50% + 5vw))
+			width: var(--blurCircleBlueWidth, 90vh)
+			height: var(--blurCircleBlueHeight, 90vh)
+			opacity: var(--blurCircleBlueOpacity, 1)
+			background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand blue) 0%, rgba(abstracts.color(brand blue), .4) 50%, transparent 100%)
+			+abstracts.transition(width height top left opacity, 2s)
 
-	&::after
-		top: calc(50% - 25vh)
-		left: calc(50% + 30vw)
-		width: 130vh
-		height: 130vh
-		background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand orange) 0%, rgba(abstracts.color(brand orange), .5) 50%, transparent 100%)
-		+abstracts.transition(width height top left, .5s)
+		&--orange
+			top: var(--blurCircleOrangeTop, calc(50% - 25vh))
+			left: var(--blurCircleOrangeLeft, calc(50% + 30vw))
+			width: var(--blurCircleOrangeWidth, 120vh)
+			height: var(--blurCircleOrangeHeight, 120vh)
+			opacity: var(--blurCircleOrangeOpacity, 1)
+			background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand orange) 0%, rgba(abstracts.color(brand orange), .5) 50%, transparent 100%)
+			+abstracts.transition(width height top left opacity, 2s)
 
 	&.menu-on
 		overflow: hidden
-		&::before
+		&.blur-circle--blue
 			width: 0
 			height: 0
 			opacity: 0
 			+abstracts.transition(width height opacity, .5s)
 
-		&::after
+		&.blur-circle--orange
 			top: calc(50% - 15vh)
 			left: calc(50% + 15vw)
 			width: 160vh

@@ -14,7 +14,7 @@ mixin cards-grid(options)
 							.card__figure
 								+figure({
 									modifiers: 'card',
-									file: 'portfolio/thumbnails',
+									file: `portfolio/${card.title}/thumbnail`,
 									name: `${card.title}-cover`,
 									alt: `${card.figureAlt}`,
 									title: `${card.title} ${card.slogan ? ' - ' + card.slogan : ''}`,

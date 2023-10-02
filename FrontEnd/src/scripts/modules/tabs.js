@@ -139,6 +139,13 @@ class Tabs {
 			}
 		});
 
+		// Run on Load
+		// -------------------------------------------------------------
+		addBackground();
+
+		// Run on Resize
+		// -------------------------------------------------------------
+		window.addEventListener('resize', addBackground);
 
 		// -----------------------------------------------------------------------------
 		// FUNCTIONS
@@ -166,11 +173,23 @@ class Tabs {
 			}
 		}
 
+		function getInitialYPosition() {
+			const tabsRectTop = document.querySelector('.tabs').getBoundingClientRect().top;
+			return tabsRectTop + window.scrollY;
+		}
+
+		let activeTabsRectTop = getInitialYPosition.call(this);
+
+		window.addEventListener('resize', () => {
+			activeTabsRectTop = getInitialYPosition.call(this);
+		});
+
 		// Switch tabs Panels & selected buttons
 		// -----------------------------------------------------------------------------
 		function switchTab(newTab) {
 			const activePanelId = newTab.getAttribute('href');
 			const activePanel = element.querySelector(activePanelId);
+			window.scroll(0, activeTabsRectTop);
 
 			for (const tabsButton of element.querySelectorAll('.tabs__button')) {
 				tabsButton.setAttribute('aria-selected', false);
@@ -188,23 +207,21 @@ class Tabs {
 			newTab.focus();
 		}
 
-
-		// For (const button of this.#tabsButtons) {
-		// 	button.addEventListener('click', ({currentTarget}) => {
-		// 		for (const button of this.#tabsButtons) {
-		// 			button.classList.remove('tabs__button--current');
-		// 		}
-
-		// 		currentTarget.classList.add('tabs__button--current');
-
-		// 		for (const tab of this.#tabsPanels) {
-		// 			tab.classList.remove('tabs__item--current');
-		// 			if (tab.dataset.tabPanel === currentTarget.dataset.tabButton) {
-		// 				tab.classList.add('tabs__item--current');
-		// 			}
-		// 		}
-		// 	});
-		// }
+		// Add opaque background to hide tabsPanels when scrolling
+		// -----------------------------------------------------------------------------
+		function addBackground() {
+			const tabsButtonsList = document.querySelector('.tabs__buttons-list');
+			if (window.matchMedia('(width < 992px)').matches) {
+				window.addEventListener('scroll', () => {
+					const tabsButtonsListYPosition = tabsButtonsList.getBoundingClientRect().top;
+					if (tabsButtonsListYPosition === 0) {
+						tabsButtonsList.classList.add('on');
+					} else {
+						tabsButtonsList.classList.remove('on');
+					}
+				});
+			}
+		}
 	}
 }
 
