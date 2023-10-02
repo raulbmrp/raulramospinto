@@ -11,15 +11,23 @@ class Tabs {
 	/**
 	 * The `tabs__layout` element.
 	 *
-	 * @type {NodeList}
+	 * @type {HTMLElement}
 	 */
 	#tabsLayout;
 
 
 	/**
+	 * The `tabs__button-container` elements.
+	 *
+	 * @type {HTMLElement}
+	 */
+	#tabsButtonsContainer;
+
+
+	/**
 	 * The `tabs__buttons-list` element.
 	 *
-	 * @type {NodeList}
+	 * @type {HTMLElement}
 	 */
 	#tabsButtonsList;
 
@@ -50,6 +58,7 @@ class Tabs {
 		// -----------------------------------------------------------------------------
 		this.#tabs = element;
 		this.#tabsLayout = this.#tabs.querySelector('.tabs__layout');
+		this.#tabsButtonsContainer = this.#tabs.querySelector('.tabs__buttons-container');
 		this.#tabsButtonsList = this.#tabs.querySelector('.tabs__buttons-list');
 		this.#tabsButtons = this.#tabs.querySelectorAll('.tabs__button');
 		this.#tabsPanels = this.#tabs.querySelectorAll('.tabs__panel');
@@ -210,14 +219,14 @@ class Tabs {
 		// Add opaque background to hide tabsPanels when scrolling
 		// -----------------------------------------------------------------------------
 		function addBackground() {
-			const tabsButtonsList = document.querySelector('.tabs__buttons-list');
+			const tabsButtonsContainer = document.querySelector('.tabs__buttons-container');
 			if (window.matchMedia('(width < 992px)').matches) {
 				window.addEventListener('scroll', () => {
-					const tabsButtonsListYPosition = tabsButtonsList.getBoundingClientRect().top;
-					if (tabsButtonsListYPosition === 0) {
-						tabsButtonsList.classList.add('on');
+					const tabsButtonsContainerYPosition = tabsButtonsContainer.getBoundingClientRect().top;
+					if (tabsButtonsContainerYPosition === 0) {
+						tabsButtonsContainer.classList.add('on');
 					} else {
-						tabsButtonsList.classList.remove('on');
+						tabsButtonsContainer.classList.remove('on');
 					}
 				});
 			}

@@ -61,6 +61,10 @@
 		padding: .1em .8em
 		border-radius: 100vmax
 		+abstracts.typography(body small)
+		display: -webkit-box
+		-webkit-line-clamp: 1
+		-webkit-box-orient: vertical
+		overflow: hidden
 
 		&--design
 			+abstracts.background(brand blue)
@@ -86,7 +90,7 @@
 		#{$block}__figure
 			filter: blur(2px)
 		#{$block}__content
-			filter: blur(4px)
+			filter: blur(3px)
 
 		#{$block}__layout
 			&::before
@@ -98,7 +102,7 @@
 				top: 0
 				left: 0
 				+abstracts.background(neutral black)
-				opacity: .9
+				opacity: .85
 				z-index: 1
 
 			&::after

@@ -9,13 +9,13 @@
 .tabs
 	$block: &
 
-	padding-inline: 24px
+	// padding-inline: 24px
 
 
 	// Layout
 	// -----------------------------------------------------------------------------
 	&__layout
-		max-width: abstracts.columns(12)
+		// max-width: abstracts.columns(12)
 		margin-inline: auto
 		position: relative
 		display: flex
@@ -28,14 +28,8 @@
 		&-container
 			position: sticky
 			top: 0px
-		&-list
-			display: flex
-			gap: 8px
-			margin-inline: -24px
 			padding-inline: 24px
-			padding-block: 80px 8px
-			position: sticky
-			top: 0px
+
 			&.on
 				+abstracts.background(neutral black)
 
@@ -48,6 +42,16 @@
 					left: 0
 					+abstracts.background(neutral black)
 					background: linear-gradient(180deg, abstracts.color(neutral black) 0%, transparent 100%)
+
+		&-list
+			display: flex
+			gap: 8px
+			margin-inline: -24px
+			padding-inline: 24px
+			padding-block: 80px 8px
+			position: sticky
+			top: 0px
+			overflow-x: auto
 
 	&__button
 		padding: 12px !important
@@ -72,6 +76,7 @@
 	// -----------------------------------------------------------------------------
 	&__panels
 		padding-top: 0px
+		padding-inline: 24px
 
 	&__panel:not([hidden])
 
@@ -96,24 +101,33 @@
 	// =============================================================================
 
 	+abstracts.media(desktop)
+
+		padding-inline: 24px
+
 		// Layout
 		// -----------------------------------------------------------------------------
 		&__layout
+			max-width: abstracts.columns(12)
 			display: grid
 			grid-template-columns: 1fr 2fr
 			gap: 32px
 			min-height: 100vh
 
-		&__buttons-list
-			display: flex
-			flex-direction: column
-			gap: 24px
-			background: transparent
-			&.on
-				background-color: unset
+		&__buttons
+			&-container
+				padding-inline: unset
+				background: transparent
+				&.on
+					background-color: unset
 
-				&::after
-					display: none
+					&::after
+						display: none
+
+			&-list
+				display: flex
+				flex-direction: column
+				gap: 24px
+				overflow-x: unset
 
 		// Buttons
 		// -----------------------------------------------------------------------------
@@ -129,6 +143,7 @@
 		// -----------------------------------------------------------------------------
 		&__panels
 			padding-top: 80px
+			padding-inline: unset
 		&__panel
 			&-content
 				padding: 8px 24px 16px
