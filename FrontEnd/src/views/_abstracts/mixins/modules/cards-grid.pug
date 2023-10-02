@@ -7,6 +7,7 @@ mixin cards-grid(options)
 					href=`/${card.title}`
 					title=`Open ${card.title} project`
 					target='_self'
+					class=`${card.soon ? 'soon' : ''}`
 				)
 					.card__layout
 

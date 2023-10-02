@@ -30,7 +30,7 @@ body
 		position: fixed
 		z-index: -1
 		transform: translate(-50%, -50%)
-		+abstracts.transition(width height top left opacity, 2s)
+		+abstracts.transition(width height top left opacity, 1.5s)
 
 		&--blue
 			top: var(--blurCircleBlueTop, calc(50% + 20vh))
@@ -39,7 +39,7 @@ body
 			height: var(--blurCircleBlueHeight, 90vh)
 			opacity: var(--blurCircleBlueOpacity, 1)
 			background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand blue) 0%, rgba(abstracts.color(brand blue), .4) 50%, transparent 100%)
-			+abstracts.transition(width height top left opacity, 2s)
+			+abstracts.transition(width height top left opacity, 1.5s)
 
 		&--orange
 			top: var(--blurCircleOrangeTop, calc(50% - 25vh))
@@ -48,7 +48,7 @@ body
 			height: var(--blurCircleOrangeHeight, 120vh)
 			opacity: var(--blurCircleOrangeOpacity, 1)
 			background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand orange) 0%, rgba(abstracts.color(brand orange), .5) 50%, transparent 100%)
-			+abstracts.transition(width height top left opacity, 2s)
+			+abstracts.transition(width height top left opacity, 1.5s)
 
 	&.menu-on
 		overflow: hidden

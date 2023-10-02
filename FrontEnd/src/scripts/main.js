@@ -40,6 +40,7 @@ const modules = {
 	// Medium Priority
 	// 'class': './filename.js',
 	tabs: './modules/tabs.js',
+	'cards-grid': './modules/cards-grid.js',
 
 	// Low Priority
 	// 'class': './filename.js',
