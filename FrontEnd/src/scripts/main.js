@@ -45,7 +45,7 @@ const modules = {
 	// Low Priority
 	// 'class': './filename.js',
 	homepage: './templates/homepage.js',
-	cursor: './layout/cursor.js',
+	cursor: './components/cursor.js',
 };
 
 

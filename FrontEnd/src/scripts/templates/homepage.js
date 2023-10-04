@@ -51,7 +51,7 @@ class Homepage {
 
 		const observerOptions = {
 			threshold: 0,
-			rootMargin: '-288px 0px -288px 0px', // Adjust the root margin as needed
+			rootMargin: '-288px 0px -288px 0px',
 		};
 
 		const intersectionObserver = new IntersectionObserver(entries => {

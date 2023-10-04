@@ -47,7 +47,6 @@ class Tabs {
 	 */
 	#tabsPanels;
 
-
 	/**
 	 * Instantiates the Facts module.
 	 *
@@ -99,7 +98,7 @@ class Tabs {
 			}
 
 			event.preventDefault();
-			switchTab(clickedTab);
+			this.switchTab(clickedTab);
 		});
 
 		// Button keydown event
@@ -108,37 +107,37 @@ class Tabs {
 			switch (event.key) {
 				case 'ArrowUp': {
 					event.preventDefault();
-					movePrevious();
+					this.movePrevious();
 					break;
 				}
 
 				case 'ArrowLeft': {
 					event.preventDefault();
-					movePrevious();
+					this.movePrevious();
 					break;
 				}
 
 				case 'ArrowDown': {
 					event.preventDefault();
-					moveNext();
+					this.moveNext();
 					break;
 				}
 
 				case 'ArrowRight': {
 					event.preventDefault();
-					moveNext();
+					this.moveNext();
 					break;
 				}
 
 				case 'Home': {
 					event.preventDefault();
-					switchTab(this.#tabsButtons[0]);
+					this.switchTab(this.#tabsButtons[0]);
 					break;
 				}
 
 				case 'End': {
 					event.preventDefault();
-					switchTab(this.#tabsButtons[this.#tabsButtons.length - 1]);
+					this.switchTab(this.#tabsButtons[this.#tabsButtons.length - 1]);
 					break;
 				}
 
@@ -150,11 +149,11 @@ class Tabs {
 
 		// Run on Load
 		// -------------------------------------------------------------
-		addBackground();
+		this.addBackground();
 
 		// Run on Resize
 		// -------------------------------------------------------------
-		window.addEventListener('resize', addBackground);
+		window.addEventListener('resize', this.addBackground);
 
 		// -----------------------------------------------------------------------------
 		// FUNCTIONS
@@ -162,75 +161,71 @@ class Tabs {
 
 		// Keyboard interaction
 		// -----------------------------------------------------------------------------
-		function movePrevious() {
-			const currentTab = document.activeElement;
-			const tabsButtons = document.querySelectorAll('.tabs__button');
-			if (currentTab.parentElement.previousElementSibling) {
-				switchTab(currentTab.parentElement.previousElementSibling.querySelector('a'));
-			} else {
-				switchTab(tabsButtons.at(-1));
-			}
-		}
 
-		function moveNext() {
-			const currentTab = document.activeElement;
-			const tabsButtons = document.querySelectorAll('.tabs__button');
-			if (currentTab.parentElement.nextElementSibling) {
-				switchTab(currentTab.parentElement.nextElementSibling.querySelector('a'));
-			} else {
-				switchTab(tabsButtons[0]);
-			}
-		}
-
-		function getInitialYPosition() {
-			const tabsRectTop = document.querySelector('.tabs').getBoundingClientRect().top;
-			return tabsRectTop + window.scrollY;
-		}
-
-		let activeTabsRectTop = getInitialYPosition.call(this);
+		this.activeTabsRectTop();
 
 		window.addEventListener('resize', () => {
-			activeTabsRectTop = getInitialYPosition.call(this);
+			this.activeTabsRectTop();
 		});
+	}
 
-		// Switch tabs Panels & selected buttons
-		// -----------------------------------------------------------------------------
-		function switchTab(newTab) {
-			const activePanelId = newTab.getAttribute('href');
-			const activePanel = element.querySelector(activePanelId);
-			window.scroll(0, activeTabsRectTop);
+	movePrevious() {
+		const currentTab = document.activeElement;
+		const tabsButtons = document.querySelectorAll('.tabs__button');
+		if (currentTab.parentElement.previousElementSibling) {
+			this.switchTab(currentTab.parentElement.previousElementSibling.querySelector('a'));
+		} else {
+			this.switchTab(tabsButtons.at(-1));
+		}
+	}
 
-			for (const tabsButton of element.querySelectorAll('.tabs__button')) {
-				tabsButton.setAttribute('aria-selected', false);
-				tabsButton.setAttribute('tabindex', '-1');
-			}
+	moveNext() {
+		const currentTab = document.activeElement;
+		const tabsButtons = document.querySelectorAll('.tabs__button');
+		if (currentTab.parentElement.nextElementSibling) {
+			this.switchTab(currentTab.parentElement.nextElementSibling.querySelector('a'));
+		} else {
+			this.switchTab(tabsButtons[0]);
+		}
+	}
 
-			for (const tabsPanel of element.querySelectorAll('.tabs__panel')) {
-				tabsPanel.setAttribute('hidden', true);
-			}
+	activeTabsRectTop() {
+		return this.#tabs.getBoundingClientRect().top + window.scrollY;
+	}
 
-			activePanel.removeAttribute('hidden', false);
+	addBackground() {
+		const tabsButtonsContainer = document.querySelector('.tabs__buttons-container');
+		if (window.matchMedia('(width < 992px)').matches) {
+			window.addEventListener('scroll', () => {
+				const tabsButtonsContainerYPosition = tabsButtonsContainer.getBoundingClientRect().top;
+				if (tabsButtonsContainerYPosition === 0) {
+					tabsButtonsContainer.classList.add('on');
+				} else {
+					tabsButtonsContainer.classList.remove('on');
+				}
+			});
+		}
+	}
 
-			newTab.setAttribute('aria-selected', true);
-			newTab.setAttribute('tabindex', '0');
-			newTab.focus();
+	switchTab(newTab) {
+		const activePanelId = newTab.getAttribute('href');
+		const activePanel = this.#tabs.querySelector(activePanelId);
+		window.scroll(0, this.activeTabsRectTop());
+
+		for (const tabsButton of this.#tabsButtons) {
+			tabsButton.setAttribute('aria-selected', false);
+			tabsButton.setAttribute('tabindex', '-1');
 		}
 
-		// Add opaque background to hide tabsPanels when scrolling
-		// -----------------------------------------------------------------------------
-		function addBackground() {
-			const tabsButtonsContainer = document.querySelector('.tabs__buttons-container');
-			if (window.matchMedia('(width < 992px)').matches) {
-				window.addEventListener('scroll', () => {
-					const tabsButtonsContainerYPosition = tabsButtonsContainer.getBoundingClientRect().top;
-					if (tabsButtonsContainerYPosition === 0) {
-						tabsButtonsContainer.classList.add('on');
-					} else {
-						tabsButtonsContainer.classList.remove('on');
-					}
-				});
-			}
+		for (const tabsPanel of this.#tabsPanels) {
+			tabsPanel.setAttribute('hidden', true);
 		}
+
+		activePanel.removeAttribute('hidden', false);
+
+		newTab.setAttribute('aria-selected', true);
+		newTab.setAttribute('tabindex', '0');
+		newTab.focus();
 	}
 }
 
