@@ -5,9 +5,9 @@ mixin cards-grid(options)
 			each card in options.cards
 				a.card(
 					href=`/${card.title}`
-					title=`Open ${card.title} project`
+					title=`${card.soon ? card.title + ' project is not currently available' : 'Open ' + card.title + ' project'}`
 					target='_self'
-					class=`${card.soon ? 'soon' : ''}`
+					class=`${card.soon ? 'soon disabled' : ''}`
 				)
 					.card__layout
 

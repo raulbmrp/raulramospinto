@@ -32,6 +32,14 @@ class Header {
 
 
 	/**
+	 * The `.header__menu-button--current` element.
+	 *
+	 * @type {HTMLElement}
+	 */
+	#menuButtonCurrent;
+
+
+	/**
 	 * The `.header__menu-shape` element.
 	 *
 	 * @type {HTMLElement}
@@ -113,10 +121,10 @@ class Header {
 		this.#menuShape = this.#header.querySelector('.header__menu-shape');
 		this.#menuShapeBg = this.#header.querySelector('.header__menu-shape-bg');
 		this.#menuButtons = this.#header.querySelectorAll('.header__menu-button');
+		this.#menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
 		this.#main = document.querySelector('main');
 		this.#footer = document.querySelector('footer');
 		this.#body = document.querySelector('body');
-		let menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
 
 
 		// -------------------------------------------------------------
@@ -151,7 +159,7 @@ class Header {
 		for (const menuButton of this.#menuButtons) {
 			menuButton.addEventListener('click', () => {
 				this.observerActive = false;
-				this.#menuShape.style.justifyContent = Number.parseInt(menuButton.dataset.index, 10) > Number.parseInt(menuButtonCurrent.dataset.index, 10) ? 'flex-end' : '';
+				this.#menuShape.style.justifyContent = Number.parseInt(menuButton.dataset.index, 10) > Number.parseInt(this.#menuButtonCurrent.dataset.index, 10) ? 'flex-end' : '';
 
 				for (const button of this.#menuButtons) {
 					button.classList.remove('header__menu-button--current');
@@ -159,25 +167,16 @@ class Header {
 
 				menuButton.classList.add('header__menu-button--current');
 
-				const transitionTime = 350;
+				this.handleMenuShapeTransition(menuButton);
 
-				if (Number.parseInt(menuButtonCurrent.dataset.index, 10) !== Number.parseInt(menuButton.dataset.index, 10)) {
-					this.#menuShapeBg.style.transition = `width ${transitionTime / 2}ms ease`;
-					this.#menuShapeBg.style.width = '130%';
-					setTimeout(() => {
-						this.#menuShapeBg.style.width = '100%';
-					}, transitionTime / 2);
-				}
+				this.#menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
 
-				this.#menuShape.style.transition = `all ${transitionTime}ms ease`;
-
-				menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
-
-				moveShape(menuButton);
+				this.moveShape(menuButton);
 
 				if (this.#burger.classList.contains('on')) {
 					this.#burger.classList.remove('on');
 					this.#menu.classList.remove('on');
+					this.#header.classList.remove('on');
 					this.#main.classList.remove('off');
 					this.#footer.classList.remove('off');
 					this.#body.classList.remove('menu-on');
@@ -221,25 +220,15 @@ class Header {
 
 					if (!this.transitionOccurred && targetId !== 'intro' && !this.firstLoad) {
 						for (const menuButton of this.#menuButtons) {
-							const transitionTime = 350;
-
-							if (Number.parseInt(menuButtonCurrent.dataset.index, 10) !== Number.parseInt(menuButton.dataset.index, 10)) {
-								this.#menuShapeBg.style.transition = `width ${transitionTime / 2}ms ease`;
-								this.#menuShapeBg.style.width = '130%';
-								setTimeout(() => {
-									this.#menuShapeBg.style.width = '100%';
-								}, transitionTime / 2);
-							}
-
-							this.#menuShape.style.transition = `all ${transitionTime}ms ease`;
+							this.handleMenuShapeTransition(menuButton);
 						}
 					} else {
 						this.firstLoad = false;
 					}
 
-					menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
+					this.#menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
 
-					moveShape(menuButtonCurrent);
+					this.moveShape(this.#menuButtonCurrent);
 
 					// Update the URL hash to match the module's ID
 					window.history.replaceState(null, null, `#${targetId}`);
@@ -258,19 +247,20 @@ class Header {
 		// Run on Load
 		// -------------------------------------------------------------
 
-		moveShape(menuButtonCurrent);
-		urlChange();
-		splitMenuButtonString();
+		this.moveShape(this.#menuButtonCurrent);
+		this.urlChange();
+		this.splitMenuButtonString();
 
 		// Run on Resize
 		// -------------------------------------------------------------
 
 		window.addEventListener('resize', () => {
-			moveShape(menuButtonCurrent);
-			splitMenuButtonString();
+			this.moveShape(this.#menuButtonCurrent);
+			this.splitMenuButtonString();
 			if (this.#burger.classList.contains('on')) {
 				this.#burger.classList.remove('on');
 				this.#menu.classList.remove('on');
+				this.#header.classList.remove('on');
 				this.#main.classList.remove('off');
 				this.#footer.classList.remove('off');
 				this.#body.classList.remove('menu-on');
@@ -281,71 +271,85 @@ class Header {
 		// -------------------------------------------------------------
 
 		screen.orientation.addEventListener('change', () => {
-			moveShape(menuButtonCurrent);
+			this.moveShape(this.#menuButtonCurrent);
 		});
 
 		// Run on URL Change
 		// -------------------------------------------------------------
 
 		window.addEventListener('hashchange', () => {
-			urlChange();
+			this.urlChange();
 			if (this.#burger.classList.contains('on')) {
 				this.#burger.classList.remove('on');
 				this.#menu.classList.remove('on');
+				this.#header.classList.remove('on');
 				this.#main.classList.remove('off');
 				this.#footer.classList.remove('off');
 				this.#body.classList.remove('menu-on');
 			}
 		});
+	}
+	// -------------------------------------------------------------
+	// Functions
+	// -------------------------------------------------------------
 
-
-		// -------------------------------------------------------------
-		// Functions
-		// -------------------------------------------------------------
-
-		function urlChange() {
-			const url = window.location.href;
-			const menuButtons = document.querySelectorAll('.header__menu-button');
-			const menuButtonCurrentHref = menuButtonCurrent.href;
-			if (url !== menuButtonCurrentHref) {
-				menuButtonCurrent.classList.remove('header__menu-button--current');
-			}
-
-			for (const menuButton of menuButtons) {
-				if (menuButton.href === url) {
-					menuButton.classList.add('header__menu-button--current');
-					menuButtonCurrent = document.querySelector('.header__menu-button--current');
-					moveShape(menuButtonCurrent);
-				}
-			}
+	handleMenuShapeTransition(target) {
+		const transitionTime = 350;
+		const menuShape = document.querySelector('.header__menu-shape');
+		const menuShapeBg = document.querySelector('.header__menu-shape-bg');
+		if (Number.parseInt(this.#menuButtonCurrent.dataset.index, 10) !== Number.parseInt(target.dataset.index, 10)) {
+			menuShapeBg.style.transition = `width ${transitionTime / 2}ms ease`;
+			menuShapeBg.style.width = '130%';
+			setTimeout(() => {
+				menuShapeBg.style.width = '100%';
+			}, transitionTime / 2);
 		}
 
-		function moveShape(target) {
-			const buttonWidth = target.offsetWidth;
-			const buttonShape = document.querySelector('.header__menu-shape');
-			const buttonOffset = target.offsetLeft;
-			buttonShape.style.width = `${buttonWidth}px`;
-			buttonShape.style.left = `${buttonOffset}px`;
+		menuShape.style.transition = `all ${transitionTime}ms ease`;
+	}
+
+	urlChange() {
+		const url = window.location.href;
+		const menuButtons = document.querySelectorAll('.header__menu-button');
+		const menuButtonCurrentHref = this.#menuButtonCurrent.href;
+		if (url !== menuButtonCurrentHref) {
+			this.#menuButtonCurrent.classList.remove('header__menu-button--current');
 		}
 
-		function splitMenuButtonString() {
-			const buttonTexts = document.querySelectorAll('.header__menu-button');
+		for (const menuButton of menuButtons) {
+			if (menuButton.href === url) {
+				menuButton.classList.add('header__menu-button--current');
+				this.#menuButtonCurrent = document.querySelector('.header__menu-button--current');
+				this.moveShape(this.#menuButtonCurrent);
+			}
+		}
+	}
 
-			if (window.matchMedia('(width < 992px)').matches && window.matchMedia('(hover: hover)').matches) {
-				for (const button of buttonTexts) {
-					const words = button.textContent.trim().split(' '); // Split text into words
-					const newContent = words.map(word => {
-						const letters = [...word];
-						return letters.map(
-							(char, i) => `<span class="button__letter button__letter--${i}" style="--index:${i};">${char}</span>`,
-						).join('');
-					}).join(' '); // Join words back together with spaces
-					button.innerHTML = newContent;
-				}
-			} else {
-				for (const button of buttonTexts) {
-					button.innerHTML = button.textContent;
-				}
+	moveShape(target) {
+		const buttonWidth = target.offsetWidth;
+		const buttonShape = document.querySelector('.header__menu-shape');
+		const buttonOffset = target.offsetLeft;
+		buttonShape.style.width = `${buttonWidth}px`;
+		buttonShape.style.left = `${buttonOffset}px`;
+	}
+
+	splitMenuButtonString() {
+		const buttonTexts = document.querySelectorAll('.header__menu-button');
+
+		if (window.matchMedia('(width < 992px)').matches && window.matchMedia('(hover: hover)').matches) {
+			for (const button of buttonTexts) {
+				const words = button.textContent.trim().split(' '); // Split text into words
+				const newContent = words.map(word => {
+					const letters = [...word];
+					return letters.map(
+						(char, i) => `<span class="button__letter button__letter--${i}" style="--index:${i};">${char}</span>`,
+					).join('');
+				}).join(' '); // Join words back together with spaces
+				button.innerHTML = newContent;
+			}
+		} else {
+			for (const button of buttonTexts) {
+				button.innerHTML = button.textContent;
 			}
 		}
 	}

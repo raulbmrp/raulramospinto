@@ -25,6 +25,8 @@ class Cursor {
 		const heading4 = document.querySelectorAll('h4');
 		const heading5 = document.querySelectorAll('h5');
 		const heading6 = document.querySelectorAll('h6');
+		const time = document.querySelectorAll('time');
+		const disabled = document.querySelectorAll('.disabled');
 
 
 		// -------------------------------------------------------------
@@ -34,6 +36,7 @@ class Cursor {
 		// -------------------------------------------------------------
 
 		window.addEventListener('mousemove', cursorFollow);
+		window.addEventListener('scroll', cursorFollow);
 		document.addEventListener('mouseleave', cursorOff);
 
 		function cursorFollow(track) {
@@ -52,7 +55,7 @@ class Cursor {
 		// -------------------------------------------------------------
 		// -------------------------------------------------------------
 
-		const allText = [...paragraphs, ...heading1, ...heading2, ...heading3, ...heading4, ...heading5, ...heading6];
+		const allText = [...paragraphs, ...heading1, ...heading2, ...heading3, ...heading4, ...heading5, ...heading6, ...time];
 
 		hoverText(allText);
 
@@ -84,6 +87,26 @@ class Cursor {
 				});
 				target.addEventListener('mouseover', () => {
 					cursor.classList.add('grow');
+				});
+			}
+		}
+
+		// -------------------------------------------------------------
+		// -------------------------------------------------------------
+		// Cursor Disabled on hovers
+		// -------------------------------------------------------------
+		// -------------------------------------------------------------
+
+
+		hoverDisabled(disabled);
+
+		function hoverDisabled(targets) {
+			for (const target of targets) {
+				target.addEventListener('mouseleave', () => {
+					cursor.classList.remove('not-allowed');
+				});
+				target.addEventListener('mouseover', () => {
+					cursor.classList.add('not-allowed');
 				});
 			}
 		}
