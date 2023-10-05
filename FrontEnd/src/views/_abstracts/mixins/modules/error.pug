@@ -1,0 +1,22 @@
+mixin error(options)
+
+	section.module.error(class=setModifiers(options.modifiers, 'error--'))&attributes(attributes)
+		.error__layout
+			+heading({
+				htmlTag: 'h1',
+				text: options.headingText,
+				textModifiers: '1'
+			}).error__heading(aria-label= options.headingText.replace(/\s*(<br\/?>|[\\n]+)\s*/g, ' '))
+
+			.error__description
+				p !{options.description}
+				p Feel free to go back to the homepage.
+
+			+button({
+				text: options.buttonText,
+				url: options.buttonUrl,
+				modifiers: options.buttonModifiers,
+				target: options.buttonTarget,
+				urlLang: options.buttonUrlLang,
+				title: options.buttonTitle
+			}).error__button

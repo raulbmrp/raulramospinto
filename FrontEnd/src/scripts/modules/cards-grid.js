@@ -26,8 +26,12 @@ class CardsGrid {
 		this.#cardsGrid = element;
 		this.#soon = this.#cardsGrid.querySelectorAll('.soon');
 
-		for (const link of this.#soon) {
-			link.addEventListener('click', event => {
+		for (const disabledLink of this.#soon) {
+			disabledLink.addEventListener('click', event => {
+				event.preventDefault();
+			});
+			disabledLink.setAttribute('tabindex', '-1');
+			disabledLink.addEventListener('keydown', event => {
 				event.preventDefault();
 			});
 		}

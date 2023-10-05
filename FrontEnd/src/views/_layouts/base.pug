@@ -140,12 +140,12 @@ html(lang="en" dir="ltr" prefix="og: https://ogp.me/ns#")
 		//- Scripts
 		block scripts-head
 
-	body(class=`${homepage ? 'homepage' : project ? 'project' : ''}`)
+	body(class=`${homepage ? 'homepage' : project ? 'project' : error ? 'error' : ''}`)
 		a.skip-link(href="#main" title="Skip to main content")
 			span.skip-link__text Skip to main content
-		#cursor.cursor
-		.blur-circle.blur-circle--blue
-		.blur-circle.blur-circle--orange
+		#cursor.cursor(aria-hidden='true')
+		.blur-circle.blur-circle--blue(aria-hidden='true')
+		.blur-circle.blur-circle--orange(aria-hidden='true')
 
 		block header
 			if homepage
@@ -162,7 +162,8 @@ html(lang="en" dir="ltr" prefix="og: https://ogp.me/ns#")
 			block main
 
 		block footer
-			+footer
+			if !error
+				+footer
 
 		block scripts
 			script(src="/assets/scripts/main.js" type="module")

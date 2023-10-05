@@ -69,6 +69,12 @@
 		color: abstracts.color(neutral dirty-white)
 		padding-block: .75em
 
+		&:focus-visible
+			box-shadow: unset
+			outline: 2px solid abstracts.color(brand blue)
+			border-radius: 100vmax
+			outline-offset: 0.8em
+
 	// Burger
 	// -----------------------------------------------------------------------------
 	&__burger

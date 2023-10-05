@@ -329,6 +329,7 @@ class Header {
 		const buttonWidth = target.offsetWidth;
 		const buttonShape = document.querySelector('.header__menu-shape');
 		const buttonOffset = target.offsetLeft;
+		console.log('offsetLeft of current menu button => ' + target.offsetLeft + 'px');
 		buttonShape.style.width = `${buttonWidth}px`;
 		buttonShape.style.left = `${buttonOffset}px`;
 	}

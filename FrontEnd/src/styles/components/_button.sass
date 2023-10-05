@@ -38,12 +38,13 @@
 		padding: $padding-block $padding-inline
 
 	&:focus-visible
-		outline: $border-width solid abstracts.color(neutral white)
+		outline: $border-width solid abstracts.color(brand blue)
 			// offset: 0 // [1]
 
 	&:disabled,
 	&[disabled]
 		// cursor: not-allowed
+		pointer-events: none
 		opacity: .2
 
 	// Text

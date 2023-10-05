@@ -1,17 +1,19 @@
 extends ../../../src/views/_layouts/base
 
-
-
 block variables
 	- error = true
-	- title = 'Error'
-
-
+	- title = 'Error 404'
 
 block main
 
 	+error({
 		headingText: '404',
 		description: '<strong>Everybody makes mistakes.</strong> <br>Especially me, who didn&apos;t remember to implement this awesome URL.',
-		modifiers: '404'
+		modifiers: '404',
+		buttonText: 'Homepage',
+		buttonUrl: '/',
+		buttonModifiers: 'primary',
+		buttonTarget: '_self',
+		buttonUrlLang: 'en',
+		buttonTitle: 'Go to the Homepage'
 	})

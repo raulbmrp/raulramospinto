@@ -7,7 +7,11 @@
 	box-sizing: inherit
 
 *
-	outline-offset: .2em
+	&:focus-visible
+		box-shadow: 0px 0px 1px 2px abstracts.color(neutral dirty-white)
+		outline: 2px solid abstracts.color(brand blue)
+		outline-offset: .2em
+		border-radius: 8px
 
 html
 	box-sizing: border-box

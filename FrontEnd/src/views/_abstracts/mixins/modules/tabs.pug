@@ -18,10 +18,9 @@ mixin tabs(options)
 								modifiers: 'secondary',
 								iconFile: '/assets/images/resume.svg',
 								iconId: `${item.url}`,
-								title: `Show ${item.name}`
+								title: `Open ${item.name}`
 							})(
 								id=`tab--${index}`
-								aria-label=`${item.name}`
 								aria-describedby='tabs__buttons-description'
 							).tabs__button
 					p#tabs__buttons-description.sr-only Press tab to move to the tabpanel.

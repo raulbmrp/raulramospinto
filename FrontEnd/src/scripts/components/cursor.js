@@ -67,7 +67,6 @@ class Cursor {
 
 
 		window.addEventListener('mousemove', cursorFollow);
-		window.addEventListener('scroll', cursorFollow);
 		document.addEventListener('mouseleave', cursorOff);
 
 		hoverText(allText);

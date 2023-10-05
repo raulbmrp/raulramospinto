@@ -18,7 +18,7 @@
 	img
 		+abstracts.transition(transform)
 
-	&:not(&.soon)
+	&:not(&.disabled)
 		+abstracts.hover(focus-visible)
 			transform: scale(1.05)
 			+abstracts.transition(transform)
@@ -26,6 +26,10 @@
 			img
 				transform: scale(1.05)
 				+abstracts.transition(transform)
+
+	&:focus-visible
+		outline-width: 3px
+		border-radius: 32px
 
 	// Layout
 	// -----------------------------------------------------------------------------
@@ -84,8 +88,9 @@
 		-webkit-box-orient: vertical
 		order: 3
 
-	&.soon
+	&.disabled
 		// cursor: not-allowed
+		pointer-events: none
 
 		#{$block}__figure
 			filter: blur(2px)

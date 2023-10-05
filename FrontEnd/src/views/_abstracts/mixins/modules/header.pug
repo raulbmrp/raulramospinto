@@ -2,7 +2,7 @@ mixin header(options)
 
 	header.header&attributes(attributes)
 		.header__layout.header__layout--top
-			a.header__logo(href="/homepage" title='Back to the homepage' target='_self')
+			a.header__logo(href="/homepage" title='Go to the homepage' target='_self' aria-label='Go to the homepage')
 				+symbol({
 					file: '/assets/images/logos.svg',
 					id: 'logo-raul-ramos-pinto',
@@ -18,11 +18,13 @@ mixin header(options)
 
 		.header__layout.header__layout--menu
 
-			nav.header__menu(aria-label='main menu')
-				ul.header__menu-list
+			nav.header__menu(aria-label='Main menu')
+				ul.header__menu-list(role='presentation')
 					each item, index in options.menu
 						- const itemWithoutAccents = removeAccents(item);
-						li.header__menu-item(style=`--index:${index};`)
+						li.header__menu-item(
+							style=`--index:${index};`
+						)
 							+button({
 								url: `#${itemWithoutAccents}`,
 								target: '_self',
