@@ -20,7 +20,7 @@ $tokens: (
 			"1": (
 				"fontSize": calc(48px + (96 - 48) * (100vw - 320px) / (1440 - 320)),
 				"textDecoration": none,
-				"fontFamily": (Textu, Georgia, serif),
+				"fontFamily": (Textu, Helvetica, Arial, sans-serif),
 				"fontWeight": 500,
 				"fontStyle": normal,
 				"fontStretch": normal,
@@ -31,7 +31,7 @@ $tokens: (
 			"2": (
 				"fontSize": calc(32px + (56 - 32) * (100vw - 320px) / (1440 - 320)),
 				"textDecoration": none,
-				"fontFamily": (Textu, Georgia, serif),
+				"fontFamily": (Textu, Helvetica, Arial, sans-serif),
 				"fontWeight": 300,
 				"fontStyle": normal,
 				"fontStretch": normal,
@@ -124,7 +124,7 @@ $tokens: (
 				"mobile": (
 					"fontSize": calc(48px + (72 - 48) * (100vw - 320px) / (992 - 320)),
 					"textDecoration": none,
-					"fontFamily": (Textu, Georgia, serif),
+					"fontFamily": (Textu, Helvetica, Arial, sans-serif),
 					"fontWeight": 500,
 					"fontStyle": normal,
 					"fontStretch": normal,

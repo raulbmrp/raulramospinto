@@ -37,17 +37,17 @@ mixin tabs(options)
 								| !{item.name}
 							each job in item.jobs
 								.tabs__panel-content
-									h4.heading.heading--4.tabs__panel-title
+									h4.heading.heading--4.tabs__panel-heading
 										| !{job.role}
-									.tabs__panel-subtitle
+									.tabs__panel-subheading
 										h5.heading.heading--5
 											+link({
-												url: `${job.companyURL}`,
-												urlLang: `${job.companyURLlang}`,
+												url: `${job.url}`,
+												urlLang: `${job.urlLang}`,
 												text: `${job.company}`,
 												target: '_blank',
 												title: `Open ${job.company} website on a new tab`,
-												modifiers: `${section}`
+												modifiers: 'title'
 											})
 										span.heading--5
 											span &nbsp;|
@@ -70,17 +70,17 @@ mixin tabs(options)
 								| !{item.name}
 							each course in item.courses
 								.tabs__panel-content
-									h4.heading.heading--4.tabs__panel-title
+									h4.heading.heading--4.tabs__panel-heading
 										| !{course.course}
-									.tabs__panel-subtitle
+									.tabs__panel-subheading
 										h5.heading.heading--5
 											+link({
-												url: `${course.schoolURL}`,
-												urlLang: `${course.schoolURLlang}`,
+												url: `${course.url}`,
+												urlLang: `${course.urlLang}`,
 												text: `${course.school}`,
 												target: '_blank',
 												title: `Open ${course.school} website on a new tab`,
-												modifiers: `${section}`
+												modifiers: 'title'
 											})
 										span.heading--5
 											span &nbsp;|
@@ -103,7 +103,7 @@ mixin tabs(options)
 								| !{item.name}
 							each category in item.categories
 								.tabs__panel-content
-									h4.heading.heading--4.tabs__panel-title
+									h4.heading.heading--4.tabs__panel-heading
 										| !{category.name}
 									ul.tabs__panel-list(aria-label=`${category.name} skills list`)
 										each skill in category.skills
@@ -121,17 +121,17 @@ mixin tabs(options)
 								| !{item.name}
 							each certificate in item.certificates
 								.tabs__panel-content
-									h4.heading.heading--4.tabs__panel-title
+									h4.heading.heading--4.tabs__panel-heading
 										| !{certificate.name}
-									.tabs__panel-subtitle
+									.tabs__panel-subheading
 										h5.heading.heading--5
 											+link({
-												url: `${certificate.companyURL}`,
-												urlLang: `${certificate.companyURLlang}`,
+												url: `${certificate.documentUrl ? certificate.documentUrl : certificate.url}`,
+												urlLang: `${certificate.urlLang}`,
 												text: `${certificate.company}`,
 												target: '_blank',
 												title: `Open ${certificate.company} website on a new tab`,
-												modifiers: `${section}`
+												modifiers: 'title'
 											})
 										span.heading--5
 											span &nbsp;|
@@ -148,7 +148,7 @@ mixin tabs(options)
 								| !{item.name}
 							each idiom in item.idioms
 								.tabs__panel-content
-									h4.heading.heading--4.tabs__panel-title
+									h4.heading.heading--4.tabs__panel-heading
 										| !{idiom.idiom}
 									.tabs__panel-description
 										p !{idiom.level}
@@ -163,17 +163,17 @@ mixin tabs(options)
 								| !{item.name}
 							each program in item.programs
 								.tabs__panel-content
-									h4.heading.heading--4.tabs__panel-title
+									h4.heading.heading--4.tabs__panel-heading
 										| !{program.role}
-									.tabs__panel-subtitle
+									.tabs__panel-subheading
 										h5.heading.heading--5
 											+link({
-												url: `${program.companyURL}`,
-												urlLang: `${program.companyURLlang}`,
+												url: `${program.url}`,
+												urlLang: `${program.urlLang}`,
 												text: `${program.company}`,
 												target: '_blank',
 												title: `Open ${program.company} website on a new tab`,
-												modifiers: `${section}`
+												modifiers: 'title'
 											})
 										span.heading--5
 											span &nbsp;|
@@ -196,17 +196,17 @@ mixin tabs(options)
 								| !{item.name}
 							each achievement in item.achievements
 								.tabs__panel-content
-									h4.heading.heading--4.tabs__panel-title
+									h4.heading.heading--4.tabs__panel-heading
 										| !{achievement.role}
-									.tabs__panel-subtitle
+									.tabs__panel-subheading
 										h5.heading.heading--5
 											+link({
-												url: `${achievement.teamURL}`,
-												urlLang: `${achievement.teamURLlang}`,
+												url: `${achievement.url}`,
+												urlLang: `${achievement.urlLang}`,
 												text: `${achievement.team}`,
 												target: '_blank',
 												title: `Open ${achievement.team} website on a new tab`,
-												modifiers: `${section}`
+												modifiers: 'title'
 											})
 										span.heading--5
 											span &nbsp;|
@@ -215,3 +215,54 @@ mixin tabs(options)
 									.tabs__panel-description
 										p
 											| !{achievement.description}
+
+					if item.name == "Brands I've worked with"
+						article.tabs__panel(
+							class=`tabs__panel--${item.url}`
+							id=`${item.url}`
+							aria-labelledby=`tab--${index}`
+						)
+							h3.sr-only
+								| !{item.name}
+							each brand in item.brands
+								.tabs__panel-content
+									if brand.figure
+										+figure({
+											modifiers: '',
+											file: `resume/brands/`,
+											name: `${brand.name}-logo`,
+											alt: `${brand.figureAlt}`,
+											title: `${brand.name}`,
+											format: 'png',
+											sizesMobile: 100,
+											sizesDesktop: 20,
+											widthMobileX1: 320,
+											widthMobileX2: 640,
+											widthDesktopX1: 200,
+											widthDesktopX2: 400,
+											loading: 'lazy',
+											figcaption: `${brand.figureFigcaption ? brand.figureFigcaption : ''}`
+										}).tabs__panel-figure
+									else
+										+symbol({
+											file: '/assets/images/brands.svg',
+											id: brand.iconId,
+											width: brand.iconWidth || 160,
+											height: brand.iconHeight || 75
+										}).tabs__panel-brand-logo
+
+									.tabs__panel-separator
+
+									h4.heading.heading--5.tabs__panel-heading
+										+link({
+											url: `${brand.url}`,
+											urlLang: `${brand.urlLang}`,
+											text: `${brand.name}`,
+											target: '_blank',
+											title: `Open ${brand.name} website on a new tab`,
+											modifiers: 'title'
+										})
+
+									if brand.description
+										p.tabs__panel-description
+											| !{brand.description}

@@ -8,27 +8,28 @@ mixin cards-grid(options)
 					title=`${card.soon ? card.title + ' project is not currently available' : 'Open ' + card.title + ' project'}`
 					target='_self'
 					class=`${card.soon ? 'soon disabled' : ''}`
+					aria-label=`Open ${card.title} project`
 				)
 					.card__layout
 
 						if options.hasImage
-							.card__figure
-								+figure({
-									modifiers: 'card',
-									file: `portfolio/${card.title}/thumbnail`,
-									name: `${card.title}-cover`,
-									alt: `${card.figureAlt}`,
-									title: `${card.title} ${card.slogan ? ' - ' + card.slogan : ''}`,
-									format: 'jpg',
-									sizesMobile: 100,
-									sizesDesktop: 25,
-									widthMobileX1: 320,
-									widthMobileX2: 475,
-									widthDesktopX1: 768,
-									widthDesktopX2: 1200,
-									loading: 'lazy',
-									figcaption: `${card.figureFigcaption ? card.figureFigcaption : ''}`
-								})
+							+figure({
+								modifiers: 'project-thumbnail',
+								file: `portfolio/${card.title}/thumbnail`,
+								name: `${card.title}-cover`,
+								alt: `${card.figureAlt}`,
+								title: `${card.title} ${card.slogan ? ' - ' + card.slogan : ''}`,
+								format: 'jpg',
+								sizesMobile: 100,
+								sizesDesktop: 25,
+								widthMobileX1: 320,
+								widthMobileX2: 640,
+								widthDesktopX1: 480,
+								widthDesktopX2: 960,
+								loading: 'lazy',
+								figcaption: `${card.figureFigcaption ? card.figureFigcaption : ''}`
+							}).card__figure
+
 						.card__content
 							if card.title
 								+heading({

@@ -56,7 +56,7 @@ class Homepage {
 
 		const intersectionObserver = new IntersectionObserver(entries => {
 			for (const entry of entries) {
-				if (entry.isIntersecting && entry.target.id === 'intro') {
+				if (entry.isIntersecting && entry.target.classList.contains('intro')) {
 					this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 10vh)');
 					this.#blurCircleBlue.style.setProperty('--blurCircleBlueLeft', 'calc(50% + 5vw)');
 					this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '50vh');
