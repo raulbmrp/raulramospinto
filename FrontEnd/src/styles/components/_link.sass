@@ -11,7 +11,11 @@
 .link
 	$block: &
 
-	+abstracts.orange-on-black-link
+	&--title
+		+abstracts.link-orangeText-orangeUnderline-blackBg
+
+	&--text
+		+abstracts.link-dirtyWhiteText-orangeUnderline-blackBg
 
 	&:focus-visible
 		box-shadow: unset

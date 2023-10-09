@@ -198,7 +198,7 @@ class Tabs {
 		if (window.matchMedia('(width < 992px)').matches) {
 			window.addEventListener('scroll', () => {
 				const tabsButtonsContainerYPosition = tabsButtonsContainer.getBoundingClientRect().top;
-				if (tabsButtonsContainerYPosition === 0) {
+				if (tabsButtonsContainerYPosition <= 0) {
 					tabsButtonsContainer.classList.add('on');
 				} else {
 					tabsButtonsContainer.classList.remove('on');

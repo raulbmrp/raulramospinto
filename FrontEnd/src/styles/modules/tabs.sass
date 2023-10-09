@@ -84,11 +84,28 @@
 
 	&__panel
 		&-content
-			padding: 8px 16px 16px
+			padding: 12px 24px 20px
 			border: 1px solid abstracts.color(alpha semi-transparent-dirty-white)
 			border-radius: 32px
+			overflow: hidden
+
 		&-description
 			margin-top: 16px
+
+		&-brand-logo
+			margin-top: 12px
+
+		&-separator
+			width: 1px
+			height: 200%
+			background-color: abstracts.color(alpha semi-transparent-dirty-white)
+
+		&--brands
+			#{$block}__panel-content
+				display: grid
+				grid-template-columns: 160px 1px auto
+				gap: 32px
+				align-items: center
 
 		&:focus-visible
 			border-radius: 32px
@@ -147,8 +164,5 @@
 			padding-top: 80px
 			padding-inline: unset
 		&__panel
-			&-content
-				padding: 8px 24px 16px
-
 			&--skills
 				grid-template-columns: repeat(2, 1fr)

@@ -1,14 +1,26 @@
 @use "../functions/color" as *
 
-=link-underline($token, $border-color: currentColor, $border-width: .07em)
+=link-underline($windowBg, $underlineColor: currentColor, $underlineWidth: .07em)
 	text-decoration: none
 	padding: .5em 0
-	background: linear-gradient($border-color, $border-color) no-repeat
-	background-size: 100% $border-width
-	background-position: center bottom 25%
-	text-shadow: 0.06em 0 0 $token, -0.06em 0 0 $token, 0 0.06em 0 $token, 0 -0.06em 0 $token, 0.06em 0.06em 0 $token, -0.06em -0.06em 0 $token, -0.06em 0.06em 0 $token, 0.06em -0.06em 0 $token
-	transition: color .1s ease-out
+	background:
+		image: linear-gradient($underlineColor, $underlineColor)
+		repeat: no-repeat
+		size: calc(100% - 10px) $underlineWidth
+		position: center bottom 25%
+	text-shadow: 0.06em 0 0 $windowBg, -0.06em 0 0 $windowBg, 0 0.06em 0 $windowBg, 0 -0.06em 0 $windowBg, 0.06em 0.06em 0 $windowBg, -0.06em -0.06em 0 $windowBg, -0.06em 0.06em 0 $windowBg, 0.06em -0.06em 0 $windowBg
+	transition: background-size, color, background-image, .25s ease-out
 
-=orange-on-black-link($token: color(neutral black))
+	&:hover
+		background:
+			size: 100% $underlineWidth
+			image: linear-gradient(color(brand blue), color(brand blue))
+		transition: background-size, color, background-image, .25s ease-out
+
+=link-orangeText-orangeUnderline-blackBg($windowBg: color(neutral black))
 	color: color(brand orange)
-	@include link-underline($token)
+	@include link-underline($windowBg)
+
+=link-dirtyWhiteText-orangeUnderline-blackBg($windowBg: color(neutral black), $underlineColor: color(brand orange))
+	color: color(neutral dirty-white)
+	@include link-underline($windowBg, $underlineColor: color(brand orange))

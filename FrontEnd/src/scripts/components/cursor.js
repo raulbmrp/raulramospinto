@@ -66,7 +66,7 @@ class Cursor {
 		const linksButtons = [...this.#links, ...this.#buttons];
 
 
-		window.addEventListener('mousemove', cursorFollow);
+		document.addEventListener('mousemove', cursorFollow);
 		document.addEventListener('mouseleave', cursorOff);
 
 		hoverText(allText);
