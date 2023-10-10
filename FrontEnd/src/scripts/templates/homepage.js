@@ -54,7 +54,7 @@ class Homepage {
 			rootMargin: '-288px 0px -288px 0px',
 		};
 
-		const intersectionObserver = new IntersectionObserver(entries => {
+		const intersectionObserverBlurCircles = new IntersectionObserver(entries => {
 			for (const entry of entries) {
 				if (entry.isIntersecting && entry.target.classList.contains('intro')) {
 					this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 10vh)');
@@ -154,9 +154,21 @@ class Homepage {
 		},
 		observerOptions);
 
-		// Observe each module
+		const intersectionObserverModules = new IntersectionObserver(entries => {
+			for (const entry of entries) {
+				if (!entry.isIntersecting) {
+					continue;
+				}
+
+				entry.target.classList.toggle('show');
+				intersectionObserverModules.unobserve(entry.target);
+			}
+		},
+		observerOptions);
+
 		for (const module of this.#modules) {
-			intersectionObserver.observe(module);
+			intersectionObserverBlurCircles.observe(module);
+			intersectionObserverModules.observe(module);
 		}
 	}
 }

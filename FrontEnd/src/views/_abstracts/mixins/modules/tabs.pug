@@ -44,7 +44,7 @@ mixin tabs(options)
 											+link({
 												url: `${job.url}`,
 												urlLang: `${job.urlLang}`,
-												text: `${job.company}`,
+												text: `${job.companyAbbr ? job.companyAbbr : job.company}`,
 												target: '_blank',
 												title: `Open ${job.company} website on a new tab`,
 												modifiers: 'title'
@@ -77,7 +77,7 @@ mixin tabs(options)
 											+link({
 												url: `${course.url}`,
 												urlLang: `${course.urlLang}`,
-												text: `${course.school}`,
+												text: `${course.schoolAbbr ? course.schoolAbbr : course.school}`,
 												target: '_blank',
 												title: `Open ${course.school} website on a new tab`,
 												modifiers: 'title'
@@ -170,7 +170,7 @@ mixin tabs(options)
 											+link({
 												url: `${program.url}`,
 												urlLang: `${program.urlLang}`,
-												text: `${program.company}`,
+												text: `${program.companyAbbr ? program.companyAbbr : program.company}`,
 												target: '_blank',
 												title: `Open ${program.company} website on a new tab`,
 												modifiers: 'title'
@@ -203,7 +203,7 @@ mixin tabs(options)
 											+link({
 												url: `${achievement.url}`,
 												urlLang: `${achievement.urlLang}`,
-												text: `${achievement.team}`,
+												text: `${achievement.teamAbbr ? achievement.teamAbbr : achievement.team}`,
 												target: '_blank',
 												title: `Open ${achievement.team} website on a new tab`,
 												modifiers: 'title'
@@ -257,7 +257,7 @@ mixin tabs(options)
 										+link({
 											url: `${brand.url}`,
 											urlLang: `${brand.urlLang}`,
-											text: `${brand.name}`,
+											text: `${brand.nameAbbr ? brand.nameAbbr : brand.name}`,
 											target: '_blank',
 											title: `Open ${brand.name} website on a new tab`,
 											modifiers: 'title'

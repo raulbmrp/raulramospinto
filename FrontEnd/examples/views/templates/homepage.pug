@@ -22,7 +22,7 @@ block main
 	+image-text({
 		modifiers: 'about',
 		htmlTag: 'h3',
-		text: 'I&apos;m a <span class="highlight highlight--design">UX/UI Designer</span> and <span class="highlight highlight--code">Front-End Web Developer</span> based in Porto.',
+		text: 'I&apos;m a <span class="highlight"><abbr title="User Experience">UX</abbr>/<abbr title="User Interface">UI</abbr> Designer</span> and <span class="highlight">Front-End Web Developer</span> based in Porto.',
 		textModifiers: '2',
 		file: 'profile',
 		name: 'raul-ramos-pinto',
@@ -39,28 +39,38 @@ block main
 	})(id='about')
 		p
 			| As a passionate Front-End Developer, I have expertise in&nbsp;
-			strong HTML
+			strong
+				abbr(title='Hypertext Markup Language') HTML
 			| ,&nbsp;
-			strong CSS
+			strong
+				abbr(title='Cascading Style Sheets') CSS
 			| , and&nbsp;
 			strong JavaScript
 			| , placing a strong emphasis on creating&nbsp;
-			strong accessible&nbsp;
-			| and&nbsp;
-			strong user-friendly&nbsp;
-			| websites. By combining a keen eye for UX and UI Design, I seamlessly blend&nbsp;
-			strong aesthetics&nbsp;
-			| with&nbsp;
-			strong functionality&nbsp;
-			| to deliver captivating and&nbsp;
+			strong accessible
+			| &nbsp;and&nbsp;
+			strong user-friendly
+			| &nbsp;websites. By combining a keen eye for&nbsp;
+			abbr(title='User Experience') UX
+			| &nbsp;and&nbsp;
+			abbr(title='User Interface') UI
+			| &nbsp;Design, I seamlessly blend&nbsp;
+			strong aesthetics
+			| &nbsp;with&nbsp;
+			strong functionality
+			| &nbsp;to deliver captivating and&nbsp;
 			strong responsive digital experiences
 			| . Employing a&nbsp;
 			strong problem-solving mindset
 			| , I tackle challenges head-on, discovering innovative solutions for optimal results.
 		p
-			| In my free time, I enjoy painting and have been creating murals under the name Kilos since 2016.
+			| In my free time, I enjoy painting and have been creating murals under the name Kilos since&nbsp;
+			time(datetime='2016') 2016
+			| .
 			br
-			| As a professional basketball player since 2007, I have represented 6 teams, 1 association, and 1 university.
+			| As a professional basketball player since&nbsp;
+			time(datetime='2007') 2007
+			| , I have represented 6 teams, 1 association, and 1 university.
 
 	+heading({
 		htmlTag: 'h2',
@@ -83,7 +93,7 @@ block main
 						startDateTime: '2022-03-24',
 						endDate: 'Present',
 						endDateTime: 'Present',
-						description: 'Mostly coded in PugJS, Sass and JavaScript for web development projects. I also took on responsibilities involving QA testing, A11y and newsletters creation, where I wrote in Handlebars and Less programming languages. I&apos;ve been involved in projects such as <a href="https://isegexecutive.education/en/" target="_blank" rel="noreferrer noopener" title="Open ISEG Executive Education website on a new tab" hreflang="en-US" class="link link--text">ISEG Executive Education</a>, <a href="https://www.vangproperties.com/en/" target="_blank" rel="noreferrer noopener" title="Open Vanguard Properties website on a new tab" hreflang="en" class="link link--text">Vanguard Properties</a>, <a href="https://www.parquesdesintra.pt/en/" target="_blank" rel="noreferrer noopener" title="Open Parques de Sintra website on a new tab" hreflang="en-GB" class="link link--text">Parques de Sintra</a>, <a href="https://clubesagres.cervejasagres.pt/" target="_blank" rel="noreferrer noopener" title="Open Clube Sagres website on a new tab" hreflang="pt-PT" class="link link--text">Clube Sagres</a>, <a href="https://www.brisa.pt/en/" target="_blank" rel="noreferrer noopener" title="Open Grupo Brisa website on a new tab" hreflang="en-US" class="link link--text">Grupo Brisa</a>, <a href="https://www.mudareganhar.pt/" target="_blank" rel="noreferrer noopener" title="Open Mudar É Ganhar website on a new tab" hreflang="pt" class="link link--text">Mudar É Ganhar</a> and others. Additionally, I helped with the creation of components for the Engineering Team Front-End project generator - <a href="https://github.com/WYcreative/genesis" target="_blank" rel="noreferrer noopener" title="Open Genesis GitHub page on a new tab" hreflang="en" class="link link--text">Genesis</a>.'
+						description: 'Mostly coded in PugJS, Sass and JavaScript for web development projects. I also took on responsibilities involving <abbr title="Quality Assurance">QA</abbr> testing, <abbr title="Accessibility">A11y</abbr> and newsletters creation, where I wrote in Handlebars and <abbr title="Leaner Style Sheets">Less</abbr> programming languages. I&apos;ve been involved in projects such as <a href="https://isegexecutive.education/en/" target="_blank" rel="noreferrer noopener" title="Open ISEG Executive Education website on a new tab" hreflang="en-US" class="link link--text">ISEG Executive Education</a>, <a href="https://www.vangproperties.com/en/" target="_blank" rel="noreferrer noopener" title="Open Vanguard Properties website on a new tab" hreflang="en" class="link link--text">Vanguard Properties</a>, <a href="https://www.parquesdesintra.pt/en/" target="_blank" rel="noreferrer noopener" title="Open Parques de Sintra website on a new tab" hreflang="en-GB" class="link link--text">Parques de Sintra</a>, <a href="https://clubesagres.cervejasagres.pt/" target="_blank" rel="noreferrer noopener" title="Open Clube Sagres website on a new tab" hreflang="pt-PT" class="link link--text">Clube Sagres</a>, <a href="https://www.brisa.pt/en/" target="_blank" rel="noreferrer noopener" title="Open Grupo Brisa website on a new tab" hreflang="en-US" class="link link--text">Grupo Brisa</a>, <a href="https://www.mudareganhar.pt/" target="_blank" rel="noreferrer noopener" title="Open Mudar É Ganhar website on a new tab" hreflang="pt" class="link link--text">Mudar É Ganhar</a> and others. Additionally, I helped with the creation of components for the Engineering Team Front-End project generator - <a href="https://github.com/WYcreative/genesis" target="_blank" rel="noreferrer noopener" title="Open Genesis GitHub page on a new tab" hreflang="en" class="link link--text">Genesis</a>.'
 					},
 					{
 						role: 'Graffiti Artist',
@@ -105,7 +115,7 @@ block main
 						startDateTime: '2020-07',
 						endDate: '<abbr title="June">Jun</abbr> 2021',
 						endDateTime: '2021-06',
-						description: 'I&apos;ve enhanced my skills in Illustration, SEO, Branding, Editorial, Motion, and Web Design, by using tools such as Adobe Illustrator, Photoshop, After Effects, InDesign and Figma.'
+						description: 'I&apos;ve enhanced my skills in Illustration, <abbr title="Search Engine Optimization">SEO</abbr>, Branding, Editorial, Motion, and Web Design, by using tools such as Adobe Illustrator, Photoshop, After Effects, InDesign and Figma.'
 					}
 				]
 			},
@@ -115,7 +125,8 @@ block main
 				courses: [
 					{
 						course: 'Digital Experience Design',
-						school: '<abbr title="Faculty of Fine Arts of the University of Lisbon">FBAUL</abbr>',
+						school: 'FBAUL',
+						schoolAbbr: '<abbr title="Faculty of Fine Arts of the University of Lisbon">FBAUL</abbr>',
 						url: 'https://www.belasartes.ulisboa.pt/en/',
 						urlLang: 'en-US',
 						startDate: '2021',
@@ -126,25 +137,27 @@ block main
 					},
 					{
 						course: 'Web Design',
-						school: '<abbr title="Lisbon School of Design Porto">LSD Porto</abbr>',
+						school: 'LSD Porto',
+						schoolAbbr: '<abbr title="Lisbon School of Design Porto">LSD Porto</abbr>',
 						url: 'https://www.lsd.pt/',
 						urlLang: 'en',
 						startDate: '2020',
 						startDateTime: '2020',
 						endDate: '2021',
 						endDateTime: '2021',
-						description: 'Completed a comprehensive course that introduced me to the world of web development and digital marketing. This program covered a wide range of topics, including UI/UX design, digital marketing, and programming languages such as HTML, CSS, JavaScript, PHP, and MySQL. With hands-on experience and a solid foundation in these technologies, I became equipped to commit myself to the field of web development.'
+						description: 'Completed a comprehensive course that introduced me to the world of web development and digital marketing. This program covered a wide range of topics, including <abbr title="User Interface">UI</abbr>/<abbr title="User Experience">UX</abbr> design, digital marketing, and programming languages such as <abbr title="Hypertext Markup Language">HTML</abbr>, <abbr title="Cascading Style Sheets">CSS</abbr>, JavaScript, <abbr title="Hypertext Preprocessor">PHP</abbr>, and <abbr title="Structured Query Language">SQL</abbr>. With hands-on experience and a solid foundation in these technologies, I became equipped to commit myself to the field of web development.'
 					},
 					{
 						course: 'Communication Design',
-						school: '<abbr title="College of Art and Design">ESAD Matosinhos</abbr>',
+						school: 'ESAD Matosinhos',
+						schoolAbbr: '<abbr title="College of Art and Design">ESAD Matosinhos</abbr>',
 						url: 'https://esad.pt/',
 						urlLang: 'pt',
 						startDate: '2016',
 						startDateTime: '2016',
 						endDate: '2019',
 						endDateTime: '2019',
-						description: 'I&apos;ve enhanced my skills in Illustration, SEO, Branding, Editorial, Motion, and Web Design, by using tools such as Adobe Illustrator, Photoshop, After Effects, InDesign and Figma.'
+						description: 'I&apos;ve enhanced my skills in Illustration, <abbr title="Search Engine Optimization">SEO</abbr>, Branding, Editorial, Motion, and Web Design, by using tools such as Adobe Illustrator, Photoshop, After Effects, InDesign and Figma.'
 					},
 					{
 						course: 'Graphic Design',
@@ -155,7 +168,7 @@ block main
 						startDateTime: '2018-09',
 						endDate: '<abbr title="January">Jan</abbr> 2019',
 						endDateTime: '2019-01',
-						description: 'Had the opportunity to study Graphic Design as part of my third academic year at Kingston University, London, UK through the ERASMUS program. This experience provided me with a comprehensive education in the field of graphic design and a deeper understanding of the creative process.'
+						description: 'Had the opportunity to study Graphic Design as part of my third academic year at Kingston University, London, <abbr title="United Kingdom">UK</abbr> through the ERASMUS program. This experience provided me with a comprehensive education in the field of graphic design and a deeper understanding of the creative process.'
 					},
 				]
 			},
@@ -167,7 +180,7 @@ block main
 						name: 'Programming',
 						skills: [
 							'<abbr title="Hypertext Markup Language">HTML</abbr> / PugJS / <abbr title="Handlebars">HBS</abbr>',
-							'<abbr title="Cascading Style Sheets">CSS</abbr> / SASS / Less',
+							'<abbr title="Cascading Style Sheets">CSS</abbr> / <abbr title="syntactically awesome style sheets">SASS</abbr> / <abbr title="Leaner Style Sheets">Less</abbr>',
 							'JavaScript',
 							'Git',
 							'Liquid',
@@ -351,7 +364,8 @@ block main
 					},
 					{
 						role: 'Volunteer (Design Department)',
-						company: '<abbr title="Erasmus Student Network">ESN</abbr> Porto',
+						company: 'ESN Porto',
+						companyAbbr: '<abbr title="Erasmus Student Network">ESN</abbr> Porto',
 						url: 'https://esnporto.org/',
 						urlLang: 'en',
 						startDate: '<abbr title="February">Feb</abbr> 2019',
@@ -401,7 +415,8 @@ block main
 				achievements: [
 					{
 						role: 'Basketball Athlete',
-						team: '<abbr title="Porto Basketball Association">A.B.Porto</abbr>',
+						team: 'A.B.Porto',
+						teamAbbr: '<abbr title="Porto Basketball Association">A.B.Porto</abbr>',
 						url: 'https://www.abp.pt/',
 						urlLang: 'pt-PT',
 						date: '2014',
@@ -417,7 +432,8 @@ block main
 					},
 					{
 						role: 'Basketball Athlete',
-						team: '<abbr lang="pt-PT" title="Futebol Clube do Porto">F.C.Porto</abbr>',
+						team: 'F.C.Porto',
+						teamAbbr: '<abbr lang="pt-PT" title="Futebol Clube do Porto">F.C.Porto</abbr>',
 						url: 'https://www.fcporto.pt/en/',
 						urlLang: 'en',
 						date: '2011',
@@ -452,6 +468,7 @@ block main
 					},
 					{
 						name: 'ISEG',
+						nameAbbr: '<abbr title="Institute of Economics and Management">ISEG</abbr>',
 						url: 'https://isegexecutive.education/en/',
 						urlLang: 'en-US',
 						figure: false,
@@ -463,6 +480,13 @@ block main
 						urlLang: 'en',
 						figure: false,
 						iconId: 'lamborghini'
+					},
+					{
+						name: 'Público',
+						url: 'https://www.publico.pt/',
+						urlLang: 'pt',
+						figure: false,
+						iconId: 'publico'
 					},
 					{
 						name: 'Vanguard Properties',
@@ -553,7 +577,7 @@ block main
 						labelModifiers: 'design'
 					}
 				],
-				description: 'Remind is an AI powered app that bridges the gap between doctor/patient, helping to provide faster and more efficient diagnosis and treatment.',
+				description: 'Remind is an <abbr title="Artificial Intelligence">AI</abbr> powered app that bridges the gap between doctor/patient, helping to provide faster and more efficient diagnosis and treatment.',
 				soon: true
 			},
 			{
