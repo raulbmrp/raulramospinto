@@ -1,26 +1,17 @@
 @use "sass:selector"
-
 @use "../abstracts"
 
-
-// =============================================================================
-// Project
-// =============================================================================
 
 .project
 	$block: &
 
 	padding-inline: 24px
 
-	// Layout
-	// -----------------------------------------------------------------------------
 	&__layout
 		max-width: abstracts.columns(12)
 		margin-inline: auto
 		position: relative
 
-	// Cover
-	// -----------------------------------------------------------------------------
 	&__cover
 		height: 100vh
 		display: flex
@@ -28,16 +19,12 @@
 		justify-content: space-between
 		// width: -webkit-fill-available
 
-	// Top Container
-	// -----------------------------------------------------------------------------
 	&__top-container
 		margin-top: 24px
 
 		.button__icon
 			transform: rotate(-90deg)
 
-	// Bottom Container
-	// -----------------------------------------------------------------------------
 	&__bottom-container
 		display: flex
 		flex-direction: column
@@ -45,13 +32,9 @@
 		// width: -webkit-fill-available
 		gap: 16px
 
-	// Heading
-	// -----------------------------------------------------------------------------
 	&__heading
 		order: 2
 
-	// Labels
-	// -----------------------------------------------------------------------------
 	&__labels
 		order: 1
 		display: flex
@@ -63,8 +46,6 @@
 		border-radius: 100vmax
 		border: 1px solid abstracts.color(neutral dirty-white)
 
-	// Tags
-	// -----------------------------------------------------------------------------
 	&__tags
 		order: 3
 		display: grid
@@ -72,31 +53,41 @@
 		height: min-content
 		margin-top: 48px
 
-	// Intro
-	// -----------------------------------------------------------------------------
 	&__intro
 		margin-block: 120px
 		display: grid
 		gap: 24px
 
-	// Buttons
-	// -----------------------------------------------------------------------------
 	&__buttons
 		display: flex
 		gap: 24px
 		flex-wrap: wrap
+
+	&__content
+		#{$block}__figure
+			&:first-child
+				border-radius: 24px 24px 0px 0px
+
+			&:last-child
+				border-radius: 0px 0px 24px 24px
+
 
 	// =============================================================================
 	// Desktop
 	// =============================================================================
 
 	+abstracts.media(desktop)
-		// Tags
-		// -----------------------------------------------------------------------------
+
 		&__tags
 			grid-template-columns: repeat(3, 1fr)
 
-		// Intro
-		// -----------------------------------------------------------------------------
 		&__intro
 			grid-template-columns: 2fr 1fr
+
+		&__content
+			#{$block}__figure
+				&:first-child
+					border-radius: 32px 32px 0px 0px
+
+				&:last-child
+					border-radius: 0px 0px 32px 32px

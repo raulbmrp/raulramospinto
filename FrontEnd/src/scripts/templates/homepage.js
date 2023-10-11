@@ -1,50 +1,36 @@
-// /* eslint-disable unicorn/prefer-at */
 class Homepage {
 	/**
-	 * The `homepage` element.
-	 *
+	 * The `homepage-page` element.
 	 * @type {HTMLElement}
 	 */
 	#homepage;
 
 	/**
-	 * The `main` element.
-	 *
-	 * @type {HTMLElement}
-	 */
-	#main;
-
-	/**
 	 * The `blur-circle--blue` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#blurCircleBlue;
 
 	/**
 	 * The `blur-circle--orange` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#blurCircleOrange;
 
 	/**
 	 * The `modules` element.
-	 *
 	 * @type {NodeList}
 	 */
 	#modules;
 
 	/**
 	 * Instantiates the Facts module.
-	 *
 	 * @param {HTMLElement} element - The `body` element.
 	 */
 	constructor(element) {
 		// Store elements in private fields.
 		// -----------------------------------------------------------------------------
 		this.#homepage = element;
-		this.#main = this.#homepage.querySelector('.main');
 		this.#blurCircleBlue = this.#homepage.querySelector('.blur-circle--blue');
 		this.#blurCircleOrange = this.#homepage.querySelector('.blur-circle--orange');
 		this.#modules = this.#homepage.querySelectorAll('.module');
@@ -57,98 +43,38 @@ class Homepage {
 		const intersectionObserverBlurCircles = new IntersectionObserver(entries => {
 			for (const entry of entries) {
 				if (entry.isIntersecting && entry.target.classList.contains('intro')) {
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 10vh)');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueLeft', 'calc(50% + 5vw)');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '50vh');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '50vh');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueOpacity', '1');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 25vh)');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeLeft', 'calc(50% + 30vw)');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '70vh');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '70vh');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeOpacity', '1');
-					if (window.matchMedia('(width >= 992px)').matches) {
-						this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 20vh)');
-						this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '90vh');
-						this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '90vh');
-						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '120vh');
-						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '120vh');
-					}
+					this.#blurCircleOrange.classList.remove('blur-circle--orange-about', 'blur-circle--orange-resume', 'blur-circle--orange-portfolio', 'blur-circle--orange-contact');
+					this.#blurCircleBlue.classList.remove('blur-circle--blue-about', 'blur-circle--blue-resume', 'blur-circle--blue-portfolio', 'blur-circle--blue-contact');
+					this.#blurCircleBlue.classList.add('blur-circle--blue-intro');
+					this.#blurCircleOrange.classList.add('blur-circle--orange-intro');
 				}
 
 				if (entry.isIntersecting && entry.target.id === 'about') {
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 10vh)');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueLeft', 'calc(50% + 40vw)');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '40vh');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '40vh');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueOpacity', '1');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 5vh)');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeLeft', 'calc(50% + 25vw)');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '35vh');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '35vh');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeOpacity', '1');
-					if (window.matchMedia('(width >= 992px)').matches) {
-						this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '80vh');
-						this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '80vh');
-						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 15vh)');
-						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '50vh');
-						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '50vh');
-					}
+					this.#blurCircleOrange.classList.remove('blur-circle--orange-intro', 'blur-circle--orange-resume', 'blur-circle--orange-portfolio', 'blur-circle--orange-contact');
+					this.#blurCircleBlue.classList.remove('blur-circle--blue-intro', 'blur-circle--blue-resume', 'blur-circle--blue-portfolio', 'blur-circle--blue-contact');
+					this.#blurCircleBlue.classList.add('blur-circle--blue-about');
+					this.#blurCircleOrange.classList.add('blur-circle--orange-about');
 				}
 
 				if (entry.isIntersecting && entry.target.id === 'resume') {
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 10vh)');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueLeft', 'calc(50% + 40vw)');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '80vh');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '80vh');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueOpacity', '0');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 15vh)');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeLeft', 'calc(50% + 25vw)');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '50vh');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '50vh');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeOpacity', '0');
+					this.#blurCircleOrange.classList.remove('blur-circle--orange-intro', 'blur-circle--orange-about', 'blur-circle--orange-portfolio', 'blur-circle--orange-contact');
+					this.#blurCircleBlue.classList.remove('blur-circle--blue-intro', 'blur-circle--blue-about', 'blur-circle--blue-portfolio', 'blur-circle--blue-contact');
+					this.#blurCircleBlue.classList.add('blur-circle--blue-resume');
+					this.#blurCircleOrange.classList.add('blur-circle--orange-resume');
 				}
 
 				if (entry.isIntersecting && entry.target.id === 'portfolio') {
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 0vh)');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueLeft', 'calc(50% - 10vw)');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '60vh');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '60vh');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueOpacity', '0');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 5vh)');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeLeft', 'calc(50% + 10vw)');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '60vh');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '60vh');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeOpacity', '0');
-					if (window.matchMedia('(width >= 992px)').matches) {
-						this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% - 0vh)');
-						this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '60vh');
-						this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '60vh');
-						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 5vh)');
-						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '60vh');
-						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '60vh');
-					}
+					this.#blurCircleOrange.classList.remove('blur-circle--orange-intro', 'blur-circle--orange-about', 'blur-circle--orange-resume', 'blur-circle--orange-contact');
+					this.#blurCircleBlue.classList.remove('blur-circle--blue-intro', 'blur-circle--blue-about', 'blur-circle--blue-resume', 'blur-circle--blue-contact');
+					this.#blurCircleBlue.classList.add('blur-circle--blue-portfolio');
+					this.#blurCircleOrange.classList.add('blur-circle--orange-portfolio');
 				}
 
 				if (entry.isIntersecting && entry.target.id === 'contact') {
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% - 10vh)');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueLeft', 'calc(50% - 10vw)');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '30vh');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '30vh');
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueOpacity', '1');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 15vh)');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeLeft', 'calc(50% + 10vw)');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '30vh');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '30vh');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeOpacity', '1');
-					if (window.matchMedia('(width >= 992px)').matches) {
-						this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% - 0vh)');
-						this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '60vh');
-						this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '60vh');
-						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 5vh)');
-						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '60vh');
-						this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '60vh');
-					}
+					this.#blurCircleOrange.classList.remove('blur-circle--orange-intro', 'blur-circle--orange-about', 'blur-circle--orange-resume', 'blur-circle--orange-portfolio');
+					this.#blurCircleBlue.classList.remove('blur-circle--blue-intro', 'blur-circle--blue-about', 'blur-circle--blue-resume', 'blur-circle--blue-portfolio');
+					this.#blurCircleBlue.classList.add('blur-circle--blue-contact');
+					this.#blurCircleOrange.classList.add('blur-circle--orange-contact');
 				}
 			}
 		},

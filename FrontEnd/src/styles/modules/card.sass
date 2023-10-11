@@ -1,11 +1,6 @@
 @use "sass:selector"
-
 @use "../abstracts"
 
-
-// =============================================================================
-// Card
-// =============================================================================
 
 .card
 	$block: &
@@ -31,8 +26,6 @@
 		outline-width: 3px
 		border-radius: 32px
 
-	// Layout
-	// -----------------------------------------------------------------------------
 	&__layout
 		max-width: abstracts.columns(12)
 		margin-inline: auto
@@ -42,20 +35,14 @@
 		border-radius: 32px
 		overflow: hidden
 
-	// Content
-	// -----------------------------------------------------------------------------
 	&__content
 		display: grid
 		gap: 4px
 		padding: 16px
 
-	// Headings
-	// -----------------------------------------------------------------------------
 	&__heading
 		order: 2
 
-	// Labels
-	// -----------------------------------------------------------------------------
 	&__labels
 		display: flex
 		gap: 4px
@@ -78,8 +65,6 @@
 			+abstracts.background(brand orange)
 			+abstracts.color(neutral black)
 
-	// Description
-	// -----------------------------------------------------------------------------
 	&__description
 		overflow: hidden
 		display: -webkit-box

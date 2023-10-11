@@ -1,115 +1,84 @@
 class Header {
 	/**
 	 * The `.header` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#header;
 
-
 	/**
 	 * The `.header__layout--menu` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#menu;
 
-
 	/**
 	 * The `.header__burger` element.
-	 *
 	 * @type {HTMLButtonElement}
 	 */
 	#burger;
 
-
 	/**
 	 * The `.header__menu-button` elements.
-	 *
 	 * @type {NodeList}
 	 */
 	#menuButtons;
 
-
 	/**
 	 * The `.header__menu-button--current` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#menuButtonCurrent;
 
-
 	/**
 	 * The `.header__menu-shape` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#menuShape;
 
-
-	/**
-	 * The `.header__menu-shape-bg` element.
-	 *
-	 * @type {HTMLElement}
-	 */
-	#menuShapeBg;
-
-
 	/**
 	 * The `main` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#main;
 
-
 	/**
 	 * The `footer` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#footer;
 
-
 	/**
-	 * The `body` element.
-	 *
-	 * @type {HTMLElement}
+	 * The `blur-circle` element.
+	 * @type {NodeList}
 	 */
-	#body;
+	#blurCircles;
 
 	/**
      * Flag to control the first load transition.
-     *
      * @type {boolean}
      */
 	transitionOcurred = true;
 
 	/**
      * ID of the last observed section.
-     *
      * @type {string}
      */
 	lastObservedSection = true;
 
 	/**
      * Flag to control the first load transition.
-     *
      * @type {boolean}
      */
 	firstLoad = true;
 
 	/**
-     * Flag to control the Intersection Observer state
-     *
+     * Flag to control the Intersection Observer state.
      * @type {boolean}
      */
 	observerActive = true;
 
-
 	/**
 	 * Instantiates the header.
-	 *
 	 * @param {HTMLElement} element - The `.header` element.
 	 */
 	constructor(element) {
@@ -119,19 +88,11 @@ class Header {
 		this.#menu = this.#header.querySelector('.header__layout--menu');
 		this.#burger = this.#header.querySelector('.header__burger');
 		this.#menuShape = this.#header.querySelector('.header__menu-shape');
-		this.#menuShapeBg = this.#header.querySelector('.header__menu-shape-bg');
 		this.#menuButtons = this.#header.querySelectorAll('.header__menu-button');
 		this.#menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
 		this.#main = document.querySelector('main');
 		this.#footer = document.querySelector('footer');
-		this.#body = document.querySelector('body');
-
-
-		// -------------------------------------------------------------
-		// -------------------------------------------------------------
-		// Burger Menu Toggle
-		// -------------------------------------------------------------
-		// -------------------------------------------------------------
+		this.#blurCircles = document.querySelectorAll('.blur-circle');
 
 		this.#burger.addEventListener('click', () => {
 			this.#header.classList.toggle('on');
@@ -139,7 +100,10 @@ class Header {
 			this.#menu.classList.toggle('on');
 			this.#main.classList.toggle('off');
 			this.#footer.classList.toggle('off');
-			this.#body.classList.toggle('menu-on');
+			for (const blurCircle of this.#blurCircles) {
+				blurCircle.classList.toggle('menu-on');
+			}
+
 			if (this.#burger.classList.contains('on')) {
 				this.#burger.ariaLabel = 'Close menu';
 				this.#burger.ariaExpanded = true;
@@ -149,28 +113,17 @@ class Header {
 			}
 		});
 
-
-		// -------------------------------------------------------------
-		// -------------------------------------------------------------
-		// Menu Buttons Transition Effect on Desktop
-		// -------------------------------------------------------------
-		// -------------------------------------------------------------
-
 		for (const menuButton of this.#menuButtons) {
 			menuButton.addEventListener('click', () => {
 				this.observerActive = false;
 				this.#menuShape.style.justifyContent = Number.parseInt(menuButton.dataset.index, 10) > Number.parseInt(this.#menuButtonCurrent.dataset.index, 10) ? 'flex-end' : '';
-
 				for (const button of this.#menuButtons) {
 					button.classList.remove('header__menu-button--current');
 				}
 
 				menuButton.classList.add('header__menu-button--current');
-
 				this.handleMenuShapeTransition(menuButton);
-
 				this.#menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
-
 				this.moveShape(menuButton);
 
 				if (this.#burger.classList.contains('on')) {
@@ -179,7 +132,9 @@ class Header {
 					this.#header.classList.remove('on');
 					this.#main.classList.remove('off');
 					this.#footer.classList.remove('off');
-					this.#body.classList.remove('menu-on');
+					for (const blurCircle of this.#blurCircles) {
+						blurCircle.classList.remove('menu-on');
+					}
 				}
 
 				setTimeout(() => {
@@ -188,15 +143,9 @@ class Header {
 			});
 		}
 
-		// -------------------------------------------------------------
-		// -------------------------------------------------------------
-		// Initialize Intersection Observer
-		// -------------------------------------------------------------
-		// -------------------------------------------------------------
-
 		const observerOptions = {
 			threshold: 0,
-			rootMargin: '-288px 0px -288px 0px', // Adjust the root margin as needed
+			rootMargin: '-288px 0px -288px 0px',
 		};
 
 		const intersectionObserver = new IntersectionObserver(entries => {
@@ -205,12 +154,10 @@ class Header {
 					const targetId = entry.target.id;
 					const correspondingLink = this.#menu.querySelector(`[href="#${targetId}"]`);
 
-					// Remove the 'header__menu-button--current' class from all menu links
 					for (const button of this.#menuButtons) {
 						button.classList.remove('header__menu-button--current');
 					}
 
-					// Add the 'header__menu-button--current' class to the corresponding menu link
 					correspondingLink.classList.add('header__menu-button--current');
 
 					if (targetId !== this.lastObservedSection) {
@@ -227,33 +174,26 @@ class Header {
 					}
 
 					this.#menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
-
 					this.moveShape(this.#menuButtonCurrent);
-
-					// Update the URL hash to match the module's ID
 					window.history.replaceState(null, null, `#${targetId}`);
-
 					this.transitionOccurred = true;
 				}
 			}
 		},
 		observerOptions);
 
-		// Observe each module
 		for (const module of this.#main.querySelectorAll('section[id]')) {
 			intersectionObserver.observe(module);
 		}
 
 		// Run on Load
 		// -------------------------------------------------------------
-
 		this.moveShape(this.#menuButtonCurrent);
 		this.urlChange();
 		this.splitMenuButtonString();
 
 		// Run on Resize
 		// -------------------------------------------------------------
-
 		window.addEventListener('resize', () => {
 			this.moveShape(this.#menuButtonCurrent);
 			this.splitMenuButtonString();
@@ -263,13 +203,14 @@ class Header {
 				this.#header.classList.remove('on');
 				this.#main.classList.remove('off');
 				this.#footer.classList.remove('off');
-				this.#body.classList.remove('menu-on');
+				for (const blurCircle of this.#blurCircles) {
+					blurCircle.classList.remove('menu-on');
+				}
 			}
 		});
 
 		// Run on Toggle Device Toolbar
 		// -------------------------------------------------------------
-
 		screen.orientation.addEventListener('change', () => {
 			this.moveShape(this.#menuButtonCurrent);
 		});
@@ -285,13 +226,12 @@ class Header {
 				this.#header.classList.remove('on');
 				this.#main.classList.remove('off');
 				this.#footer.classList.remove('off');
-				this.#body.classList.remove('menu-on');
+				for (const blurCircle of this.#blurCircles) {
+					blurCircle.classList.remove('menu-on');
+				}
 			}
 		});
 	}
-	// -------------------------------------------------------------
-	// Functions
-	// -------------------------------------------------------------
 
 	handleMenuShapeTransition(target) {
 		const transitionTime = 350;

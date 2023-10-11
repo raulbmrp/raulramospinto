@@ -1,23 +1,18 @@
-// /* eslint-disable unicorn/prefer-at */
 class CardsGrid {
 	/**
 	 * The `cards-grid` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#cardsGrid;
 
 	/**
 	 * The `soon` element.
-	 *
 	 * @type {NodeList}
 	 */
 	#soon;
 
-
 	/**
 	 * Instantiates the Facts module.
-	 *
 	 * @param {HTMLElement} element - The `.tabs` element.
 	 */
 	constructor(element) {

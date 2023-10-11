@@ -1,12 +1,6 @@
 @use "sass:selector"
-
 @use "../abstracts"
 
-
-
-// =============================================================================
-// Skip Link
-// =============================================================================
 
 .skip-link
 	$block: &
@@ -42,10 +36,9 @@
 	&:not(:focus)
 		+abstracts.visually-hidden
 
+
 	+abstracts.hover(hover)
 		+abstracts.background(brand dark-orange)
 
 		#{$block}__text
 			+abstracts.color(neutral white)
-
-

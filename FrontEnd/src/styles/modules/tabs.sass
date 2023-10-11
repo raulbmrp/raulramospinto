@@ -1,19 +1,9 @@
 @use "../abstracts"
 
 
-
-// =============================================================================
-// Image Text
-// =============================================================================
-
 .tabs
 	$block: &
 
-	// padding-inline: 24px
-
-
-	// Layout
-	// -----------------------------------------------------------------------------
 	&__layout
 		// max-width: abstracts.columns(12)
 		margin-inline: auto
@@ -22,8 +12,6 @@
 		flex-direction: column
 		gap: 32px
 
-	// Buttons
-	// -----------------------------------------------------------------------------
 	&__buttons
 		&-container
 			position: sticky
@@ -71,9 +59,6 @@
 			display: none
 			opacity: 0
 
-
-	// Panels
-	// -----------------------------------------------------------------------------
 	&__panels
 		padding-top: 0px
 		padding-inline: 24px
@@ -110,10 +95,9 @@
 		&:focus-visible
 			border-radius: 32px
 
-	// Headings
-	// -----------------------------------------------------------------------------
 	.heading--5
 		display: inline
+
 
 	// =============================================================================
 	// Desktop
@@ -123,8 +107,6 @@
 
 		padding-inline: 24px
 
-		// Layout
-		// -----------------------------------------------------------------------------
 		&__layout
 			max-width: abstracts.columns(12)
 			display: grid
@@ -148,8 +130,6 @@
 				gap: 24px
 				overflow-x: unset
 
-		// Buttons
-		// -----------------------------------------------------------------------------
 		&__button
 			padding: .5em 2em !important
 			border: 2px solid
@@ -158,8 +138,6 @@
 				display: block
 				opacity: 1
 
-		// Panels
-		// -----------------------------------------------------------------------------
 		&__panels
 			padding-top: 80px
 			padding-inline: unset

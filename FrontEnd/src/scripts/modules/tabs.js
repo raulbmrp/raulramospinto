@@ -2,54 +2,42 @@
 class Tabs {
 	/**
 	 * The `tabs` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#tabs;
 
-
 	/**
 	 * The `tabs__layout` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#tabsLayout;
 
-
 	/**
 	 * The `tabs__button-container` elements.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#tabsButtonsContainer;
 
-
 	/**
 	 * The `tabs__buttons-list` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#tabsButtonsList;
 
-
 	/**
 	 * The `tabs__button` elements.
-	 *
 	 * @type {NodeList}
 	 */
 	#tabsButtons;
 
-
 	/**
 	 * The `tabs__item` elements.
-	 *
 	 * @type {NodeList}
 	 */
 	#tabsPanels;
 
 	/**
 	 * Instantiates the Facts module.
-	 *
 	 * @param {HTMLElement} element - The `.tabs` element.
 	 */
 	constructor(element) {
@@ -62,15 +50,11 @@ class Tabs {
 		this.#tabsButtons = this.#tabs.querySelectorAll('.tabs__button');
 		this.#tabsPanels = this.#tabs.querySelectorAll('.tabs__panel');
 
-		// Assemble ARIA roles.
-		// -----------------------------------------------------------------------------
 		this.#tabsButtonsList.setAttribute('role', 'tablist');
 		for (const listItem of this.#tabsButtonsList.querySelectorAll('li')) {
 			listItem.setAttribute('role', 'presentation');
 		}
 
-		// Loop through buttons and their indexes
-		// -----------------------------------------------------------------------------
 		for (const [index, tabsButton] of this.#tabsButtons.entries()) {
 			tabsButton.setAttribute('role', 'tab');
 			if (index === 0) {
@@ -81,17 +65,12 @@ class Tabs {
 			}
 		}
 
-		// Enable to reach the tab panel through keyboard navigation
-		// -----------------------------------------------------------------------------
 		for (const tabsPanel of this.#tabsPanels) {
 			tabsPanel.setAttribute('role', 'tabpanel');
 			tabsPanel.setAttribute('tabindex', '0');
 		}
 
-		// Button click event
-		// -----------------------------------------------------------------------------
 		this.#tabsButtonsList.addEventListener('click', event => {
-			// Prevent default behavior of clicking on links and list items
 			const clickedTab = event.target.closest('a');
 			if (!clickedTab) {
 				return;
@@ -101,8 +80,6 @@ class Tabs {
 			this.switchTab(clickedTab);
 		});
 
-		// Button keydown event
-		// -----------------------------------------------------------------------------
 		this.#tabsLayout.addEventListener('keydown', event => {
 			switch (event.key) {
 				case 'ArrowUp': {
@@ -147,25 +124,11 @@ class Tabs {
 			}
 		});
 
-		// Run on Load
-		// -------------------------------------------------------------
 		this.addBackground();
-
-		// Run on Resize
-		// -------------------------------------------------------------
-		window.addEventListener('resize', this.addBackground);
-
-		// -----------------------------------------------------------------------------
-		// FUNCTIONS
-		// -----------------------------------------------------------------------------
-
-		// Keyboard interaction
-		// -----------------------------------------------------------------------------
-
 		this.activeTabsRectTop();
-
 		window.addEventListener('resize', () => {
 			this.activeTabsRectTop();
+			this.addBackground();
 		});
 	}
 
@@ -222,7 +185,6 @@ class Tabs {
 		}
 
 		activePanel.removeAttribute('hidden', false);
-
 		newTab.setAttribute('aria-selected', true);
 		newTab.setAttribute('tabindex', '0');
 		newTab.focus();

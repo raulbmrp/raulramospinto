@@ -1,13 +1,8 @@
 @use "sass:selector"
-
 @use "../abstracts"
 
 $cursor: true !default
 
-
-// =============================================================================
-// Skip Link
-// =============================================================================
 
 @if $cursor
 	*
@@ -17,7 +12,7 @@ $cursor: true !default
 		$size: 16px
 
 		opacity: 0
-		position: absolute
+		position: fixed
 		width: $size
 		height: $size
 		border-radius: 50%
@@ -48,26 +43,10 @@ $cursor: true !default
 			border: 3px solid red
 			mix-blend-mode: unset
 
-			// &::after
-			// 	content: 'Not Allowed'
-			// 	display: block
-			// 	width: max-content
-			// 	position: absolute
-			// 	left: calc($size * 1.5)
-			// 	top: calc($size / 5 * -1)
-			// 	+abstracts.background(neutral black)
-			// 	background: red
-			// 	padding: 0px 4px
-			// 	border-radius: 8px
-			// 	+abstracts.typography(body small)
-			// 	opacity: 0
-			// 	+abstracts.transition(opacity, .3s ease)
-
 			&.tip
 				&::after
 					opacity: 1
 					+abstracts.transition(opacity, 1s ease)
-
 
 
 		+abstracts.media(no-hover)

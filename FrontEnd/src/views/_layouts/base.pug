@@ -121,7 +121,7 @@ html(lang="en" dir="ltr" prefix="og: https://ogp.me/ns#")
 					"itemListElement": [
 						{
 							"@type": "Offer",
-							"name": "UI/UX Design Services",
+							"name": "UX/UI Design Services",
 							"description": "User interface and user experience design services."
 						},
 						{
@@ -140,7 +140,7 @@ html(lang="en" dir="ltr" prefix="og: https://ogp.me/ns#")
 		//- Scripts
 		block scripts-head
 
-	body(class=`${homepage ? 'homepage' : project ? 'project' : error ? 'error' : ''}`)
+	body(class=`${homepage ? 'homepage-page' : project ? 'project-page' : error ? 'error-page' : ''}`)
 		a.skip-link(href="#main" title="Skip to main content")
 			span.skip-link__text Skip to main content
 		#cursor.cursor(aria-hidden='true')

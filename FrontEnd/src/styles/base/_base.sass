@@ -30,45 +30,6 @@ body
 	text-align: left
 	+abstracts.background(neutral black)
 
-	.blur-circle
-		position: fixed
-		z-index: -1
-		transform: translate(-50%, -50%)
-		+abstracts.transition(width height top left opacity, 2s)
-
-		&--blue
-			top: var(--blurCircleBlueTop, calc(50% + 20vh))
-			left: var(--blurCircleBlueLeft, calc(50% + 5vw))
-			width: var(--blurCircleBlueWidth, 90vh)
-			height: var(--blurCircleBlueHeight, 90vh)
-			opacity: var(--blurCircleBlueOpacity, 1)
-			background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand blue) 0%, rgba(abstracts.color(brand blue), .4) 50%, transparent 100%)
-			+abstracts.transition(width height top left opacity, 2s)
-
-		&--orange
-			top: var(--blurCircleOrangeTop, calc(50% - 25vh))
-			left: var(--blurCircleOrangeLeft, calc(50% + 30vw))
-			width: var(--blurCircleOrangeWidth, 120vh)
-			height: var(--blurCircleOrangeHeight, 120vh)
-			opacity: var(--blurCircleOrangeOpacity, 1)
-			background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand orange) 0%, rgba(abstracts.color(brand orange), .5) 50%, transparent 100%)
-			+abstracts.transition(width height top left opacity, 2s)
-
-	&.menu-on
-		overflow: hidden
-		&.blur-circle--blue
-			width: 0
-			height: 0
-			opacity: 0
-			+abstracts.transition(width height opacity, .5s)
-
-		&.blur-circle--orange
-			top: calc(50% - 15vh)
-			left: calc(50% + 15vw)
-			width: 160vh
-			height: 160vh
-			+abstracts.transition(width height top left, .8s)
-
 ::selection
 	+abstracts.background(brand blue)
 
@@ -215,3 +176,150 @@ template
 
 [hidden]
 	display: none
+
+.blur-circle
+	$block: &
+
+	position: fixed
+	z-index: -1
+	transform: translate(-50%, -50%)
+	+abstracts.transition(width height top left opacity, 2s)
+
+	&--blue
+		opacity: 1
+
+	&--orange
+		opacity: 1
+
+	&.menu-on
+		&.blur-circle--blue
+			opacity: 0
+
+		&.blur-circle--orange
+			top: calc(50% - 30vh)
+			left: calc(50% + 30vw)
+			width: 160vh
+			height: 160vh
+			opacity: 1
+
+
+	&--blue
+		background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand blue) 0%, rgba(abstracts.color(brand blue), .4) 50%, transparent 100%)
+
+		&.blur-circle--blue-intro
+			top: calc(50% + 10vh)
+			left: calc(50% + 5vw)
+			width: 50vh
+			height: 50vh
+			opacity: 1
+
+		&.blur-circle--blue-about
+			top: calc(50% + 10vh)
+			left: calc(50% + 40vw)
+			width: 40vh
+			height: 40vh
+			opacity: 1
+
+		&.blur-circle--blue-resume
+			top: calc(50% + 10vh)
+			left: calc(50% + 40vw)
+			width: 80vh
+			height: 80vh
+			opacity: 0
+
+		&.blur-circle--blue-portfolio
+			top: 50%
+			left: calc(50% - 10vw)
+			width: 60vh
+			height: 60vh
+			opacity: 0
+
+		&.blur-circle--blue-contact
+			top: calc(50% - 10vh)
+			left: calc(50% - 10vw)
+			width: 30vh
+			height: 30vh
+			opacity: 1
+
+	&--orange
+		background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand orange) 0%, rgba(abstracts.color(brand orange), .5) 50%, transparent 100%)
+
+		&.blur-circle--orange-intro
+			top: calc(50% - 25vh)
+			left: calc(50% + 30vw)
+			width: 70vh
+			height: 70vh
+			opacity: 1
+
+		&.blur-circle--orange-about
+			top: calc(50% - 5vh)
+			left: calc(50% + 25vw)
+			width: 35vh
+			height: 35vh
+			opacity: 1
+
+		&.blur-circle--orange-resume
+			top: calc(50% - 5vh)
+			left: calc(50% + 25vw)
+			width: 50vh
+			height: 50vh
+			opacity: 0
+
+		&.blur-circle--orange-portfolio
+			top: calc(50% - 5vh)
+			left: calc(50% + 10vw)
+			width: 60vh
+			height: 60vh
+			opacity: 0
+
+		&.blur-circle--orange-contact
+			top: calc(50% - 15vh)
+			left: calc(50% + 10vw)
+			width: 30vh
+			height: 30vh
+			opacity: 1
+
+	// =============================================================================
+	// Desktop
+	// =============================================================================
+
+	+abstracts.media(desktop)
+		&--blue
+			&.blur-circle--blue-intro
+				top: calc(50% + 20vh)
+				width: 90vh
+				height: 90vh
+
+			&.blur-circle--blue-about
+				width: 80vh
+				height: 80vh
+
+			&.blur-circle--blue-portfolio
+				top: 50%
+				width: 60vh
+				height: 60vh
+
+			&.blur-circle--blue-contact
+				top: 50%
+				width: 60vh
+				height: 60vh
+
+		&--orange
+			&.blur-circle--orange-intro
+				width: 120vh
+				height: 120vh
+
+			&.blur-circle--orange-about
+				top: calc(50% - 15vh)
+				width: 50vh
+				height: 50vh
+
+			&.blur-circle--orange-portfolio
+				top: calc(50% - 5vh)
+				width: 60vh
+				height: 60vh
+
+			&.blur-circle--orange-contact
+				top: calc(50% - 5vh)
+				width: 60vh
+				height: 60vh
