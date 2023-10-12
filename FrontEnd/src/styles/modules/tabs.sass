@@ -74,6 +74,9 @@
 			border-radius: 32px
 			overflow: hidden
 
+		&-heading
+			margin-bottom: 4px
+
 		&-description
 			margin-top: 16px
 
@@ -84,6 +87,27 @@
 			width: 1px
 			height: 200%
 			background-color: abstracts.color(alpha semi-transparent-dirty-white)
+
+		&--skills
+			#{$block}__panel-heading
+				margin-bottom: 16px
+
+			#{$block}__panel-content
+				height: fit-content
+
+			#{$block}__panel-list
+				padding-top: 8px
+				position: relative
+				width: auto
+
+				&::before
+					content: ''
+					width: 200%
+					height: 1px
+					+abstracts.background(alpha semi-transparent-dirty-white)
+					position: absolute
+					left: -50%
+					top: 0
 
 		&--brands
 			#{$block}__panel-content

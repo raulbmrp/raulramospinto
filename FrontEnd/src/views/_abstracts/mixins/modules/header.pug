@@ -2,7 +2,7 @@ mixin header(options)
 
 	header.header&attributes(attributes)
 		.header__layout.header__layout--top
-			a.header__logo(href="/homepage" title='Go to the homepage' target='_self' aria-label='Go to the homepage')
+			a.header__logo(href="/homepage" title='Go to the homepage' target='_self')
 				+symbol({
 					file: '/assets/images/logos.svg',
 					id: 'logo-raul-ramos-pinto',
@@ -29,8 +29,7 @@ mixin header(options)
 								url: `#${itemWithoutAccents}`,
 								target: '_self',
 								textMenu: item,
-								modifiers: 'menu',
-								title: `Go to ${item}`
+								modifiers: 'menu'
 							})(
 								data-index=index
 								class=`${index == 0 ? 'header__menu-button--current' : ''}`
@@ -63,9 +62,8 @@ mixin header(options)
 					+button({
 						url: 'https://drive.google.com/file/d/1Uc-wgqqPp4Uw2_E73tsM8BS1mNxl-8Gs/view?usp=sharing',
 						target: '_blank',
-						text: 'Open CV <span class="sr-only">on a new tab</span>',
-						modifiers: 'menu',
-						title: "Open Raul's CV on a new tab"
+						text: 'Open <span class="sr-only">Raul&apos;s</span> CV <span class="sr-only">on a new tab</span>',
+						modifiers: 'menu'
 					}).cta
 
 			if options.socials

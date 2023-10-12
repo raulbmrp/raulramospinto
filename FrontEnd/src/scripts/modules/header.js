@@ -266,12 +266,13 @@ class Header {
 	}
 
 	moveShape(target) {
-		const buttonWidth = target.offsetWidth;
-		const buttonShape = document.querySelector('.header__menu-shape');
-		const buttonOffset = target.offsetLeft;
-		console.log('offsetLeft of current menu button => ' + target.offsetLeft + 'px');
-		buttonShape.style.width = `${buttonWidth}px`;
-		buttonShape.style.left = `${buttonOffset}px`;
+		if (window.matchMedia('(width >= 992px)').matches) {
+			const buttonWidth = target.offsetWidth;
+			const buttonShape = document.querySelector('.header__menu-shape');
+			const buttonOffset = target.offsetLeft;
+			buttonShape.style.width = `${buttonWidth}px`;
+			buttonShape.style.left = `${buttonOffset}px`;
+		}
 	}
 
 	splitMenuButtonString() {

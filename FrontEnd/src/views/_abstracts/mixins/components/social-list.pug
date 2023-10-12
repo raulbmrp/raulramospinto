@@ -5,7 +5,7 @@ mixin social-list
 
 		const socialEntries = Object.entries(socials);
 
-	ul.social-list(aria-label='Social Media' tabindex='0')&attributes(attributes)
+	ul.social-list(aria-label='Social Media')&attributes(attributes)
 		each social, index in socialEntries
 
 			- const [key, url] = social
