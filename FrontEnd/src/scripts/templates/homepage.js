@@ -6,16 +6,16 @@ class Homepage {
 	#homepage;
 
 	/**
-	 * The `blur-circle--blue` element.
+	 * The `blur-circle--design` element.
 	 * @type {HTMLElement}
 	 */
-	#blurCircleBlue;
+	#blurCircleDesign;
 
 	/**
-	 * The `blur-circle--orange` element.
+	 * The `blur-circle--code` element.
 	 * @type {HTMLElement}
 	 */
-	#blurCircleOrange;
+	#blurCircleCode;
 
 	/**
 	 * The `modules` element.
@@ -31,50 +31,50 @@ class Homepage {
 		// Store elements in private fields.
 		// -----------------------------------------------------------------------------
 		this.#homepage = element;
-		this.#blurCircleBlue = this.#homepage.querySelector('.blur-circle--blue');
-		this.#blurCircleOrange = this.#homepage.querySelector('.blur-circle--orange');
+		this.#blurCircleDesign = this.#homepage.querySelector('.blur-circle--design');
+		this.#blurCircleCode = this.#homepage.querySelector('.blur-circle--code');
 		this.#modules = this.#homepage.querySelectorAll('.module');
 
 		const observerOptions = {
 			threshold: 0,
-			rootMargin: '-288px 0px -288px 0px',
+			rootMargin: '-100px 0px -100px 0px',
 		};
 
 		const intersectionObserverBlurCircles = new IntersectionObserver(entries => {
 			for (const entry of entries) {
 				if (entry.isIntersecting && entry.target.classList.contains('intro')) {
-					this.#blurCircleOrange.classList.remove('blur-circle--orange-about', 'blur-circle--orange-resume', 'blur-circle--orange-portfolio', 'blur-circle--orange-contact');
-					this.#blurCircleBlue.classList.remove('blur-circle--blue-about', 'blur-circle--blue-resume', 'blur-circle--blue-portfolio', 'blur-circle--blue-contact');
-					this.#blurCircleBlue.classList.add('blur-circle--blue-intro');
-					this.#blurCircleOrange.classList.add('blur-circle--orange-intro');
+					this.#blurCircleDesign.classList.remove('blur-circle--design-about', 'blur-circle--design-resume', 'blur-circle--design-portfolio', 'blur-circle--design-contact');
+					this.#blurCircleCode.classList.remove('blur-circle--code-about', 'blur-circle--code-resume', 'blur-circle--code-portfolio', 'blur-circle--code-contact');
+					this.#blurCircleDesign.classList.add('blur-circle--design-intro');
+					this.#blurCircleCode.classList.add('blur-circle--code-intro');
 				}
 
 				if (entry.isIntersecting && entry.target.id === 'about') {
-					this.#blurCircleOrange.classList.remove('blur-circle--orange-intro', 'blur-circle--orange-resume', 'blur-circle--orange-portfolio', 'blur-circle--orange-contact');
-					this.#blurCircleBlue.classList.remove('blur-circle--blue-intro', 'blur-circle--blue-resume', 'blur-circle--blue-portfolio', 'blur-circle--blue-contact');
-					this.#blurCircleBlue.classList.add('blur-circle--blue-about');
-					this.#blurCircleOrange.classList.add('blur-circle--orange-about');
+					this.#blurCircleDesign.classList.remove('blur-circle--design-intro', 'blur-circle--design-resume', 'blur-circle--design-portfolio', 'blur-circle--design-contact');
+					this.#blurCircleCode.classList.remove('blur-circle--code-intro', 'blur-circle--code-resume', 'blur-circle--code-portfolio', 'blur-circle--code-contact');
+					this.#blurCircleDesign.classList.add('blur-circle--design-about');
+					this.#blurCircleCode.classList.add('blur-circle--code-about');
 				}
 
 				if (entry.isIntersecting && entry.target.id === 'resume') {
-					this.#blurCircleOrange.classList.remove('blur-circle--orange-intro', 'blur-circle--orange-about', 'blur-circle--orange-portfolio', 'blur-circle--orange-contact');
-					this.#blurCircleBlue.classList.remove('blur-circle--blue-intro', 'blur-circle--blue-about', 'blur-circle--blue-portfolio', 'blur-circle--blue-contact');
-					this.#blurCircleBlue.classList.add('blur-circle--blue-resume');
-					this.#blurCircleOrange.classList.add('blur-circle--orange-resume');
+					this.#blurCircleDesign.classList.remove('blur-circle--design-intro', 'blur-circle--design-about', 'blur-circle--design-portfolio', 'blur-circle--design-contact');
+					this.#blurCircleCode.classList.remove('blur-circle--code-intro', 'blur-circle--code-about', 'blur-circle--code-portfolio', 'blur-circle--code-contact');
+					this.#blurCircleDesign.classList.add('blur-circle--design-resume');
+					this.#blurCircleCode.classList.add('blur-circle--code-resume');
 				}
 
 				if (entry.isIntersecting && entry.target.id === 'portfolio') {
-					this.#blurCircleOrange.classList.remove('blur-circle--orange-intro', 'blur-circle--orange-about', 'blur-circle--orange-resume', 'blur-circle--orange-contact');
-					this.#blurCircleBlue.classList.remove('blur-circle--blue-intro', 'blur-circle--blue-about', 'blur-circle--blue-resume', 'blur-circle--blue-contact');
-					this.#blurCircleBlue.classList.add('blur-circle--blue-portfolio');
-					this.#blurCircleOrange.classList.add('blur-circle--orange-portfolio');
+					this.#blurCircleDesign.classList.remove('blur-circle--design-intro', 'blur-circle--design-about', 'blur-circle--design-resume', 'blur-circle--design-contact');
+					this.#blurCircleCode.classList.remove('blur-circle--code-intro', 'blur-circle--code-about', 'blur-circle--code-resume', 'blur-circle--code-contact');
+					this.#blurCircleDesign.classList.add('blur-circle--design-portfolio');
+					this.#blurCircleCode.classList.add('blur-circle--code-portfolio');
 				}
 
 				if (entry.isIntersecting && entry.target.id === 'contact') {
-					this.#blurCircleOrange.classList.remove('blur-circle--orange-intro', 'blur-circle--orange-about', 'blur-circle--orange-resume', 'blur-circle--orange-portfolio');
-					this.#blurCircleBlue.classList.remove('blur-circle--blue-intro', 'blur-circle--blue-about', 'blur-circle--blue-resume', 'blur-circle--blue-portfolio');
-					this.#blurCircleBlue.classList.add('blur-circle--blue-contact');
-					this.#blurCircleOrange.classList.add('blur-circle--orange-contact');
+					this.#blurCircleDesign.classList.remove('blur-circle--design-intro', 'blur-circle--design-about', 'blur-circle--design-resume', 'blur-circle--design-portfolio');
+					this.#blurCircleCode.classList.remove('blur-circle--code-intro', 'blur-circle--code-about', 'blur-circle--code-resume', 'blur-circle--code-portfolio');
+					this.#blurCircleDesign.classList.add('blur-circle--design-contact');
+					this.#blurCircleCode.classList.add('blur-circle--code-contact');
 				}
 			}
 		},

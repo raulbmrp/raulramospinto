@@ -7,28 +7,40 @@ class Project {
 	#project;
 
 	/**
-	 * The `blur-circle--blue` element.
+	 * The `blur-circles` element.
 	 * @type {HTMLElement}
 	 */
-	#blurCircleBlue;
+	#blurCircle;
 
 	/**
-	 * The `blur-circle--orange` element.
+	 * The `blur-circle--design` element.
 	 * @type {HTMLElement}
 	 */
-	#blurCircleOrange;
+	#blurCircleDesign;
 
 	/**
-	 * The `project__layout` element.
+	 * The `blur-circle--code` element.
 	 * @type {HTMLElement}
 	 */
-	#projectLayout;
+	#blurCircleCode;
 
 	/**
-	 * The `project__layout` direct children elements.
-	 * @type {HTMLCollection}
+	 * The `project__cover` element.
+	 * @type {HTMLElement}
 	 */
-	#projectLayoutChildren;
+	#projectCover;
+
+	/**
+	 * The `button__back` element.
+	 * @type {HTMLElement}
+	 */
+	#buttonBack;
+
+	/**
+	 * The `project__content` element.
+	 * @type {HTMLElement}
+	 */
+	#projectContent;
 
 	/**
 	 * Instantiates the Facts module.
@@ -38,58 +50,78 @@ class Project {
 		// Store elements in private fields.
 		// -----------------------------------------------------------------------------
 		this.#project = element;
-		this.#blurCircleBlue = this.#project.querySelector('.blur-circle--blue');
-		this.#blurCircleOrange = this.#project.querySelector('.blur-circle--orange');
-		this.#projectLayout = this.#project.querySelector('.project__layout');
-		this.#projectLayoutChildren = this.#projectLayout.children;
+		this.#blurCircle = this.#project.querySelectorAll('.blur-circle');
+		this.#blurCircleDesign = this.#project.querySelector('.blur-circle--design');
+		this.#blurCircleCode = this.#project.querySelector('.blur-circle--code');
+		this.#projectCover = this.#project.querySelector('.project__cover');
+		this.#buttonBack = this.#project.querySelector('.button__back');
+		this.#projectContent = this.#project.querySelector('.project__content');
+		const divisions = [this.#projectCover, this.#projectContent];
+
+		window.addEventListener('scroll', () => {
+			if (this.#projectContent.getBoundingClientRect().top <= 0) {
+				this.#buttonBack.classList.add('fix');
+			} else {
+				this.#buttonBack.classList.remove('fix');
+			}
+		});
 
 		window.addEventListener('scroll', () => {
 			if (window.scrollY < 50) {
-				this.blurCircleShow();
+				for (const blurCircle of this.#blurCircle) {
+					if (blurCircle.classList.contains('blur-circle--design')) {
+						this.#blurCircleDesign.classList.remove('blur-circle--design-project-content');
+						this.#blurCircleDesign.classList.add('blur-circle--design-project-cover');
+					}
+
+					if (blurCircle.classList.contains('blur-circle--code')) {
+						this.#blurCircleCode.classList.remove('blur-circle--code-project-content');
+						this.#blurCircleCode.classList.add('blur-circle--code-project-cover');
+					}
+				}
 			}
 		});
 
 		const observerOptions = {
 			threshold: 0,
-			rootMargin: '-50px 0px -50px 0px',
+			rootMargin: '-100px 0px -100px 0px',
 		};
 
 		const intersectionObserverProject = new IntersectionObserver(entries => {
 			for (const entry of entries) {
 				if (entry.isIntersecting && entry.target.classList.contains('project__cover')) {
-					this.blurCircleShow();
+					for (const blurCircle of this.#blurCircle) {
+						if (blurCircle.classList.contains('blur-circle--design')) {
+							this.#blurCircleDesign.classList.add('blur-circle--design-project-cover');
+							this.#blurCircleDesign.classList.remove('blur-circle--design-project-content');
+						}
+
+						if (blurCircle.classList.contains('blur-circle--code')) {
+							this.#blurCircleCode.classList.add('blur-circle--code-project-cover');
+							this.#blurCircleCode.classList.remove('blur-circle--code-project-content');
+						}
+					}
 				}
 
-				if (entry.isIntersecting && entry.target.classList.contains('project__intro')) {
-					this.#blurCircleBlue.style.setProperty('--blurCircleBlueOpacity', '0');
-					this.#blurCircleOrange.style.setProperty('--blurCircleOrangeOpacity', '0');
+				if (entry.isIntersecting && entry.target.classList.contains('project__content')) {
+					for (const blurCircle of this.#blurCircle) {
+						if (blurCircle.classList.contains('blur-circle--design')) {
+							this.#blurCircleDesign.classList.add('blur-circle--design-project-content');
+							this.#blurCircleDesign.classList.remove('blur-circle--design-project-cover');
+						}
+
+						if (blurCircle.classList.contains('blur-circle--code')) {
+							this.#blurCircleCode.classList.add('blur-circle--code-project-content');
+							this.#blurCircleCode.classList.remove('blur-circle--code-project-cover');
+						}
+					}
 				}
 			}
 		},
 		observerOptions);
 
-		for (const child of this.#projectLayoutChildren) {
-			intersectionObserverProject.observe(child);
-		}
-	}
-
-	blurCircleShow() {
-		this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 10vh)');
-		this.#blurCircleBlue.style.setProperty('--blurCircleBlueLeft', 'calc(50% + 5vw)');
-		this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '50vh');
-		this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '50vh');
-		this.#blurCircleBlue.style.setProperty('--blurCircleBlueOpacity', '1');
-		this.#blurCircleOrange.style.setProperty('--blurCircleOrangeTop', 'calc(50% - 25vh)');
-		this.#blurCircleOrange.style.setProperty('--blurCircleOrangeLeft', 'calc(50% + 30vw)');
-		this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '70vh');
-		this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '70vh');
-		this.#blurCircleOrange.style.setProperty('--blurCircleOrangeOpacity', '1');
-		if (window.matchMedia('(width >= 992px)').matches) {
-			this.#blurCircleBlue.style.setProperty('--blurCircleBlueTop', 'calc(50% + 20vh)');
-			this.#blurCircleBlue.style.setProperty('--blurCircleBlueWidth', '90vh');
-			this.#blurCircleBlue.style.setProperty('--blurCircleBlueHeight', '90vh');
-			this.#blurCircleOrange.style.setProperty('--blurCircleOrangeWidth', '120vh');
-			this.#blurCircleOrange.style.setProperty('--blurCircleOrangeHeight', '120vh');
+		for (const division of divisions) {
+			intersectionObserverProject.observe(division);
 		}
 	}
 }

@@ -143,9 +143,19 @@ html(lang="en" dir="ltr" prefix="og: https://ogp.me/ns#")
 	body(class=`${homepage ? 'homepage-page' : project ? 'project-page' : error ? 'error-page' : ''}`)
 		a.skip-link(href="#main" title="Skip to main content")
 			span.skip-link__text Skip to main content
+
 		#cursor.cursor(aria-hidden='true')
-		.blur-circle.blur-circle--blue(aria-hidden='true')
-		.blur-circle.blur-circle--orange(aria-hidden='true')
+
+		if project && labels[0] === 'UX/UI Design' && labels.length === 1
+			.blur-circle.blur-circle--design(aria-hidden='true')
+		else if project && labels[0] === 'Front-End' && labels.length === 1
+			.blur-circle.blur-circle--code(aria-hidden='true')
+		else if error
+			.blur-circle.blur-circle--error(aria-hidden='true')
+		else
+			.blur-circles
+				.blur-circle.blur-circle--design(aria-hidden='true')
+				.blur-circle.blur-circle--code(aria-hidden='true')
 
 		block header
 			if homepage

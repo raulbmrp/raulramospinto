@@ -25,6 +25,14 @@
 		.button__icon
 			transform: rotate(-90deg)
 
+		.button__back
+			&.fix
+				position: fixed
+				mix-blend-mode: difference
+				margin-left: 24px
+				border: 1px solid abstracts.color(neutral dirty-white)
+				+abstracts.transition(margin background)
+
 	&__bottom-container
 		display: flex
 		flex-direction: column
