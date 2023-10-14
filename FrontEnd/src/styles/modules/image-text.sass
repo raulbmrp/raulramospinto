@@ -13,6 +13,7 @@
 
 	&__content
 		display: grid
+		gap: 16px
 
 	&__heading
 		margin-bottom: 16px
@@ -22,6 +23,16 @@
 			border-radius: 32px
 			border: 1px solid abstracts.color(neutral dirty-white)
 
+
+		// =============================================================================
+	// Tablet
+	// =============================================================================
+
+	+abstracts.media(tablet)
+
+		&--about
+			img
+				border-radius: 100vmax
 
 	// =============================================================================
 	// Desktop
@@ -35,7 +46,3 @@
 
 		&__heading
 			align-self: center
-
-		&--about
-			img
-				border-radius: 100vmax

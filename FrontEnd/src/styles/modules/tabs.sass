@@ -168,3 +168,18 @@
 		&__panel
 			&--skills
 				grid-template-columns: repeat(2, 1fr)
+
+
+	// =============================================================================
+	// <= 480px
+	// =============================================================================
+
+	@media (width <= 480px)
+		&__panel
+			&--brands
+				#{$block}__panel-content
+					grid-template-columns: unset
+					justify-items: center
+
+				#{$block}__panel-separator
+					display: none

@@ -10,8 +10,9 @@
 	// Set list templates.
 	$templates: ()
 
-	$templates: map.set($templates, large-desktop, "(width >= 2048px)")
+	$templates: map.set($templates, large-desktop, "(width >= 1200px)")
 	$templates: map.set($templates, desktop, "(width >= 992px)")
+	$templates: map.set($templates, tablet, "(width > 480px)")
 	$templates: map.set($templates, mobile, "(width < 992px)")
 	$templates: map.set($templates, hover, "(hover: hover)")
 	$templates: map.set($templates, no-hover, "(hover: none)")
