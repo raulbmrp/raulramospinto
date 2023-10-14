@@ -428,12 +428,15 @@ class Header {
 					socialButton.setAttribute('tabindex', '-1');
 				}
 			}
+<<<<<<< HEAD
 		} else {
 			for (const button of this.#menuButtons) {
 				button.setAttribute('tabindex', '0');
 			}
 
 			this.#cta.setAttribute('tabindex', '0');
+=======
+>>>>>>> ae1f3b5c7ae69e61eaca946b6c6296f57c83cde1
 		}
 	}
 
