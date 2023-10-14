@@ -7,7 +7,6 @@ mixin tabs(options)
 			.tabs__buttons-container
 				menu.tabs__buttons-list#tabs__buttons-list(
 					aria-label='Resumé tabs'
-					aria-orientation='vertical'
 				)
 					each item, index in options.items
 						li
@@ -17,8 +16,7 @@ mixin tabs(options)
 								text: `${item.name}`,
 								modifiers: 'secondary',
 								iconFile: '/assets/images/resume.svg',
-								iconId: `${item.url}`,
-								title: `Open ${item.name}`
+								iconId: `${item.url}`
 							})(
 								id=`tab--${index}`
 								aria-describedby='tabs__buttons-description'
@@ -46,7 +44,6 @@ mixin tabs(options)
 												urlLang: `${job.urlLang}`,
 												text: `${job.companyAbbr ? job.companyAbbr : job.company}`,
 												target: '_blank',
-												title: `Open ${job.company} website on a new tab`,
 												modifiers: 'title'
 											})
 										span.heading--5
@@ -79,7 +76,6 @@ mixin tabs(options)
 												urlLang: `${course.urlLang}`,
 												text: `${course.schoolAbbr ? course.schoolAbbr : course.school}`,
 												target: '_blank',
-												title: `Open ${course.school} website on a new tab`,
 												modifiers: 'title'
 											})
 										span.heading--5
@@ -130,13 +126,65 @@ mixin tabs(options)
 												urlLang: `${certificate.urlLang}`,
 												text: `${certificate.company}`,
 												target: '_blank',
-												title: `Open ${certificate.company} website on a new tab`,
 												modifiers: 'title'
 											})
 										span.heading--5
 											span &nbsp;|
 											time(datetime=`${certificate.date}`)
 												| !{certificate.date}
+
+					if item.name == "Brands I've worked with"
+						article.tabs__panel(
+							class=`tabs__panel--${item.url}`
+							id=`${item.url}`
+							aria-labelledby=`tab--${index}`
+						)
+							h3.sr-only
+								| !{item.name}
+							each brand in item.brands
+								.tabs__panel-content
+									if brand.figure
+										+figure({
+											modifiers: '',
+											file: `resume/brands/`,
+											name: `${brand.name}-logo`,
+											alt: `${brand.figureAlt}`,
+											title: `${brand.name}`,
+											format: 'png',
+											sizesMobile: 100,
+											sizesTablet: 100,
+											sizesDesktop: 20,
+											widthMobileX1: 320,
+											widthMobileX2: 640,
+											widthTabletX1: 320,
+											widthTabletX2: 640,
+											widthDesktopX1: 200,
+											widthDesktopX2: 400,
+											loading: 'lazy',
+											figcaption: `${brand.figureFigcaption ? brand.figureFigcaption : ''}`
+										}).tabs__panel-figure
+									else
+										+symbol({
+											file: '/assets/images/brands.svg',
+											id: brand.iconId,
+											width: brand.iconWidth || 160,
+											height: brand.iconHeight || 75
+										}).tabs__panel-brand-logo
+
+									.tabs__panel-separator
+
+									h4.heading.heading--5.tabs__panel-heading
+										+link({
+											url: `${brand.url}`,
+											urlLang: `${brand.urlLang}`,
+											text: `${brand.nameAbbr ? brand.nameAbbr : brand.nameLang ? brand.nameLang : brand.name}`,
+											target: '_blank',
+											modifiers: 'title'
+										})
+
+									if brand.description
+										p.tabs__panel-description
+											| !{brand.description}
 
 					if item.name == 'Languages'
 						article.tabs__panel(
@@ -170,9 +218,8 @@ mixin tabs(options)
 											+link({
 												url: `${program.url}`,
 												urlLang: `${program.urlLang}`,
-												text: `${program.companyAbbr ? program.companyAbbr : program.company}`,
+												text: `${program.companyAbbr ? program.companyAbbr : program.companyLang ? program.companyLang : program.company}`,
 												target: '_blank',
-												title: `Open ${program.company} website on a new tab`,
 												modifiers: 'title'
 											})
 										span.heading--5
@@ -205,7 +252,6 @@ mixin tabs(options)
 												urlLang: `${achievement.urlLang}`,
 												text: `${achievement.teamAbbr ? achievement.teamAbbr : achievement.team}`,
 												target: '_blank',
-												title: `Open ${achievement.team} website on a new tab`,
 												modifiers: 'title'
 											})
 										span.heading--5
@@ -215,54 +261,3 @@ mixin tabs(options)
 									.tabs__panel-description
 										p
 											| !{achievement.description}
-
-					if item.name == "Brands I've worked with"
-						article.tabs__panel(
-							class=`tabs__panel--${item.url}`
-							id=`${item.url}`
-							aria-labelledby=`tab--${index}`
-						)
-							h3.sr-only
-								| !{item.name}
-							each brand in item.brands
-								.tabs__panel-content
-									if brand.figure
-										+figure({
-											modifiers: '',
-											file: `resume/brands/`,
-											name: `${brand.name}-logo`,
-											alt: `${brand.figureAlt}`,
-											title: `${brand.name}`,
-											format: 'png',
-											sizesMobile: 100,
-											sizesDesktop: 20,
-											widthMobileX1: 320,
-											widthMobileX2: 640,
-											widthDesktopX1: 200,
-											widthDesktopX2: 400,
-											loading: 'lazy',
-											figcaption: `${brand.figureFigcaption ? brand.figureFigcaption : ''}`
-										}).tabs__panel-figure
-									else
-										+symbol({
-											file: '/assets/images/brands.svg',
-											id: brand.iconId,
-											width: brand.iconWidth || 160,
-											height: brand.iconHeight || 75
-										}).tabs__panel-brand-logo
-
-									.tabs__panel-separator
-
-									h4.heading.heading--5.tabs__panel-heading
-										+link({
-											url: `${brand.url}`,
-											urlLang: `${brand.urlLang}`,
-											text: `${brand.nameAbbr ? brand.nameAbbr : brand.name}`,
-											target: '_blank',
-											title: `Open ${brand.name} website on a new tab`,
-											modifiers: 'title'
-										})
-
-									if brand.description
-										p.tabs__panel-description
-											| !{brand.description}

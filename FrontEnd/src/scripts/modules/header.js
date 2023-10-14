@@ -18,10 +18,40 @@ class Header {
 	#burger;
 
 	/**
+	 * The `.header__menu-list` elements.
+	 * @type {HTMLElement}
+	 */
+	#headerMenuList;
+
+	/**
 	 * The `.header__menu-button` elements.
 	 * @type {NodeList}
 	 */
 	#menuButtons;
+
+	/**
+	 * The `.cta` elements.
+	 * @type {HTMLElement}
+	 */
+	#cta;
+
+	/**
+	 * The `.social-list__button` elements.
+	 * @type {NodeList}
+	 */
+	#socialListButtons;
+
+	/**
+	 * The `.header__layout--menu` elements.
+	 * @type {HTMLElement}
+	 */
+	#headerLayoutMenu;
+
+	/**
+	 * The `a` elements.
+	 * @type {NodeList}
+	 */
+	#allMenuLinks;
 
 	/**
 	 * The `.header__menu-button--current` element.
@@ -88,30 +118,68 @@ class Header {
 		this.#menu = this.#header.querySelector('.header__layout--menu');
 		this.#burger = this.#header.querySelector('.header__burger');
 		this.#menuShape = this.#header.querySelector('.header__menu-shape');
+		this.#headerMenuList = this.#header.querySelector('.header__menu-list');
 		this.#menuButtons = this.#header.querySelectorAll('.header__menu-button');
+		this.#cta = this.#header.querySelector('.cta');
+		this.#socialListButtons = this.#header.querySelectorAll('.social-list__button');
+		this.#headerLayoutMenu = this.#header.querySelector('.header__layout--menu');
+		this.#allMenuLinks = this.#headerLayoutMenu.querySelectorAll('a');
 		this.#menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
 		this.#main = document.querySelector('main');
 		this.#footer = document.querySelector('footer');
 		this.#blurCircles = document.querySelectorAll('.blur-circle');
 
 		this.#burger.addEventListener('click', () => {
-			this.#header.classList.toggle('on');
-			this.#burger.classList.toggle('on');
-			this.#menu.classList.toggle('on');
-			this.#main.classList.toggle('off');
-			this.#footer.classList.toggle('off');
-			for (const blurCircle of this.#blurCircles) {
-				blurCircle.classList.toggle('menu-on');
-			}
+			this.openCloseMobileMenu();
+		});
 
-			if (this.#burger.classList.contains('on')) {
-				this.#burger.ariaLabel = 'Close menu';
-				this.#burger.ariaExpanded = true;
-			} else {
-				this.#burger.ariaLabel = 'Open menu';
-				this.#burger.ariaExpanded = false;
+		this.#burger.addEventListener('keydown', event => {
+			switch (event.key) {
+				case ' ':
+				case 'Enter':
+				case 'ArrowDown':
+				case 'Down': {
+					event.preventDefault();
+					this.openCloseMobileMenu();
+					if (this.#burger.classList.contains('on')) {
+						this.#allMenuLinks[0].focus();
+					}
+					break;
+				}
+
+				case 'Up':
+				case 'ArrowUp': {
+					event.preventDefault();
+					this.openCloseMobileMenu();
+					if (this.#burger.classList.contains('on')) {
+						this.#allMenuLinks[this.#allMenuLinks.length - 1].focus();
+					}
+
+					break;
+				}
+
+				default: {
+					break;
+				}
 			}
 		});
+
+		for (const link of this.#allMenuLinks) {
+			link.addEventListener('keydown', event => {
+				switch (event.key) {
+					case 'Esc':
+					case 'Escape': {
+						event.preventDefault();
+						this.#burger.focus();
+						break;
+					}
+
+					default: {
+						break;
+					}
+				}
+			});
+		}
 
 		for (const menuButton of this.#menuButtons) {
 			menuButton.addEventListener('click', () => {
@@ -125,17 +193,7 @@ class Header {
 				this.handleMenuShapeTransition(menuButton);
 				this.#menuButtonCurrent = this.#header.querySelector('.header__menu-button--current');
 				this.moveShape(menuButton);
-
-				if (this.#burger.classList.contains('on')) {
-					this.#burger.classList.remove('on');
-					this.#menu.classList.remove('on');
-					this.#header.classList.remove('on');
-					this.#main.classList.remove('off');
-					this.#footer.classList.remove('off');
-					for (const blurCircle of this.#blurCircles) {
-						blurCircle.classList.remove('menu-on');
-					}
-				}
+				this.closeMobileMenu();
 
 				setTimeout(() => {
 					this.observerActive = true;
@@ -186,27 +244,48 @@ class Header {
 			intersectionObserver.observe(module);
 		}
 
+		this.#allMenuLinks[this.#allMenuLinks.length - 1].addEventListener('keydown', event => {
+			if (event.key === 'Tab' && !event.shiftKey) {
+				event.preventDefault();
+				this.#allMenuLinks[0].focus();
+			}
+		});
+
+		for (const link of this.#allMenuLinks) {
+			link.addEventListener('keydown', event => {
+				if (event.key === 'Home') {
+					event.preventDefault();
+					this.#allMenuLinks[0].focus();
+				}
+
+				if (event.key === 'End') {
+					event.preventDefault();
+					this.#allMenuLinks[this.#allMenuLinks.length - 1].focus();
+				}
+			});
+		}
+
+		this.#allMenuLinks[0].addEventListener('keydown', event => {
+			if (event.key === 'Tab' && event.shiftKey && this.#burger.classList.contains('on')) {
+				event.preventDefault();
+				this.#allMenuLinks[this.#allMenuLinks.length - 1].focus();
+			}
+		});
+
 		// Run on Load
 		// -------------------------------------------------------------
 		this.moveShape(this.#menuButtonCurrent);
 		this.urlChange();
 		this.splitMenuButtonString();
+		this.tabindexChange();
 
 		// Run on Resize
 		// -------------------------------------------------------------
 		window.addEventListener('resize', () => {
 			this.moveShape(this.#menuButtonCurrent);
 			this.splitMenuButtonString();
-			if (this.#burger.classList.contains('on')) {
-				this.#burger.classList.remove('on');
-				this.#menu.classList.remove('on');
-				this.#header.classList.remove('on');
-				this.#main.classList.remove('off');
-				this.#footer.classList.remove('off');
-				for (const blurCircle of this.#blurCircles) {
-					blurCircle.classList.remove('menu-on');
-				}
-			}
+			this.tabindexChange();
+			this.closeMobileMenu();
 		});
 
 		// Run on Toggle Device Toolbar
@@ -220,17 +299,48 @@ class Header {
 
 		window.addEventListener('hashchange', () => {
 			this.urlChange();
-			if (this.#burger.classList.contains('on')) {
-				this.#burger.classList.remove('on');
-				this.#menu.classList.remove('on');
-				this.#header.classList.remove('on');
-				this.#main.classList.remove('off');
-				this.#footer.classList.remove('off');
-				for (const blurCircle of this.#blurCircles) {
-					blurCircle.classList.remove('menu-on');
-				}
-			}
+			this.closeMobileMenu();
 		});
+
+		this.ariaOrientation(this.headerMenuList);
+	}
+
+	openCloseMobileMenu() {
+		this.#header.classList.toggle('on');
+		this.#burger.classList.toggle('on');
+		this.#menu.classList.toggle('on');
+		this.#main.classList.toggle('off');
+		this.#footer.classList.toggle('off');
+		for (const blurCircle of this.#blurCircles) {
+			blurCircle.classList.toggle('menu-on');
+		}
+
+		if (this.#burger.classList.contains('on')) {
+			this.#burger.ariaLabel = 'Close menu';
+			this.#burger.setAttribute('aria-expanded', true);
+			this.disableScroll();
+		} else {
+			this.#burger.ariaLabel = 'Open menu';
+			this.#burger.removeAttribute('aria-expanded');
+			this.enableScroll();
+		}
+
+		this.tabindexChange();
+	}
+
+	closeMobileMenu() {
+		if (this.#burger.classList.contains('on')) {
+			this.#burger.classList.remove('on');
+			this.#menu.classList.remove('on');
+			this.#header.classList.remove('on');
+			this.#main.classList.remove('off');
+			this.#footer.classList.remove('off');
+			for (const blurCircle of this.#blurCircles) {
+				blurCircle.classList.remove('menu-on');
+			}
+
+			this.enableScroll();
+		}
 	}
 
 	handleMenuShapeTransition(target) {
@@ -250,13 +360,12 @@ class Header {
 
 	urlChange() {
 		const url = window.location.href;
-		const menuButtons = document.querySelectorAll('.header__menu-button');
 		const menuButtonCurrentHref = this.#menuButtonCurrent.href;
 		if (url !== menuButtonCurrentHref) {
 			this.#menuButtonCurrent.classList.remove('header__menu-button--current');
 		}
 
-		for (const menuButton of menuButtons) {
+		for (const menuButton of this.#menuButtons) {
 			if (menuButton.href === url) {
 				menuButton.classList.add('header__menu-button--current');
 				this.#menuButtonCurrent = document.querySelector('.header__menu-button--current');
@@ -276,24 +385,72 @@ class Header {
 	}
 
 	splitMenuButtonString() {
-		const buttonTexts = document.querySelectorAll('.header__menu-button');
-
 		if (window.matchMedia('(width < 992px)').matches && window.matchMedia('(hover: hover)').matches) {
-			for (const button of buttonTexts) {
-				const words = button.textContent.trim().split(' '); // Split text into words
+			for (const button of this.#menuButtons) {
+				button.setAttribute('aria-label', button.textContent.trim());
+				const words = button.textContent.trim().split(' ');
 				const newContent = words.map(word => {
 					const letters = [...word];
 					return letters.map(
 						(char, i) => `<span class="button__letter button__letter--${i}" style="--index:${i};">${char}</span>`,
 					).join('');
-				}).join(' '); // Join words back together with spaces
+				}).join(' ');
 				button.innerHTML = newContent;
 			}
 		} else {
-			for (const button of buttonTexts) {
+			for (const button of this.#menuButtons) {
 				button.innerHTML = button.textContent;
+				button.removeAttribute('aria-label');
 			}
 		}
+	}
+
+	tabindexChange() {
+		if (window.matchMedia('(width < 992px)').matches) {
+			if (this.#burger.getAttribute('aria-expanded') === 'true') {
+				for (const button of this.#menuButtons) {
+					button.setAttribute('tabindex', '0');
+				}
+
+				this.#cta.setAttribute('tabindex', '0');
+
+				for (const socialButton of this.#socialListButtons) {
+					socialButton.setAttribute('tabindex', '0');
+				}
+			} else {
+				for (const button of this.#menuButtons) {
+					button.setAttribute('tabindex', '-1');
+				}
+
+				this.#cta.setAttribute('tabindex', '-1');
+
+				for (const socialButton of this.#socialListButtons) {
+					socialButton.setAttribute('tabindex', '-1');
+				}
+			}
+		} else {
+			for (const button of this.#menuButtons) {
+				button.setAttribute('tabindex', '0');
+			}
+
+			this.#cta.setAttribute('tabindex', '0');
+		}
+	}
+
+	ariaOrientation() {
+		if (window.matchMedia('(width < 992px)').matches) {
+			this.#headerMenuList.setAttribute('aria-orientation', 'vertical');
+		} else {
+			this.#headerMenuList.setAttribute('aria-orientation', 'horizontal');
+		}
+	}
+
+	disableScroll() {
+		document.querySelector('body').classList.add('disable-scroll');
+	}
+
+	enableScroll() {
+		document.querySelector('body').classList.remove('disable-scroll');
 	}
 }
 

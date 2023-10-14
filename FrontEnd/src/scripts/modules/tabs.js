@@ -13,7 +13,7 @@ class Tabs {
 	#tabsLayout;
 
 	/**
-	 * The `tabs__button-container` elements.
+	 * The `tabs__buttons-container` element.
 	 * @type {HTMLElement}
 	 */
 	#tabsButtonsContainer;
@@ -45,7 +45,7 @@ class Tabs {
 		// -----------------------------------------------------------------------------
 		this.#tabs = element;
 		this.#tabsLayout = this.#tabs.querySelector('.tabs__layout');
-		this.#tabsButtonsContainer = this.#tabs.querySelector('.tabs__buttons-container');
+		this.#tabsButtonsContainer = document.querySelector('.tabs__buttons-container');
 		this.#tabsButtonsList = this.#tabs.querySelector('.tabs__buttons-list');
 		this.#tabsButtons = this.#tabs.querySelectorAll('.tabs__button');
 		this.#tabsPanels = this.#tabs.querySelectorAll('.tabs__panel');
@@ -81,31 +81,45 @@ class Tabs {
 		});
 
 		this.#tabsLayout.addEventListener('keydown', event => {
+			if (window.matchMedia('(width < 992px)').matches) {
+				switch (event.key) {
+					case 'ArrowLeft': {
+						event.preventDefault();
+						this.movePrevious();
+						break;
+					}
+
+					case 'ArrowRight': {
+						event.preventDefault();
+						this.moveNext();
+						break;
+					}
+
+					default: {
+						break;
+					}
+				}
+			} else {
+				switch (event.key) {
+					case 'ArrowUp': {
+						event.preventDefault();
+						this.movePrevious();
+						break;
+					}
+
+					case 'ArrowDown': {
+						event.preventDefault();
+						this.moveNext();
+						break;
+					}
+
+					default: {
+						break;
+					}
+				}
+			}
+
 			switch (event.key) {
-				case 'ArrowUp': {
-					event.preventDefault();
-					this.movePrevious();
-					break;
-				}
-
-				case 'ArrowLeft': {
-					event.preventDefault();
-					this.movePrevious();
-					break;
-				}
-
-				case 'ArrowDown': {
-					event.preventDefault();
-					this.moveNext();
-					break;
-				}
-
-				case 'ArrowRight': {
-					event.preventDefault();
-					this.moveNext();
-					break;
-				}
-
 				case 'Home': {
 					event.preventDefault();
 					this.switchTab(this.#tabsButtons[0]);
@@ -126,29 +140,29 @@ class Tabs {
 
 		this.addBackground();
 		this.activeTabsRectTop();
+		this.ariaOrientation();
 		window.addEventListener('resize', () => {
-			this.activeTabsRectTop();
 			this.addBackground();
+			this.activeTabsRectTop();
+			this.ariaOrientation();
 		});
 	}
 
 	movePrevious() {
 		const currentTab = document.activeElement;
-		const tabsButtons = document.querySelectorAll('.tabs__button');
 		if (currentTab.parentElement.previousElementSibling) {
 			this.switchTab(currentTab.parentElement.previousElementSibling.querySelector('a'));
 		} else {
-			this.switchTab(tabsButtons.at(-1));
+			this.switchTab(this.#tabsButtons.at(-1));
 		}
 	}
 
 	moveNext() {
 		const currentTab = document.activeElement;
-		const tabsButtons = document.querySelectorAll('.tabs__button');
 		if (currentTab.parentElement.nextElementSibling) {
 			this.switchTab(currentTab.parentElement.nextElementSibling.querySelector('a'));
 		} else {
-			this.switchTab(tabsButtons[0]);
+			this.switchTab(this.#tabsButtons[0]);
 		}
 	}
 
@@ -156,15 +170,21 @@ class Tabs {
 		return this.#tabs.getBoundingClientRect().top + window.scrollY;
 	}
 
+	ariaOrientation() {
+		if (window.matchMedia('(width < 992px)').matches) {
+			this.#tabsButtonsList.setAttribute('aria-orientation', 'horizontal');
+		} else {
+			this.#tabsButtonsList.setAttribute('aria-orientation', 'vertical');
+		}
+	}
+
 	addBackground() {
-		const tabsButtonsContainer = document.querySelector('.tabs__buttons-container');
 		if (window.matchMedia('(width < 992px)').matches) {
 			window.addEventListener('scroll', () => {
-				const tabsButtonsContainerYPosition = tabsButtonsContainer.getBoundingClientRect().top;
-				if (tabsButtonsContainerYPosition <= 0) {
-					tabsButtonsContainer.classList.add('on');
+				if (this.#tabsButtonsContainer.getBoundingClientRect().top <= 0) {
+					this.#tabsButtonsContainer.classList.add('on');
 				} else {
-					tabsButtonsContainer.classList.remove('on');
+					this.#tabsButtonsContainer.classList.remove('on');
 				}
 			});
 		}

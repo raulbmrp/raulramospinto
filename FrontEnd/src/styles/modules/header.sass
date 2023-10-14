@@ -105,6 +105,9 @@
 			gap: unset
 			text-transform: capitalize
 
+			&:focus-visible
+				box-shadow: unset
+
 			.button__letter
 				+abstracts.transition(transform, .3s ease calc(0.03s * var(--index)))
 
@@ -149,6 +152,9 @@
 			&-button
 				mix-blend-mode: difference
 				z-index: 2
+
+				&:focus-visible
+					box-shadow: 0px 0px 1px 2px abstracts.color(neutral dirty-white)
 
 			&-item
 				transform: unset

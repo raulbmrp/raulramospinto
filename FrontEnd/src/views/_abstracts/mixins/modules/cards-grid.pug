@@ -4,7 +4,7 @@ mixin cards-grid(options)
 		.cards-grid__layout
 			each card in options.cards
 				a.card(
-					href=`/${card.title}`
+					href=`/projects/${card.title}`
 					title=`${card.soon ? card.title + ' project is not currently available' : 'Open ' + card.title + ' project'}`
 					target='_self'
 					class=`${card.soon ? 'soon disabled' : ''}`
@@ -22,11 +22,11 @@ mixin cards-grid(options)
 								format: 'jpg',
 								sizesMobile: 100,
 								sizesDesktop: 25,
-								widthMobileX1: 320,
-								widthMobileX2: 640,
+								widthMobileX1: 944,
+								widthMobileX2: 1888,
 								widthDesktopX1: 480,
 								widthDesktopX2: 960,
-								loading: 'lazy',
+								loading: '',
 								figcaption: `${card.figureFigcaption ? card.figureFigcaption : ''}`
 							}).card__figure
 
