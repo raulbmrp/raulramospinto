@@ -144,7 +144,7 @@ mixin tabs(options)
 							each brand in item.brands
 								.tabs__panel-content
 									if brand.figure
-										+figure({
+										+figure-equal-images({
 											modifiers: '',
 											file: `resume/brands/`,
 											name: `${brand.name}-logo`,
@@ -153,13 +153,7 @@ mixin tabs(options)
 											format: 'png',
 											sizesMobile: 100,
 											sizesTablet: 100,
-											sizesDesktop: 20,
-											widthMobileX1: 320,
-											widthMobileX2: 640,
-											widthTabletX1: 320,
-											widthTabletX2: 640,
-											widthDesktopX1: 200,
-											widthDesktopX2: 400,
+											sizesDesktop: 100,
 											loading: 'lazy',
 											figcaption: `${brand.figureFigcaption ? brand.figureFigcaption : ''}`
 										}).tabs__panel-figure

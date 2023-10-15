@@ -13,7 +13,7 @@ mixin cards-grid(options)
 					.card__layout
 
 						if options.hasImage
-							+figure({
+							+figure-equal-images({
 								modifiers: 'project-thumbnail',
 								file: `portfolio/${card.title}/thumbnail`,
 								name: `${card.title}-cover`,
@@ -21,11 +21,8 @@ mixin cards-grid(options)
 								title: `${card.title} ${card.slogan ? ' - ' + card.slogan : ''}`,
 								format: 'jpg',
 								sizesMobile: 100,
-								sizesDesktop: 25,
-								widthMobileX1: 944,
-								widthMobileX2: 1888,
-								widthDesktopX1: 480,
-								widthDesktopX2: 960,
+								sizesTablet: 50,
+								sizesDesktop: 33,
 								loading: '',
 								figcaption: `${card.figureFigcaption ? card.figureFigcaption : ''}`
 							}).card__figure
