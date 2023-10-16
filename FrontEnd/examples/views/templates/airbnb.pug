@@ -8,6 +8,7 @@ block variables
 		labels = ['UX/UI Design'];
 		tags = ['<abbr title="User Experience">UX</abbr> Design', '<abbr title="User Interface">UI</abbr> Design', 'Product Design', '<abbr title="Application">App</abbr>', 'Sketches', 'Wireframes', 'Design System', 'Mockups', 'Prototype', 'Testing'];
 		pageDescription = 'This feature allows users to share with other guests the experiences they have had not only at the residence but also at the place they are visiting, encouraging others to visit and experience the same.';
+		team = ['Carolina Reis', 'Mariana Santos', 'Raul Ramos Pinto', 'Rita Grade', 'Rodrigo Julião'];
 		buttons = [
 			{
 				social: 'behance',
@@ -15,5 +16,28 @@ block variables
 				urlLang: 'en'
 			}
 		];
+		images = [
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			}
+		]
 
 block project
+
+	each image, index in images
+
+		+figure-equal-images({
+			modifiers: `${index}`,
+			file: `portfolio/${title}/content`,
+			name: `${title}-${index}`,
+			alt: `${image.alt}`,
+			title: `${image.title}`,
+			format: 'jpg',
+			sizesMobile: 100,
+			sizesTablet: 100,
+			sizesDesktop: 100,
+			loading: 'lazy',
+			figcaption: `${image.figcaption}`
+		}).project__figure

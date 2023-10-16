@@ -63,7 +63,8 @@
 
 	&__intro
 		margin-block: 120px
-		display: grid
+		display: flex
+		flex-direction: column
 		gap: 24px
 
 	&__buttons
@@ -72,12 +73,28 @@
 		flex-wrap: wrap
 
 	&__content
+		margin-bottom: 48px
+
 		#{$block}__figure
 			&:first-child
 				border-radius: 24px 24px 0px 0px
 
 			&:last-child
 				border-radius: 0px 0px 24px 24px
+
+	&__team
+		display: flex
+		flex-direction: column
+		margin-bottom: 48px
+
+		p
+			align-self: center
+
+	&__member-list
+		display: flex
+		gap: 24px
+		flex-wrap: wrap
+		justify-content: space-evenly
 
 
 	// =============================================================================

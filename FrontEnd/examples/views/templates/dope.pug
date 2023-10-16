@@ -8,6 +8,7 @@ block variables
 		labels = ['UX/UI Design'];
 		tags = ['<abbr title="User Experience">UX</abbr> Design', '<abbr title="User Interface">UI</abbr> Design', 'Product Design', '<abbr title="Application">App</abbr>', 'Sketches', 'Wireframes', 'Design System', 'Mockups', 'Prototype', 'Testing'];
 		pageDescription = 'A service to promote a safer and more informed use of drugs through testing, monitoring consumption sessions and providing information on drug types and strains, as well as emergency procedures.';
+		team = ['Ana Marta Sousa', 'Gonçalo Páscoa', 'Inês Bernardino', 'Inês Esteves', 'Raul Ramos Pinto'];
 		buttons = [
 			{
 				social: 'behance',
@@ -15,5 +16,133 @@ block variables
 				urlLang: 'en'
 			}
 		];
+		images = [
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			},
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			}
+		]
 
 block project
+
+	each image, index in images
+
+		+figure-equal-images({
+			modifiers: `${index}`,
+			file: `portfolio/${title}/content`,
+			name: `${title}-${index}`,
+			alt: `${image.alt}`,
+			title: `${image.title}`,
+			format: 'jpg',
+			sizesMobile: 100,
+			sizesTablet: 100,
+			sizesDesktop: 100,
+			loading: 'lazy',
+			figcaption: `${image.figcaption}`
+		}).project__figure

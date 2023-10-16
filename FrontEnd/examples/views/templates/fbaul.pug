@@ -8,6 +8,7 @@ block variables
 		labels = ['UX/UI Design'];
 		tags = ['<abbr title="User Experience">UX</abbr> Design', '<abbr title="User Interface">UI</abbr> Design', 'Product Design', 'Website', 'Sketches', 'Wireframes', 'Design System', 'Mockups', 'Prototype', 'Testing'];
 		pageDescription = 'Designing an Alumni community website for the Faculty of Fine Arts of the University of Lisbon.';
+		team = ['Cátia Neto', 'Erika Maessaka', 'Júlia Rouxinol', 'Raul Ramos Pinto', 'Telmo Julião'];
 		buttons = [
 			{
 				social: 'behance',
@@ -15,5 +16,28 @@ block variables
 				urlLang: 'en'
 			}
 		];
+		images = [
+			{
+				alt: '',
+				title: '',
+				figcaption: ''
+			}
+		]
 
 block project
+
+	each image, index in images
+
+		+figure-equal-images({
+			modifiers: `${index}`,
+			file: `portfolio/${title}/content`,
+			name: `${title}-${index}`,
+			alt: `${image.alt}`,
+			title: `${image.title}`,
+			format: 'jpg',
+			sizesMobile: 100,
+			sizesTablet: 100,
+			sizesDesktop: 100,
+			loading: 'lazy',
+			figcaption: `${image.figcaption}`
+		}).project__figure

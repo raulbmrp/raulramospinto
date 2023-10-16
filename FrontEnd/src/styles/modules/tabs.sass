@@ -87,6 +87,7 @@
 			width: 1px
 			height: 200%
 			background-color: abstracts.color(alpha semi-transparent-dirty-white)
+			display: none
 
 		&--skills
 			#{$block}__panel-heading
@@ -112,15 +113,38 @@
 		&--brands
 			#{$block}__panel-content
 				display: grid
-				grid-template-columns: 160px 1px auto
 				gap: 32px
 				align-items: center
+				grid-template-columns: unset
+				justify-items: center
+
+			#{$block}__panel-separator
+				display: none
 
 		&:focus-visible
 			border-radius: 32px
 
 	.heading--5
 		display: inline
+
+
+	// =============================================================================
+	// Tablet
+	// =============================================================================
+
+	+abstracts.media(tablet)
+
+		&__panel
+			&--languages
+				grid-template-columns: repeat(2, 1fr)
+
+			&--brands
+				#{$block}__panel-content
+					grid-template-columns: 160px 1px auto
+					justify-items: left
+
+				#{$block}__panel-separator
+					display: block
 
 
 	// =============================================================================
@@ -165,8 +189,10 @@
 		&__panels
 			padding-top: 80px
 			padding-inline: unset
+
 		&__panel
-			&--skills
+			&--skills,
+			&--languages
 				grid-template-columns: repeat(2, 1fr)
 
 
@@ -177,9 +203,9 @@
 	@media (width <= 480px)
 		&__panel
 			&--brands
-				#{$block}__panel-content
-					grid-template-columns: unset
-					justify-items: center
+				// #{$block}__panel-content
+				// 	grid-template-columns: unset
+				// 	justify-items: center
 
-				#{$block}__panel-separator
-					display: none
+				// #{$block}__panel-separator
+				// 	display: none

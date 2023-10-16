@@ -1,4 +1,15 @@
-section.project
+- const normalizedText = removeAccentsCaps(`${title}`);
+
+section.project(class=`project--${normalizedText}`)
+
+	-
+		function removeAccentsCaps(str) {
+			const accentsMap = {
+				'A': 'a', 'B': 'b', 'C': 'c', 'D': 'd', 'E': 'e', 'F': 'f', 'G': 'g', 'H': 'h', 'I': 'i', 'J': 'j', 'K': 'k', 'L': 'l', 'M': 'm', 'N': 'n', 'O': 'o', 'P': 'p', 'Q': 'q', 'R': 'r', 'S': 's', 'T': 't', 'U': 'u', 'V': 'v', 'W': 'w', 'X': 'x', 'Y': 'y', 'Z': 'z', 'Á': 'a', 'À': 'a', 'À': 'a', 'À': 'a', 'Ã': 'a', 'Â': 'a', 'É': 'e', 'È': 'e', 'Ê': 'e', 'Í': 'i', 'Ì': 'i', 'Ó': 'o', 'Ò': 'o', 'Õ': 'o', 'Ô': 'o', 'Ú': 'u', 'Ù': 'u', 'á': 'a', 'à': 'a', 'ã': 'a', 'â': 'a', 'é': 'e', 'è': 'e', 'ê': 'e', 'í': 'i', 'ì': 'i', 'ó': 'o', 'ò': 'o', 'õ': 'o', 'ô': 'o', 'ú': 'u', 'ù': 'u', 'ç': 'c', 'Ç': 'c',
+			}
+			return str.replace(/[ABCDEFGHIJKLMNOPQRSTUVWXYZÁÀÃÂÉÈÊÍÌÓÒÕÔÚÙáàãâéèêíìóòõôúùçÇ]/g, (accentedChar) => accentsMap[accentedChar]);
+		};
+
 	.project__layout
 		.project__cover
 
@@ -52,3 +63,15 @@ section.project
 
 		.project__content
 			block project
+
+		if team
+			.project__team
+				p
+					strong
+						| The team:
+
+				ul.project__member-list
+					each member in team
+						li.project__member-list-item
+							p
+								| !{member}
