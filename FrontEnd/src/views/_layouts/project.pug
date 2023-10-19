@@ -1,6 +1,6 @@
 - const normalizedText = removeAccentsCaps(`${title}`);
 
-section.project(class=`project--${normalizedText}`)
+article.project(class=`project--${normalizedText}`)
 
 	-
 		function removeAccentsCaps(str) {
@@ -11,7 +11,7 @@ section.project(class=`project--${normalizedText}`)
 		};
 
 	.project__layout
-		.project__cover
+		section.project__cover
 
 			.project__top-container
 				+button({
@@ -43,7 +43,7 @@ section.project(class=`project--${normalizedText}`)
 							p
 								| !{tag}
 
-		.project__intro
+		section.project__intro
 			.project__description
 				p
 					| !{pageDescription}
@@ -61,11 +61,11 @@ section.project(class=`project--${normalizedText}`)
 							text: `Open <span class="sr-only">${title}</span> project on <span style="text-transform: capitalize;">${button.social}</span>`
 						})
 
-		.project__content
+		section.project__content
 			block project
 
 		if team
-			.project__team
+			section.project__team
 				p
 					strong
 						| The team:

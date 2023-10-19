@@ -13,9 +13,10 @@ mixin figure-equal-images(options)
 				path + options.file + '/' + options.name + '-' + width + '.webp ' + width + 'w' + ', ' + path + options.file + '/' + options.name + '-' + width + '.' + options.format + ' ' + width + 'w'
 			}`).join(', ')
 			sizes=`${desktop + ' ' + options.sizesDesktop + 'vw, ' + tablet + ' ' + options.sizesTablet + 'vw, ' + options.sizesMobile + 'vw'}`
-			alt=(options.alt || '')
+			alt=(options.alt || ' ')
 			loading=(options.loading ? 'lazy' : null)
 			title=options.title
+			role=(options.decorative ? 'presentation' : 'img')
 		)
 
 		if options.figcaption
