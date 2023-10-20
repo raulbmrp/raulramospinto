@@ -15,7 +15,7 @@ article.project(class=`project--${normalizedText}`)
 
 			.project__top-container
 				+button({
-					url: '../homepage.html/#portfolio',
+					url: '../index.html/#portfolio',
 					target: '_self',
 					urlLang: 'en',
 					modifiers: 'tertiary',
@@ -63,6 +63,18 @@ article.project(class=`project--${normalizedText}`)
 
 		section.project__content
 			block project
+
+			if prototype
+				.project__prototype
+					+button({
+						url: `${prototype}`,
+						urlLang: 'en',
+						target: '_blank',
+						modifiers: 'primary',
+						iconFile: '/assets/images/other.svg',
+						iconId: 'figma',
+						text: `Open <span class="sr-only">${title}</span> Prototype <span class="sr-only">on a new tab</span>`
+					}).project__prototype-button
 
 		if team
 			section.project__team

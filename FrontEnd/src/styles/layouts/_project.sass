@@ -77,6 +77,12 @@
 		margin-bottom: 24px
 		margin-inline: -24px
 
+	&__prototype
+		display: flex
+		justify-content: center
+		margin-block: 48px
+
+
 	&__team
 		display: flex
 		flex-direction: column
@@ -136,16 +142,60 @@
 
 
 	&--airbnb
-		.figure--22
+		.figure--20
 			position: relative
 
 			&::before
 				content: ''
-				background-image: url(../images/portfolio/airbnb/content/airbnb.gif)
+				background-image: url(../images/portfolio/airbnb/content/videos/apartment-page-0.gif)
 				background-size: 100%
 				position: absolute
-				left: 7.5%
-				top: 41%
-				width: 20%
-				height: 46%
-				border-radius: 1vw
+				border-radius: 0.8vw
+				left: 27.7%
+				top: 11%
+				width: 19.7%
+				height: 81%
+
+		.figure--21
+			position: relative
+
+			&::before,
+			&::after
+				content: ''
+				background-size: 100%
+				position: absolute
+				border-radius: 0.8vw
+				width: 19.7%
+				height: 78%
+
+			&::before
+				background-image: url(../images/portfolio/airbnb/content/videos/individual-guestbook-post-0.gif)
+				left: 9.2%
+				top: 15.5%
+
+			&::after
+				background-image: url(../images/portfolio/airbnb/content/videos/individual-guestbook-post-1.gif)
+				left: 32.15%
+				top: 6.9%
+
+		.figure--22
+			position: relative
+
+			&::before,
+			&::after
+				content: ''
+				background-size: 100%
+				position: absolute
+				border-radius: 0.8vw
+				width: 19.7%
+				height: 45.7%
+
+			&::before
+				background-image: url(../images/portfolio/airbnb/content/videos/post-on-guestbook-0.gif)
+				left: 69.7%
+				top: 14.5%
+
+			&::after
+				background-image: url(../images/portfolio/airbnb/content/videos/guestbook-profile-0.gif)
+				left: 7.8%
+				top: 40.8%
