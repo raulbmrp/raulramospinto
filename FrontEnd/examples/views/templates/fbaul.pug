@@ -1,19 +1,449 @@
 extends ../../../src/views/_layouts/base
 
 block variables
-	- project = true
-	- title = 'FBAUL'
-	- slogan = 'Alumni website design'
-	- labels = ['UX/UI Design']
-	- tags = ['<abbr title="User Experience">UX</abbr> Design', '<abbr title="User Interface">UI</abbr> Design', 'Product Design', 'Website', 'Sketches', 'Wireframes', 'Design System', 'Mockups', 'Prototype', 'Testing']
-	- pageDescription = 'Designing an Alumni community website for the Faculty of Fine Arts of the University of Lisbon.'
 	-
+		project = true;
+		title = 'FBAUL';
+		slogan = 'Alumni website design';
+		labels = ['UX/UI Design'];
+		tags = ['<abbr title="User Experience">UX</abbr> Design', '<abbr title="User Interface">UI</abbr> Design', 'Product Design', 'Website', 'Sketches', 'Wireframes', 'Design System', 'Mockups', 'Prototype', 'Testing'];
+		pageDescription = 'Designing an Alumni community website for the Faculty of Fine Arts of the University of Lisbon.';
+		team = ['Cátia Neto', 'Erika Maessaka', 'Júlia Rouxinol', 'Raul Ramos Pinto', 'Telmo Julião'];
 		buttons = [
 			{
 				social: 'behance',
 				url: 'https://www.behance.net/gallery/139852657/FBAUL-Alumni-Website',
 				urlLang: 'en'
 			}
-		]
+		];
+		prototype = 'https://www.figma.com/proto/aoWMTaErN4ZY5ysm1pQxbB/DXD-FBAUL?page-id=420%3A12909&type=design&node-id=500-15739&viewport=1365%2C300%2C0.22&t=frTNLz9GyEI8wr1X-1&scaling=scale-down-width&starting-point-node-id=500%3A15739&mode=design';
 
-block main
+block project
+
+	+figure-equal-images({
+		modifiers: '0',
+		file: `portfolio/${title}/content`,
+		name: `${title}-0`,
+		title: 'FBAUL Alumni Website',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h2 About the project
+		p University websites can sometimes be overwhelming due to the amount of content and different users they need to address.
+		p
+			| For this postgraduate course project, we were asked to rethink and redesign the Faculty of Fine Arts of the University of Lisbon website but with a specific target in mind:&nbsp;
+			strong alumni
+
+	+figure-equal-images({
+		modifiers: '1',
+		file: `portfolio/${title}/content`,
+		name: `${title}-1`,
+		title: 'About the project',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h2 Design process
+		p To better align the team towards a common goal we used the Double Diamond process which led to better communication and efficient iterative phases.
+		h3 discover
+		ul
+			li primary research
+			li contextual analysis
+			li secondary research
+		h3 define
+		ul
+			li personas
+			li empathy maps
+			li how might we's
+		h3 develop
+		ul
+			li brainstorm
+			li prioritization matrix
+			li site map
+			li wireframes
+			li mockups
+			li prototype
+		h3 test
+		ul
+			li usability tests
+			li conclusions and findings
+
+	+figure-equal-images({
+		modifiers: '2',
+		file: `portfolio/${title}/content`,
+		name: `${title}-2`,
+		title: 'Design process',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h2 Primary research
+		p
+			| We conducted a&nbsp;
+			strong
+				| quick survey&nbsp;
+			| to get information on how former students use &lpar;or not&rpar; the website of their former institutions.
+		p
+			| From that survey we talked to a few people in informal&nbsp;
+			strong
+				| interviews&nbsp;
+			| to get a more in-depth notion of their activities and needs.&nbsp;
+			strong
+				| Most users visit the website looking for information on courses
+			|.
+		p
+			strong
+				| What they look for in the website as former students:
+		ul
+			li information on courses
+			li news and events
+			li information on documents
+		p
+			strong
+				| What they see as benefits:
+		ul
+			li networking
+			li mentoring from older former students
+			li job opportunities
+			li inspiration and professional update
+
+	+figure-equal-images({
+		modifiers: '3',
+		file: `portfolio/${title}/content`,
+		name: `${title}-3`,
+		alt: 'Website visits Chart',
+		title: 'Primary research',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	.sr-only
+		h2 Contextual analysis
+		p Searching for the topic “alumni” on the current website, we get no content dedicated to this particular target, except some news regarding scholarships.
+		h2 Benchmarking
+		p We checked other universities websites and the strongest examples have a dedicated area for alumni with specific content. Some even have a website that exists outside the main university website.
+		ul
+			li events
+			li job offers
+			li internships
+			li education
+			li career advice
+			li networking
+			li mentoring
+			li certificates
+			li alumni stories
+			li donations
+
+	+figure-equal-images({
+		modifiers: '4',
+		file: `portfolio/${title}/content`,
+		name: `${title}-4`,
+		title: 'Contextual analysis and Benchmarking',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h2 Personas
+		ul
+			li
+				p
+					strong Mariana, 27 years old
+				p
+					small The one switching gears
+				blockquote
+					p I wanted to switch gears in my career so I studied digital design, and now I'm looking for job opportunities to enter this particular field of expertise.
+			li
+				p
+					strong António, 48 years old
+				p
+					small The professional who gives back
+				blockquote
+					p I want to be part of a community that connects professionals and serves as a sharing platform.
+			li
+				p
+					strong Elisa, 21 years old
+				p
+					small The recent graduate
+				blockquote
+					p I don't feel ready to enter the job market, I believe I need further education and training.
+
+	+figure-equal-images({
+		modifiers: '5',
+		file: `portfolio/${title}/content`,
+		name: `${title}-5`,
+		alt: 'Personas Empathy Maps',
+		title: 'Personas',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	.sr-only
+		h3 Segmentation
+		p
+			| We identified&nbsp;
+			strong
+				| three distinct personas&nbsp;
+			| and defined&nbsp;
+			strong
+				| empathy maps&nbsp;
+			| and specific&nbsp;
+			strong
+				| HMWs&nbsp;
+			| for each segment.
+		p
+			strong Top takeaways
+		ul
+			li
+				p
+					strong
+						| Fresh 1st cycle graduates&nbsp;
+					| need information on&nbsp;
+					strong
+						| study progression&nbsp;
+					| programmes
+			li
+				p
+					strong
+						| Recent graduates&nbsp;
+					| that want to start a career need access to&nbsp;
+					strong
+						| job offers&nbsp;
+					| and mentorship
+			li
+				p
+					strong
+						| Experienced former students&nbsp;
+					| want to reconnect with the community by&nbsp;
+					strong
+						| sharing their knowledge
+		h2 Prioritization matrix
+		p Using the HMWs, we did a brainstorming session in which the objective was to have several ideas.
+		p After clustering similar ideas and discarding others, we used an effort vs. impact matrix to prioritize features.
+		p
+			strong Some key features are:
+		ul
+			li a community
+			li news and events
+			li certificates request
+			li networking
+			li job opportunities
+
+	+figure-equal-images({
+		modifiers: '6',
+		file: `portfolio/${title}/content`,
+		name: `${title}-6`,
+		alt: 'Effort vs impact matrix based on HMWs',
+		title: 'Segmentation and Prioritization matrix',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	.sr-only
+		h2 Decision making
+		p Our briefing asked for a redesign of the fine arts website, but given how specific our target is, and considering our research, we had to state some aspects:
+		ul
+			li
+				p our target - alumni - is very specific and requires specific content which is not the main priority of a faculty website;
+			li
+				p they are not the main users of a faculty website;
+			li
+				p at this point, there is no content directed at them in the website.
+		p Concluding, we'd have to create a community and maintain it with relevant content at hand.
+		p
+			strong Given all the above, we decided to invest our efforts in creating a platform solely dedicated to the alumni community, which could be accessed through the main faculty website.
+
+	+figure-equal-images({
+		modifiers: '7',
+		file: `portfolio/${title}/content`,
+		name: `${title}-7`,
+		title: 'Decision making',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h2 Information architecture
+
+	+figure-equal-images({
+		modifiers: '8',
+		file: `portfolio/${title}/content`,
+		name: `${title}-8`,
+		alt: 'Simple Sitemap',
+		title: 'Information architecture',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	.sr-only
+		h2 Functional benchmark
+		p After defining our goals and features for the project, we needed to understand how we could materialize these features. For that we did a functional benchmark.
+
+	+figure-equal-images({
+		modifiers: '9',
+		file: `portfolio/${title}/content`,
+		name: `${title}-9`,
+		title: 'Functional benchmark',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h2 Wireframes
+		p In the wireframing phase we developed several screens to what could be the alumni portal. This process went through several iterations.
+
+	+figure-equal-images({
+		modifiers: '10',
+		file: `portfolio/${title}/content`,
+		name: `${title}-10`,
+		alt: 'Multiple Wireframes',
+		title: 'Wireframes',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	.sr-only
+		h2 Design kit
+		ul
+			li Logo
+			li Colors
+			li Typography
+
+	+figure-equal-images({
+		modifiers: '11',
+		file: `portfolio/${title}/content`,
+		name: `${title}-11`,
+		alt: 'Logo, colors and typography',
+		title: 'Design kit',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	+figure-equal-images({
+		modifiers: '12',
+		file: `portfolio/${title}/content`,
+		name: `${title}-12`,
+		alt: 'Assets Components',
+		title: 'Components',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	.sr-only
+		h2 Prototype
+
+	+figure-equal-images({
+		modifiers: '13',
+		file: `portfolio/${title}/content`,
+		name: `${title}-13`,
+		alt: 'homepage and education page mockups',
+		title: 'Prototype',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	.sr-only
+		h2 Usability tests
+		p
+			| Our general aim was to find out&nbsp;
+			strong
+				| if/how many users can perform the tasks&nbsp;
+			| , in what time frame and if they have any mistakes.
+		p
+			| Although we had a&nbsp;
+			strong
+				| 100% rate of task conclusion&nbsp;
+			| , the usability tests revealed some interesting findings and thoughts.
+		blockquote
+			p I really liked the visual, it's very clean and easy to understand the content. I'd like that the faculty website would be like this.
+		p
+			small Catarina
+
+	+figure-equal-images({
+		modifiers: '14',
+		file: `portfolio/${title}/content`,
+		name: `${title}-14`,
+		alt: '',
+		title: '',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	.sr-only
+		h2 Future developments
+		ol
+			li Mobile version
+			li Progress visibility on pop-ups &lpar;registrations and document requests&lpar;
+			li Quick-access submenus &lpar;alumni stories, short courses, etc.&lpar;
+			li Career tips &lpar;jobs and career&lpar;
+			li Alumni portfolio examples on courses page
+		p Thank you
+
+	+figure-equal-images({
+		modifiers: '15',
+		file: `portfolio/${title}/content`,
+		name: `${title}-15`,
+		alt: '',
+		title: '',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure

@@ -29,45 +29,11 @@ body
 	margin: 0
 	text-align: left
 	+abstracts.background(neutral black)
+	text-rendering: optimizeLegibility
 
-	.blur-circle
-		position: fixed
-		z-index: -1
-		transform: translate(-50%, -50%)
-		+abstracts.transition(width height top left opacity, 2s)
-
-		&--blue
-			top: var(--blurCircleBlueTop, calc(50% + 20vh))
-			left: var(--blurCircleBlueLeft, calc(50% + 5vw))
-			width: var(--blurCircleBlueWidth, 90vh)
-			height: var(--blurCircleBlueHeight, 90vh)
-			opacity: var(--blurCircleBlueOpacity, 1)
-			background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand blue) 0%, rgba(abstracts.color(brand blue), .4) 50%, transparent 100%)
-			+abstracts.transition(width height top left opacity, 2s)
-
-		&--orange
-			top: var(--blurCircleOrangeTop, calc(50% - 25vh))
-			left: var(--blurCircleOrangeLeft, calc(50% + 30vw))
-			width: var(--blurCircleOrangeWidth, 120vh)
-			height: var(--blurCircleOrangeHeight, 120vh)
-			opacity: var(--blurCircleOrangeOpacity, 1)
-			background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand orange) 0%, rgba(abstracts.color(brand orange), .5) 50%, transparent 100%)
-			+abstracts.transition(width height top left opacity, 2s)
-
-	&.menu-on
+	&.disable-scroll
+		height: 100vh
 		overflow: hidden
-		&.blur-circle--blue
-			width: 0
-			height: 0
-			opacity: 0
-			+abstracts.transition(width height opacity, .5s)
-
-		&.blur-circle--orange
-			top: calc(50% - 15vh)
-			left: calc(50% + 15vw)
-			width: 160vh
-			height: 160vh
-			+abstracts.transition(width height top left, .8s)
 
 ::selection
 	+abstracts.background(brand blue)
@@ -215,3 +181,226 @@ template
 
 [hidden]
 	display: none
+
+.blur-circle
+	$block: &
+
+	position: fixed
+	z-index: -1
+	transform: translate(-50%, -50%)
+	+abstracts.transition(width height top left opacity, 2s)
+
+	&.menu-on
+		&.blur-circle--design
+			opacity: 0
+
+		&.blur-circle--code
+			top: calc(50% - 30vh)
+			left: calc(50% + 30vw)
+			width: 160vh
+			height: 160vh
+			opacity: 1
+
+	&--error
+		opacity: 1
+		background: radial-gradient(50% 50% at 50% 50%, abstracts.color(message error) 0%, rgba(abstracts.color(message error), .4) 50%, transparent 100%)
+		top: calc(50% - 25vh)
+		left: calc(50% + 30vw)
+		width: 70vh
+		height: 70vh
+		opacity: 1
+
+	&--design
+		opacity: 1
+		background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand blue) 0%, rgba(abstracts.color(brand blue), .4) 50%, transparent 100%)
+
+		&.blur-circle--design-intro
+			top: calc(50% + 10vh)
+			left: calc(50% + 5vw)
+			width: 50vh
+			height: 50vh
+			opacity: 1
+
+		&.blur-circle--design-about
+			top: calc(50% + 10vh)
+			left: calc(50% + 40vw)
+			width: 40vh
+			height: 40vh
+			opacity: 1
+
+		&.blur-circle--design-resume
+			top: calc(50% + 10vh)
+			left: calc(50% + 40vw)
+			width: 80vh
+			height: 80vh
+			opacity: 0
+
+		&.blur-circle--design-portfolio
+			top: 50%
+			left: calc(50% - 10vw)
+			width: 60vh
+			height: 60vh
+			opacity: 0
+
+		&.blur-circle--design-contact
+			top: calc(50% - 10vh)
+			left: calc(50% - 10vw)
+			width: 30vh
+			height: 30vh
+			opacity: 1
+
+		&.blur-circle--design-project-cover
+			top: calc(50% - 30vh)
+			left: calc(50% + 30vw)
+			width: 150vh
+			height: 150vh
+			opacity: 1
+
+		&.blur-circle--design-project-content
+			top: calc(50% + 10vh)
+			left: calc(50% + 5vw)
+			width: 50vh
+			height: 50vh
+			opacity: 0
+
+	&--code
+		opacity: 1
+		background: radial-gradient(50% 50% at 50% 50%, abstracts.color(brand orange) 0%, rgba(abstracts.color(brand orange), .5) 50%, transparent 100%)
+
+		&.blur-circle--code-intro
+			top: calc(50% - 25vh)
+			left: calc(50% + 30vw)
+			width: 70vh
+			height: 70vh
+			opacity: 1
+
+		&.blur-circle--code-about
+			top: calc(50% - 5vh)
+			left: calc(50% + 25vw)
+			width: 35vh
+			height: 35vh
+			opacity: 1
+
+		&.blur-circle--code-resume
+			top: calc(50% - 5vh)
+			left: calc(50% + 25vw)
+			width: 50vh
+			height: 50vh
+			opacity: 0
+
+		&.blur-circle--code-portfolio
+			top: calc(50% - 5vh)
+			left: calc(50% + 10vw)
+			width: 60vh
+			height: 60vh
+			opacity: 0
+
+		&.blur-circle--code-contact
+			top: calc(50% - 15vh)
+			left: calc(50% + 10vw)
+			width: 30vh
+			height: 30vh
+			opacity: 1
+
+		&.blur-circle--code-project-cover
+			top: calc(50% - 30vh)
+			left: calc(50% + 30vw)
+			width: 150vh
+			height: 150vh
+			opacity: 1
+
+		&.blur-circle--code-project-content
+			top: calc(50% - 25vh)
+			left: calc(50% + 30vw)
+			width: 70vh
+			height: 70vh
+			opacity: 0
+
+	// =============================================================================
+	// Desktop
+	// =============================================================================
+
+	+abstracts.media(desktop)
+		&--error
+			width: 120vh
+			height: 120vh
+
+		&--design
+			&.blur-circle--design-intro
+				top: calc(50% + 20vh)
+				width: 90vh
+				height: 90vh
+
+			&.blur-circle--design-about
+				width: 80vh
+				height: 80vh
+
+			&.blur-circle--design-portfolio
+				top: 50%
+				width: 60vh
+				height: 60vh
+
+			&.blur-circle--design-contact
+				top: 50%
+				width: 60vh
+				height: 60vh
+
+			&.blur-circle--design-project-cover
+				top: calc(50% - 30vh)
+				left: calc(50% + 30vw)
+				width: 200vh
+				height: 200vh
+
+		&--code
+			&.blur-circle--code-intro
+				width: 120vh
+				height: 120vh
+
+			&.blur-circle--code-about
+				top: calc(50% - 15vh)
+				width: 50vh
+				height: 50vh
+
+			&.blur-circle--code-portfolio
+				top: calc(50% - 5vh)
+				width: 60vh
+				height: 60vh
+
+			&.blur-circle--code-contact
+				top: calc(50% - 5vh)
+				width: 60vh
+				height: 60vh
+
+			&.blur-circle--code-project-cover
+				top: calc(50% - 30vh)
+				left: calc(50% + 30vw)
+				width: 200vh
+				height: 200vh
+
+.blur-circles
+	.blur-circle--design-project-cover
+		top: calc(50% - 30vh)
+		left: calc(50% + 30vw)
+		width: 110vh
+		height: 110vh
+	.blur-circle--code-project-cover
+		top: calc(50% + 30vh)
+		left: calc(50% - 30vw)
+		width: 110vh
+		height: 110vh
+
+	// =============================================================================
+	// Desktop
+	// =============================================================================
+
+	+abstracts.media(desktop)
+		.blur-circle--design-project-cover
+			top: calc(50% - 30vh)
+			left: calc(50% + 30vw)
+			width: 150vh
+			height: 150vh
+		.blur-circle--code-project-cover
+			top: calc(50% + 30vh)
+			left: calc(50% - 30vw)
+			width: 150vh
+			height: 150vh

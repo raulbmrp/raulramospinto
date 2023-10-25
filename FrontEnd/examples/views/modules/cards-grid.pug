@@ -16,7 +16,7 @@ block main
 	})(class='sr-only')
 
 	+cards-grid({
-		modifiers: `${section}`,
+		modifiers: 'portfolio',
 		hasImage: true,
 		headingTag: 'h3',
 		headingTextModifiers: '3',
@@ -50,7 +50,7 @@ block main
 			{
 				title: 'fbaul',
 				slogan: 'Alumni website design',
-				figureAlt: 'FBAUL - Alumni website design',
+				figureAlt: 'b-a | creating an alumni community',
 				labels: [
 					{
 						text: 'UX/UI Design',
@@ -87,7 +87,7 @@ block main
 						labelModifiers: 'design'
 					}
 				],
-				description: 'Remind is an AI powered app that bridges the gap between doctor/patient, helping to provide faster and more efficient diagnosis and treatment.',
+				description: 'Remind is an <abbr title="Artificial Intelligence">AI</abbr> powered app that bridges the gap between doctor/patient, helping to provide faster and more efficient diagnosis and treatment.',
 				soon: true
 			},
 			{
@@ -104,4 +104,4 @@ block main
 				soon: true
 			},
 		]
-	})(id=`${section}`)
+	})(id='portfolio')

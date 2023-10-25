@@ -1,0 +1,20 @@
+extends ../../../src/views/_layouts/base
+
+block variables
+	-
+		error = true;
+		title = 'Error 403';
+
+block main
+
+	+error({
+		headingText: '403 Forbidden',
+		description: '<strong>Stop right there!</strong> <br>This area is off-limits. You&apos;re not invited (or your invitation got lost). Maybe you&apos;d like to go back to the Homepage and explore more of my projects?',
+		modifiers: '403',
+		buttonText: 'Homepage',
+		buttonUrl: '/',
+		buttonModifiers: 'primary',
+		buttonTarget: '_self',
+		buttonUrlLang: 'en',
+		buttonTitle: 'Go to the Homepage'
+	})

@@ -1,0 +1,56 @@
+mixin figure-different-images(options)
+	figure.figure(class=setModifiers(options.modifiers, 'figure--'))&attributes(attributes)
+		picture.picture
+
+			-
+				const path = '../assets/images/';
+				const desktopExtension = ['-desktop@1x.webp', '-desktop@1x.', '-desktop@2x.webp', '-desktop@2x.', '-desktop@3x.webp', '-desktop@3x.'];
+				const tabletExtension = ['-tablet@1x.webp', '-tablet@1x.', '-tablet@2x.webp', '-tablet@2x.', '-tablet@3x.webp', '-tablet@3x.'];
+				const mobileExtension = ['-mobile@1x.webp', '-mobile@1x.', '-mobile@2x.webp', '-mobile@2x.', '-mobile@3x.webp', '-mobile@3x.'];
+
+			if options.sizesDesktop && options.widthDesktopX1 && options.widthDesktopX2 && options.widthDesktopX3
+				source(
+					media='(min-width: 992px)'
+					srcset=`${
+						path + options.file + '/' + options.name + desktopExtension[0] + ' ' + options.widthDesktopX1 + 'w' + ', ' +
+						path + options.file + '/' + options.name + desktopExtension[1] + options.format + ' ' + options.widthDesktopX1 + 'w' + ', ' +
+						path + options.file + '/' + options.name + desktopExtension[2] + ' ' + options.widthDesktopX2 + 'w' + ', ' +
+						path + options.file + '/' + options.name + desktopExtension[3] + options.format + ' ' + options.widthDesktopX2 + 'w' + ', ' +
+						path + options.file + '/' + options.name + desktopExtension[4] + ' ' + options.widthDesktopX3 + 'w' + ', ' +
+						path + options.file + '/' + options.name + desktopExtension[5] + options.format + ' ' + options.widthDesktopX3 + 'w'
+					}`
+					sizes=`${options.sizesDesktop + 'vw'}`)
+
+			if options.sizesTablet && options.widthTabletX1 && options.widthTabletX2 && options.widthTabletX3
+				source(
+					media='(min-width: 480px)'
+					srcset=`${
+					path + options.file + '/' + options.name + tabletExtension[0] + ' ' + options.widthTabletX1 + 'w' + ', ' +
+					path + options.file + '/' + options.name + tabletExtension[1] + options.format + ' ' + options.widthTabletX1 + 'w' + ', ' +
+					path + options.file + '/' + options.name + tabletExtension[2] + ' ' + options.widthTabletX2 + 'w' + ', ' +
+					path + options.file + '/' + options.name + tabletExtension[3] + options.format + ' ' + options.widthTabletX2 + 'w' + ', ' +
+					path + options.file + '/' + options.name + tabletExtension[4] + ' ' + options.widthTabletX3 + 'w' + ', ' +
+					path + options.file + '/' + options.name + tabletExtension[5] + options.format + ' ' + options.widthTabletX3 + 'w'}`
+					sizes=`${options.sizesTablet + 'vw'}`)
+
+			if options.sizesMobile && options.widthMobileX1 && options.widthMobileX2 && options.widthMobileX3
+				source(
+					srcset=`${
+					path + options.file + '/' + options.name + mobileExtension[0] + ' ' + options.widthMobileX1 + 'w' + ', ' +
+					path + options.file + '/' + options.name + mobileExtension[1] + options.format + ' ' + options.widthMobileX1 + 'w' + ', ' +
+					path + options.file + '/' + options.name + mobileExtension[2] + ' ' + options.widthMobileX2 + 'w' + ', ' +
+					path + options.file + '/' + options.name + mobileExtension[3] + options.format + ' ' + options.widthMobileX2 + 'w' + ', ' +
+					path + options.file + '/' + options.name + mobileExtension[4] + ' ' + options.widthMobileX3 + 'w' + ', ' +
+					path + options.file + '/' + options.name + mobileExtension[5] + options.format + ' ' + options.widthMobileX3 + 'w'}`
+					sizes=`${options.sizesMobile + 'vw'}`)
+
+			img(
+				src=path + options.file + '/' + options.name + mobileExtension[1] + options.format
+				alt=(options.alt || '')
+				loading=(options.loading ? 'lazy' : null)
+				title=options.title
+			)
+
+		if options.figcaption
+			figcaption.figure__caption.sr-only
+				| !{options.figcaption}

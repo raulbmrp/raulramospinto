@@ -1,18 +1,18 @@
 @use "../abstracts"
 
 
-
-// =============================================================================
-// Module
-// =============================================================================
-
 .module:not(.error)
-	// scroll-snap-type: y mandatory
-	// scroll-snap-align: start
-	// scroll-snap-stop: always
 
 	&:not(.intro, #contact)
 		margin-block: 288px
+		opacity: 0
+		+abstracts.transition(opacity transform, 1s ease-out)
+		transform: translateY(100px)
+
+		&.show
+			opacity: 1
+			+abstracts.transition(opacity transform, 1s ease-out)
+			transform: translateY(0px)
 
 	&:not(.intro, #resume)
 		padding-top: 80px

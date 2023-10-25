@@ -1,0 +1,20 @@
+extends ../../../src/views/_layouts/base
+
+block variables
+	-
+		error = true;
+		title = 'Error 401';
+
+block main
+
+	+error({
+		headingText: '401 Unauthorized',
+		description: '<strong>Oops! <br>Looks like you&apos;ve stumbled upon a private section.</strong> <br>Access is restricted, but you can always head back to the Homepage and learn more about my work.',
+		modifiers: '401',
+		buttonText: 'Homepage',
+		buttonUrl: '/',
+		buttonModifiers: 'primary',
+		buttonTarget: '_self',
+		buttonUrlLang: 'en',
+		buttonTitle: 'Go to the Homepage'
+	})

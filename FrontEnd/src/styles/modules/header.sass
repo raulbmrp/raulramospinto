@@ -1,12 +1,6 @@
 @use "sass:math"
-
 @use "../abstracts"
 
-
-
-// =============================================================================
-// Header
-// =============================================================================
 
 .header
 	$block: &
@@ -25,8 +19,6 @@
 		background: transparent
 		+abstracts.transition(height, 0s ease 0s)
 
-	// Layout
-	// -----------------------------------------------------------------------------
 	&__layout
 		// max-width: abstracts.columns(12)
 		margin-inline: auto
@@ -41,7 +33,7 @@
 		&--menu
 			display: grid
 			pointer-events: none
-			height: calc(100% - $header-height)
+			height: calc(100dvh - $header-height)
 			padding-inline: 24px
 
 			&.on
@@ -63,8 +55,6 @@
 					filter: blur(0)
 					+abstracts.transition(opacity filter, .5s ease calc(1.2s + 0.15s * var(--index)))
 
-	// Logo
-	// -----------------------------------------------------------------------------
 	&__logo
 		color: abstracts.color(neutral dirty-white)
 		padding-block: .75em
@@ -75,8 +65,6 @@
 			border-radius: 100vmax
 			outline-offset: 0.8em
 
-	// Burger
-	// -----------------------------------------------------------------------------
 	&__burger
 		padding-left: 16px
 		padding-block: 16px
@@ -103,8 +91,6 @@
 			&::after
 				transform: translateY(-4px)
 
-	// Menu Links
-	// -----------------------------------------------------------------------------
 	&__menu
 		&-item
 			transform: translateX(-40vw)
@@ -118,6 +104,9 @@
 		&-button
 			gap: unset
 			text-transform: capitalize
+
+			&:focus-visible
+				box-shadow: unset
 
 			.button__letter
 				+abstracts.transition(transform, .3s ease calc(0.03s * var(--index)))
@@ -147,8 +136,6 @@
 		justify-content: space-between
 		align-items: center
 
-		// Layout
-		// -----------------------------------------------------------------------------
 		&__layout
 			margin-inline: unset
 			gap: 16px
@@ -158,6 +145,7 @@
 				opacity: 1
 				pointer-events: all
 				+abstracts.transition(opacity)
+				height: calc(100% - $header-height)
 
 		&__menu
 			position: relative
@@ -165,6 +153,9 @@
 			&-button
 				mix-blend-mode: difference
 				z-index: 2
+
+				&:focus-visible
+					box-shadow: 0px 0px 1px 2px abstracts.color(neutral dirty-white)
 
 			&-item
 				transform: unset
@@ -186,7 +177,6 @@
 					width: 100%
 					height: 100%
 					+abstracts.background(neutral dirty-white)
-					// border: 1px solid abstracts.color(neutral dirty-white)
 					border-radius: 100vmax
 					flex-shrink: 0
 					flex-grow: 0
@@ -205,6 +195,7 @@
 
 		&__social-list
 			display: none
+
 
 	// =============================================================================
 	// Desktop & Hover

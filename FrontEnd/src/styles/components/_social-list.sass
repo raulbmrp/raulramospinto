@@ -1,14 +1,10 @@
 @use "sass:math"
-
 @use "../abstracts"
 
 
 $radius: 23px // Radius of SVG circle
 $dash: 2 * math.$pi * $radius // Perimeter of circle
 
-// =============================================================================
-// Socials
-// =============================================================================
 
 .social-list
 	display: flex
@@ -35,8 +31,8 @@ $dash: 2 * math.$pi * $radius // Perimeter of circle
 			stroke-width: 1px
 			fill: none
 
+
 	+abstracts.media(hover)
-		// Hover animations
 		.social-list__button circle.progress
 			stroke-dasharray: $dash
 			stroke-dashoffset: -$dash
@@ -46,10 +42,3 @@ $dash: 2 * math.$pi * $radius // Perimeter of circle
 				stroke-dasharray: $dash
 				stroke-dashoffset: 0
 				animation: progress-inverse .25s ease-out forwards
-
-	// =============================================================================
-	// Desktop
-	// =============================================================================
-
-	// +abstracts.media(desktop)
-	// 	display: none

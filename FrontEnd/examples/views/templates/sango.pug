@@ -1,19 +1,170 @@
 extends ../../../src/views/_layouts/base
 
 block variables
-	- project = true
-	- title = 'Sango'
-	- slogan = 'Handmade creations'
-	- labels = ['UX/UI Design', 'Front-End']
-	- tags = ['<abbr title="User Interface">UI</abbr> Design', 'Website', 'Branding', 'Logo Design', 'E-commerce', 'Front-End Development', 'HTML', 'CSS', 'JavaScript']
-	- pageDescription = 'This project was a total rebranding, from the logo to the website and online shop. The main aim was to develop the front-end of the whole Sango&apos;s website.'
 	-
+		project = true;
+		title = 'Sango';
+		slogan = 'Handmade creations';
+		labels = ['UX/UI Design', 'Front-End'];
+		tags = ['<abbr title="User Interface">UI</abbr> Design', 'Website', 'Branding', 'Logo Design', 'E-commerce', 'Front-End Development', '<abbr title="Hypertext Markup Language">HTML</abbr>', '<abbr title="Cascading Style Sheets">CSS</abbr>', 'JavaScript'];
+		pageDescription = 'This project was a total rebranding, from the logo to the website and online shop. The main aim was to develop the front-end of the whole Sango&apos;s website.';
+		team = ['Ana Lagoa', 'Raul Ramos Pinto', 'Talissa Fregona'];
 		buttons = [
 			{
 				social: 'behance',
 				url: 'https://www.behance.net/gallery/135546783/Sango-UI-FRONT-END-DEVELOPMENT',
 				urlLang: 'en'
 			}
-		]
+		];
 
-block main
+
+block project
+	.sr-only
+		h2 What is Sango?
+		p
+			| Sango is a portuguese company created by a couple of artisans who are dedicated to the creation of leather pieces and value manual work.
+			br
+			| Sango's principles are to give proper attention, dedication and care to each piece individually. Sango doesn't work with mass production, all the products are thought out, designed and made by hand. This is the great differentiating factor of it.
+
+	+figure-equal-images({
+		modifiers: '0',
+		file: `portfolio/${title}/content`,
+		name: `${title}-0`,
+		title: 'What is Sango',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	h2.sr-only Logo redesign
+
+	+figure-equal-images({
+		modifiers: '1',
+		file: `portfolio/${title}/content`,
+		name: `${title}-1`,
+		alt: 'Logo redesign - Actual logo | Icon process | Typography | Final Proposal',
+		title: 'Logo redesign',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	ul.sr-only
+		li The rectangle shape represents the leather product
+		li The crossed lines refer to the cross stitch.
+		li Sango's initial is also present in the brand's icon
+
+	+figure-equal-images({
+		modifiers: '2',
+		file: `portfolio/${title}/content`,
+		name: `${title}-2`,
+		alt: 'Icon explanation',
+		title: 'Icon',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	.sr-only
+		h2 Design kit
+		h3 Colors
+		dl
+			dt Dark Brown
+			dd HEX: #312C28
+			dd RGB: 49, 44, 40
+			dt Light Brown
+			dd HEX: #D9BB95
+			dd RGB: 217, 187, 149
+			dt White
+			dd HEX: #F8F2E4
+			dd RGB: 248, 242, 228
+			dt Orange
+			dd HEX: #FF6200
+			dd RGB: 255, 98, 0
+
+	+figure-equal-images({
+		modifiers: '3',
+		file: `portfolio/${title}/content`,
+		name: `${title}-3`,
+		alt: 'Logo applied on leather | E-commerce landing page on screen and HTML code behind | Brand colors',
+		title: 'Brand logo and colors',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	.sr-only
+		h3 Typography
+		p Lexend
+		dl
+			dt Heading 1
+			dd 80 points
+			dt Heading 2
+			dd 40 points
+			dt Heading 3
+			dd 30 points
+			dt Heading 4
+			dd 20 points
+
+	+figure-equal-images({
+		modifiers: '4',
+		file: `portfolio/${title}/content`,
+		name: `${title}-4`,
+		title: 'Typography',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	+figure-equal-images({
+		modifiers: '5',
+		file: `portfolio/${title}/content`,
+		name: `${title}-5`,
+		title: 'Store page',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	+figure-equal-images({
+		modifiers: '6',
+		file: `portfolio/${title}/content`,
+		name: `${title}-6`,
+		alt: 'Contacts, Newsletter, About and Product detail screens',
+		title: 'Screens',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	p.sr-only Thank you
+
+	+figure-equal-images({
+		modifiers: '7',
+		file: `portfolio/${title}/content`,
+		name: `${title}-7`,
+		title: 'Thank you',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure

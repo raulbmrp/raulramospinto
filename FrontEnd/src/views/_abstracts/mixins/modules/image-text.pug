@@ -1,6 +1,13 @@
 mixin image-text(options)
 
 	section.module.image-text(class=setModifiers(options.modifiers, 'image-text--'))&attributes(attributes)
+
+		if sectionHeading
+			+heading({
+				htmlTag: 'h2',
+				text: `${sectionHeading}`
+			})(class='sr-only')
+
 		.image-text__layout
 			article.image-text__content
 
@@ -29,18 +36,15 @@ mixin image-text(options)
 							}).image-text__button
 
 
-				+figure({
+				+figure-equal-images({
 					file: options.file,
 					name: options.name,
 					alt: options.alt,
 					title: options.title,
 					format: options.format,
 					sizesMobile: options.sizesMobile,
+					sizesTablet: options.sizesTablet,
 					sizesDesktop: options.sizesDesktop,
-					widthMobileX1: options.widthMobileX1,
-					widthMobileX2: options.widthMobileX2,
-					widthDesktopX1: options.widthDesktopX1,
-					widthDesktopX2: options.widthDesktopX2,
 					loading: options.loading
 				}).image-text__figure
 

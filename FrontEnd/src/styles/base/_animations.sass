@@ -1,12 +1,6 @@
 @use "sass:math"
-
 @use "../abstracts"
 
-
-
-// =============================================================================
-// Animations
-// =============================================================================
 
 // Social Links
 $radius: 23px // Radius of SVG circle
@@ -31,3 +25,7 @@ $dash: 2 * math.$pi * $radius // Perimeter of circle
 		transform: translateY(3px)
 	100%
 		transform: translateY(-3px)
+
+@keyframes cascade
+	25%
+		+abstracts.background(alpha semi-transparent-dirty-white)

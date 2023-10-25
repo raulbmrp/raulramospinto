@@ -1,19 +1,9 @@
 @use "../abstracts"
 
 
-
-// =============================================================================
-// Image Text
-// =============================================================================
-
 .tabs
 	$block: &
 
-	// padding-inline: 24px
-
-
-	// Layout
-	// -----------------------------------------------------------------------------
 	&__layout
 		// max-width: abstracts.columns(12)
 		margin-inline: auto
@@ -22,8 +12,6 @@
 		flex-direction: column
 		gap: 32px
 
-	// Buttons
-	// -----------------------------------------------------------------------------
 	&__buttons
 		&-container
 			position: sticky
@@ -52,6 +40,11 @@
 			position: sticky
 			top: 0px
 			overflow-x: auto
+			-ms-overflow-style: none
+			scrollbar-width: none
+
+			&::-webkit-scrollbar
+				display: none
 
 	&__button
 		padding: 12px !important
@@ -67,13 +60,14 @@
 			+abstracts.hover(hover focus-visible)
 				+abstracts.background(neutral dirty-white)
 
+		@for $index from 1 through 7
+			&#tab--#{$index}
+				animation-delay: .15s * $index
+
 		.button__text
 			display: none
 			opacity: 0
 
-
-	// Panels
-	// -----------------------------------------------------------------------------
 	&__panels
 		padding-top: 0px
 		padding-inline: 24px
@@ -89,6 +83,9 @@
 			border-radius: 32px
 			overflow: hidden
 
+		&-heading
+			margin-bottom: 4px
+
 		&-description
 			margin-top: 16px
 
@@ -99,21 +96,65 @@
 			width: 1px
 			height: 200%
 			background-color: abstracts.color(alpha semi-transparent-dirty-white)
+			display: none
+
+		&--skills
+			#{$block}__panel-heading
+				margin-bottom: 16px
+
+			#{$block}__panel-content
+				height: fit-content
+
+			#{$block}__panel-list
+				padding-top: 8px
+				position: relative
+				width: auto
+
+				&::before
+					content: ''
+					width: 200%
+					height: 1px
+					+abstracts.background(alpha semi-transparent-dirty-white)
+					position: absolute
+					left: -50%
+					top: 0
 
 		&--brands
 			#{$block}__panel-content
 				display: grid
-				grid-template-columns: 160px 1px auto
 				gap: 32px
 				align-items: center
+				grid-template-columns: unset
+				justify-items: center
+
+			#{$block}__panel-separator
+				display: none
 
 		&:focus-visible
 			border-radius: 32px
 
-	// Headings
-	// -----------------------------------------------------------------------------
 	.heading--5
 		display: inline
+
+
+	// =============================================================================
+	// Tablet
+	// =============================================================================
+
+	+abstracts.media(tablet)
+
+		&__panel
+			&--languages
+				grid-template-columns: repeat(2, 1fr)
+
+			&--brands
+				#{$block}__panel-content
+					grid-template-columns: 160px 1px auto
+					justify-items: left
+
+				#{$block}__panel-separator
+					display: block
+
 
 	// =============================================================================
 	// Desktop
@@ -123,8 +164,6 @@
 
 		padding-inline: 24px
 
-		// Layout
-		// -----------------------------------------------------------------------------
 		&__layout
 			max-width: abstracts.columns(12)
 			display: grid
@@ -148,8 +187,6 @@
 				gap: 24px
 				overflow-x: unset
 
-		// Buttons
-		// -----------------------------------------------------------------------------
 		&__button
 			padding: .5em 2em !important
 			border: 2px solid
@@ -158,11 +195,26 @@
 				display: block
 				opacity: 1
 
-		// Panels
-		// -----------------------------------------------------------------------------
 		&__panels
 			padding-top: 80px
 			padding-inline: unset
+
 		&__panel
-			&--skills
+			&--skills,
+			&--languages
 				grid-template-columns: repeat(2, 1fr)
+
+
+	// =============================================================================
+	// <= 480px
+	// =============================================================================
+
+	@media (width <= 480px)
+		&__panel
+			&--brands
+				// #{$block}__panel-content
+				// 	grid-template-columns: unset
+				// 	justify-items: center
+
+				// #{$block}__panel-separator
+				// 	display: none

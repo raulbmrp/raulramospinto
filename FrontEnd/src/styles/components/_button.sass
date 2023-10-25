@@ -1,15 +1,6 @@
 @use "sass:selector"
-
 @use "../abstracts"
 
-
-
-// =============================================================================
-// Button
-// =============================================================================
-
-// 1. Reset for `a` elements.
-// 2. Visually align the icon to the border-radius.
 
 .button
 	$block: &
@@ -39,7 +30,6 @@
 
 	&:focus-visible
 		outline: $border-width solid abstracts.color(brand blue)
-			// offset: 0 // [1]
 
 	&:disabled,
 	&[disabled]
@@ -47,8 +37,6 @@
 		pointer-events: none
 		opacity: .2
 
-	// Text
-	// -----------------------------------------------------------------------------
 	&__text
 		overflow: hidden
 		text-overflow: ellipsis
@@ -62,8 +50,7 @@
 		&--0
 			text-transform: uppercase
 
-	// Modifier: Icon
-	// -----------------------------------------------------------------------------
+
 	&--icon
 		gap: unset
 		max-width: unset
@@ -74,8 +61,6 @@
 			width: 56px
 			height: 56px
 
-	// Modifier: Primary
-	// -----------------------------------------------------------------------------
 	&--primary
 		+abstracts.color(neutral dirty-white)
 		border:
@@ -92,8 +77,6 @@
 				border:
 					color: abstracts.color(brand dark-orange)
 
-	// Modifier: Secondary
-	// -----------------------------------------------------------------------------
 	&--secondary
 		+abstracts.color(neutral dirty-white)
 		border:
@@ -108,8 +91,6 @@
 				+abstracts.background(neutral dirty-white)
 				+abstracts.color(neutral black)
 
-	// Modifier: Tertiary
-	// -----------------------------------------------------------------------------
 	&--tertiary
 		+abstracts.color(neutral dirty-white)
 
@@ -123,8 +104,6 @@
 				+abstracts.background(neutral dirty-white)
 				+abstracts.color(neutral black)
 
-	// Modifier: Menu
-	// -----------------------------------------------------------------------------
 	&--menu
 		+abstracts.color(neutral dirty-white)
 		+abstracts.typography(button menu mobile)
@@ -153,8 +132,6 @@
 			+abstracts.media(desktop)
 				padding: $padding-block-small $padding-inline-small
 
-	// Modifier: Jump
-	// -----------------------------------------------------------------------------
 	&--jump
 		.button__icon
 			animation: jump 1s ease-in-out infinite

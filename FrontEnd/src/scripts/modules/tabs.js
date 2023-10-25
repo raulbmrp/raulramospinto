@@ -2,54 +2,42 @@
 class Tabs {
 	/**
 	 * The `tabs` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#tabs;
 
-
 	/**
 	 * The `tabs__layout` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#tabsLayout;
 
-
 	/**
-	 * The `tabs__button-container` elements.
-	 *
+	 * The `tabs__buttons-container` element.
 	 * @type {HTMLElement}
 	 */
 	#tabsButtonsContainer;
 
-
 	/**
 	 * The `tabs__buttons-list` element.
-	 *
 	 * @type {HTMLElement}
 	 */
 	#tabsButtonsList;
 
-
 	/**
 	 * The `tabs__button` elements.
-	 *
 	 * @type {NodeList}
 	 */
 	#tabsButtons;
 
-
 	/**
 	 * The `tabs__item` elements.
-	 *
 	 * @type {NodeList}
 	 */
 	#tabsPanels;
 
 	/**
 	 * Instantiates the Facts module.
-	 *
 	 * @param {HTMLElement} element - The `.tabs` element.
 	 */
 	constructor(element) {
@@ -57,20 +45,16 @@ class Tabs {
 		// -----------------------------------------------------------------------------
 		this.#tabs = element;
 		this.#tabsLayout = this.#tabs.querySelector('.tabs__layout');
-		this.#tabsButtonsContainer = this.#tabs.querySelector('.tabs__buttons-container');
+		this.#tabsButtonsContainer = document.querySelector('.tabs__buttons-container');
 		this.#tabsButtonsList = this.#tabs.querySelector('.tabs__buttons-list');
 		this.#tabsButtons = this.#tabs.querySelectorAll('.tabs__button');
 		this.#tabsPanels = this.#tabs.querySelectorAll('.tabs__panel');
 
-		// Assemble ARIA roles.
-		// -----------------------------------------------------------------------------
 		this.#tabsButtonsList.setAttribute('role', 'tablist');
 		for (const listItem of this.#tabsButtonsList.querySelectorAll('li')) {
 			listItem.setAttribute('role', 'presentation');
 		}
 
-		// Loop through buttons and their indexes
-		// -----------------------------------------------------------------------------
 		for (const [index, tabsButton] of this.#tabsButtons.entries()) {
 			tabsButton.setAttribute('role', 'tab');
 			if (index === 0) {
@@ -81,17 +65,12 @@ class Tabs {
 			}
 		}
 
-		// Enable to reach the tab panel through keyboard navigation
-		// -----------------------------------------------------------------------------
 		for (const tabsPanel of this.#tabsPanels) {
 			tabsPanel.setAttribute('role', 'tabpanel');
 			tabsPanel.setAttribute('tabindex', '0');
 		}
 
-		// Button click event
-		// -----------------------------------------------------------------------------
 		this.#tabsButtonsList.addEventListener('click', event => {
-			// Prevent default behavior of clicking on links and list items
 			const clickedTab = event.target.closest('a');
 			if (!clickedTab) {
 				return;
@@ -101,34 +80,46 @@ class Tabs {
 			this.switchTab(clickedTab);
 		});
 
-		// Button keydown event
-		// -----------------------------------------------------------------------------
 		this.#tabsLayout.addEventListener('keydown', event => {
+			if (window.matchMedia('(width < 992px)').matches) {
+				switch (event.key) {
+					case 'ArrowLeft': {
+						event.preventDefault();
+						this.movePrevious();
+						break;
+					}
+
+					case 'ArrowRight': {
+						event.preventDefault();
+						this.moveNext();
+						break;
+					}
+
+					default: {
+						break;
+					}
+				}
+			} else {
+				switch (event.key) {
+					case 'ArrowUp': {
+						event.preventDefault();
+						this.movePrevious();
+						break;
+					}
+
+					case 'ArrowDown': {
+						event.preventDefault();
+						this.moveNext();
+						break;
+					}
+
+					default: {
+						break;
+					}
+				}
+			}
+
 			switch (event.key) {
-				case 'ArrowUp': {
-					event.preventDefault();
-					this.movePrevious();
-					break;
-				}
-
-				case 'ArrowLeft': {
-					event.preventDefault();
-					this.movePrevious();
-					break;
-				}
-
-				case 'ArrowDown': {
-					event.preventDefault();
-					this.moveNext();
-					break;
-				}
-
-				case 'ArrowRight': {
-					event.preventDefault();
-					this.moveNext();
-					break;
-				}
-
 				case 'Home': {
 					event.preventDefault();
 					this.switchTab(this.#tabsButtons[0]);
@@ -147,45 +138,41 @@ class Tabs {
 			}
 		});
 
-		// Run on Load
-		// -------------------------------------------------------------
+		window.addEventListener('scroll', () => {
+			if (this.#tabsButtonsContainer.getBoundingClientRect().top <= 0) {
+				for (const tabsButton of [...this.#tabsButtons].slice(1)) {
+					tabsButton.style.animationName = 'cascade';
+					tabsButton.style.animationDuration = '2s';
+					tabsButton.style.animationTimingFunction = 'ease';
+				}
+			}
+		});
+
 		this.addBackground();
-
-		// Run on Resize
-		// -------------------------------------------------------------
-		window.addEventListener('resize', this.addBackground);
-
-		// -----------------------------------------------------------------------------
-		// FUNCTIONS
-		// -----------------------------------------------------------------------------
-
-		// Keyboard interaction
-		// -----------------------------------------------------------------------------
-
 		this.activeTabsRectTop();
-
+		this.ariaOrientation();
 		window.addEventListener('resize', () => {
+			this.addBackground();
 			this.activeTabsRectTop();
+			this.ariaOrientation();
 		});
 	}
 
 	movePrevious() {
 		const currentTab = document.activeElement;
-		const tabsButtons = document.querySelectorAll('.tabs__button');
 		if (currentTab.parentElement.previousElementSibling) {
 			this.switchTab(currentTab.parentElement.previousElementSibling.querySelector('a'));
 		} else {
-			this.switchTab(tabsButtons.at(-1));
+			this.switchTab(this.#tabsButtons.at(-1));
 		}
 	}
 
 	moveNext() {
 		const currentTab = document.activeElement;
-		const tabsButtons = document.querySelectorAll('.tabs__button');
 		if (currentTab.parentElement.nextElementSibling) {
 			this.switchTab(currentTab.parentElement.nextElementSibling.querySelector('a'));
 		} else {
-			this.switchTab(tabsButtons[0]);
+			this.switchTab(this.#tabsButtons[0]);
 		}
 	}
 
@@ -193,15 +180,21 @@ class Tabs {
 		return this.#tabs.getBoundingClientRect().top + window.scrollY;
 	}
 
+	ariaOrientation() {
+		if (window.matchMedia('(width < 992px)').matches) {
+			this.#tabsButtonsList.setAttribute('aria-orientation', 'horizontal');
+		} else {
+			this.#tabsButtonsList.setAttribute('aria-orientation', 'vertical');
+		}
+	}
+
 	addBackground() {
-		const tabsButtonsContainer = document.querySelector('.tabs__buttons-container');
 		if (window.matchMedia('(width < 992px)').matches) {
 			window.addEventListener('scroll', () => {
-				const tabsButtonsContainerYPosition = tabsButtonsContainer.getBoundingClientRect().top;
-				if (tabsButtonsContainerYPosition <= 0) {
-					tabsButtonsContainer.classList.add('on');
+				if (this.#tabsButtonsContainer.getBoundingClientRect().top <= 0) {
+					this.#tabsButtonsContainer.classList.add('on');
 				} else {
-					tabsButtonsContainer.classList.remove('on');
+					this.#tabsButtonsContainer.classList.remove('on');
 				}
 			});
 		}
@@ -222,7 +215,6 @@ class Tabs {
 		}
 
 		activePanel.removeAttribute('hidden', false);
-
 		newTab.setAttribute('aria-selected', true);
 		newTab.setAttribute('tabindex', '0');
 		newTab.focus();

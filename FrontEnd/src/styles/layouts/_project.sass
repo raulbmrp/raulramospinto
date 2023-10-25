@@ -1,43 +1,39 @@
 @use "sass:selector"
-
 @use "../abstracts"
 
-
-// =============================================================================
-// Project
-// =============================================================================
 
 .project
 	$block: &
 
 	padding-inline: 24px
 
-	// Layout
-	// -----------------------------------------------------------------------------
 	&__layout
 		max-width: abstracts.columns(12)
 		margin-inline: auto
 		position: relative
 
-	// Cover
-	// -----------------------------------------------------------------------------
 	&__cover
-		height: 100vh
+		height: 100dvh
 		display: flex
 		flex-direction: column
 		justify-content: space-between
 		// width: -webkit-fill-available
 
-	// Top Container
-	// -----------------------------------------------------------------------------
 	&__top-container
 		margin-top: 24px
 
 		.button__icon
 			transform: rotate(-90deg)
 
-	// Bottom Container
-	// -----------------------------------------------------------------------------
+		.button__back
+			z-index: 10
+
+			&.fix
+				position: fixed
+				mix-blend-mode: difference
+				border: 1px solid abstracts.color(neutral dirty-white)
+				+abstracts.transition(margin background)
+
 	&__bottom-container
 		display: flex
 		flex-direction: column
@@ -45,13 +41,9 @@
 		// width: -webkit-fill-available
 		gap: 16px
 
-	// Heading
-	// -----------------------------------------------------------------------------
 	&__heading
 		order: 2
 
-	// Labels
-	// -----------------------------------------------------------------------------
 	&__labels
 		order: 1
 		display: flex
@@ -63,8 +55,6 @@
 		border-radius: 100vmax
 		border: 1px solid abstracts.color(neutral dirty-white)
 
-	// Tags
-	// -----------------------------------------------------------------------------
 	&__tags
 		order: 3
 		display: grid
@@ -72,31 +62,155 @@
 		height: min-content
 		margin-top: 48px
 
-	// Intro
-	// -----------------------------------------------------------------------------
 	&__intro
 		margin-block: 120px
-		display: grid
+		display: flex
+		flex-direction: column
 		gap: 24px
 
-	// Buttons
-	// -----------------------------------------------------------------------------
 	&__buttons
 		display: flex
 		gap: 24px
 		flex-wrap: wrap
+
+	&__content
+		margin-bottom: 24px
+		margin-inline: -24px
+
+	&__prototype
+		display: flex
+		justify-content: center
+		margin-block: 48px
+
+
+	&__team
+		display: flex
+		flex-direction: column
+		margin-bottom: 48px
+
+		p
+			align-self: center
+
+	&__member-list
+		display: flex
+		flex-direction: column
+		column-gap: 48px
+		row-gap: 8px
+		flex-wrap: wrap
+		align-items: center
+		justify-content: center
+
+
+	// =============================================================================
+	// Tablet
+	// =============================================================================
+
+	+abstracts.media(tablet)
+
+		&__member-list
+			flex-direction: unset
+
 
 	// =============================================================================
 	// Desktop
 	// =============================================================================
 
 	+abstracts.media(desktop)
-		// Tags
-		// -----------------------------------------------------------------------------
+
+		&__top-container
+			.button__back
+				&.fix
+					margin-left: 24px
+
 		&__tags
 			grid-template-columns: repeat(3, 1fr)
 
-		// Intro
-		// -----------------------------------------------------------------------------
 		&__intro
-			grid-template-columns: 2fr 1fr
+			display: grid
+			grid-template-columns: 2fr auto
+			gap: 48px
+
+		&__content
+			margin-inline: unset
+
+			#{$block}__figure
+				&:first-of-type
+					border-radius: 32px 32px 0px 0px
+
+				&:last-of-type
+					border-radius: 0px 0px 32px 32px
+
+
+	&--airbnb
+		.figure--20
+			position: relative
+
+			&::before
+				content: ''
+				background-image: url(../images/portfolio/airbnb/content/videos/apartment-page-0.gif)
+				background-size: 100%
+				position: absolute
+				border-radius: 0.8vw
+				left: 27.7%
+				top: 11%
+				width: 19.7%
+				height: 81%
+
+		.figure--21
+			position: relative
+
+			&::before,
+			&::after
+				content: ''
+				background-size: 100%
+				position: absolute
+				border-radius: 0.8vw
+				width: 19.7%
+				height: 78%
+
+			&::before
+				background-image: url(../images/portfolio/airbnb/content/videos/individual-guestbook-post-0.gif)
+				left: 9.2%
+				top: 15.5%
+
+			&::after
+				background-image: url(../images/portfolio/airbnb/content/videos/individual-guestbook-post-1.gif)
+				left: 32.15%
+				top: 6.9%
+
+		.figure--22
+			position: relative
+
+			&::before,
+			&::after
+				content: ''
+				background-size: 100%
+				position: absolute
+				border-radius: 0.8vw
+				width: 19.7%
+				height: 45.7%
+
+			&::before
+				background-image: url(../images/portfolio/airbnb/content/videos/post-on-guestbook-0.gif)
+				left: 69.7%
+				top: 14.5%
+
+			&::after
+				background-image: url(../images/portfolio/airbnb/content/videos/guestbook-profile-0.gif)
+				left: 7.8%
+				top: 40.8%
+
+	&__progress
+		&-bar
+			height: 2px
+			width: 100%
+			position: fixed
+			bottom: 0
+			left: 0
+			opacity: 0
+			+abstracts.background(alpha semi-transparent-dirty-white)
+			+abstracts.transition(opacity)
+
+		height: 100%
+		width: 0%
+		+abstracts.background(brand orange)

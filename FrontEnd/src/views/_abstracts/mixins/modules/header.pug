@@ -2,7 +2,7 @@ mixin header(options)
 
 	header.header&attributes(attributes)
 		.header__layout.header__layout--top
-			a.header__logo(href="/homepage" title='Go to the homepage' target='_self' aria-label='Go to the homepage')
+			a.header__logo(href="/" title='Go to the homepage' target='_self')
 				+symbol({
 					file: '/assets/images/logos.svg',
 					id: 'logo-raul-ramos-pinto',
@@ -12,49 +12,34 @@ mixin header(options)
 
 			button.header__burger(
 				aria-label='Open menu'
-				aria-expanded='false'
 				aria-haspopup='true'
 			)
 
 		.header__layout.header__layout--menu
 
 			nav.header__menu(aria-label='Main menu')
-				ul.header__menu-list(role='presentation')
+				ul.header__menu-list(role='menu')
 					each item, index in options.menu
-						- const itemWithoutAccents = removeAccents(item);
+						- const normalizedText = removeAccentsCaps(item);
 						li.header__menu-item(
+							role='menuitem'
 							style=`--index:${index};`
 						)
 							+button({
-								url: `#${itemWithoutAccents}`,
+								url: `#${normalizedText}`,
 								target: '_self',
 								textMenu: item,
-								modifiers: 'menu',
-								title: `Go to ${item}`
+								modifiers: 'menu'
 							})(
 								data-index=index
 								class=`${index == 0 ? 'header__menu-button--current' : ''}`
 							).header__menu-button
 					-
-						function removeAccents(str) {
+						function removeAccentsCaps(str) {
 							const accentsMap = {
-								'á': 'a',
-								'à': 'a',
-								'ã': 'a',
-								'â': 'a',
-								'é': 'e',
-								'è': 'e',
-								'ê': 'e',
-								'í': 'i',
-								'ì': 'i',
-								'ó': 'o',
-								'ò': 'o',
-								'õ': 'o',
-								'ô': 'o',
-								'ú': 'u',
-								'ù': 'u',
+								'A': 'a', 'B': 'b', 'C': 'c', 'D': 'd', 'E': 'e', 'F': 'f', 'G': 'g', 'H': 'h', 'I': 'i', 'J': 'j', 'K': 'k', 'L': 'l', 'M': 'm', 'N': 'n', 'O': 'o', 'P': 'p', 'Q': 'q', 'R': 'r', 'S': 's', 'T': 't', 'U': 'u', 'V': 'v', 'W': 'w', 'X': 'x', 'Y': 'y', 'Z': 'z', 'Á': 'a', 'À': 'a', 'À': 'a', 'À': 'a', 'Ã': 'a', 'Â': 'a', 'É': 'e', 'È': 'e', 'Ê': 'e', 'Í': 'i', 'Ì': 'i', 'Ó': 'o', 'Ò': 'o', 'Õ': 'o', 'Ô': 'o', 'Ú': 'u', 'Ù': 'u', 'á': 'a', 'à': 'a', 'ã': 'a', 'â': 'a', 'é': 'e', 'è': 'e', 'ê': 'e', 'í': 'i', 'ì': 'i', 'ó': 'o', 'ò': 'o', 'õ': 'o', 'ô': 'o', 'ú': 'u', 'ù': 'u', 'ç': 'c', 'Ç': 'c',
 							}
-							return str.replace(/[áàãâéèêíìóòõôúù]/g, (accentedChar) => accentsMap[accentedChar]);
+							return str.replace(/[ABCDEFGHIJKLMNOPQRSTUVWXYZÁÀÃÂÉÈÊÍÌÓÒÕÔÚÙáàãâéèêíìóòõôúùçÇ]/g, (accentedChar) => accentsMap[accentedChar]);
 						};
 				.header__menu-shape(aria-hidden='true')
 					.header__menu-shape-bg(aria-hidden='true')
@@ -63,9 +48,8 @@ mixin header(options)
 					+button({
 						url: 'https://drive.google.com/file/d/1Uc-wgqqPp4Uw2_E73tsM8BS1mNxl-8Gs/view?usp=sharing',
 						target: '_blank',
-						text: 'Open CV <span class="sr-only">on a new tab</span>',
-						modifiers: 'menu',
-						title: "Open Raul's CV on a new tab"
+						text: 'Open <span class="sr-only">Raul&apos;s</span> CV <span class="sr-only">on a new tab</span>',
+						modifiers: 'menu'
 					}).cta
 
 			if options.socials

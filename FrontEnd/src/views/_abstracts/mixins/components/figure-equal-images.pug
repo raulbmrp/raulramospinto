@@ -1,0 +1,24 @@
+mixin figure-equal-images(options)
+	figure.figure(class=setModifiers(options.modifiers, 'figure--'))&attributes(attributes)
+
+		-
+			const path = '../assets/images/';
+			const imagesWidth = ['480', '960', '1440', '1920', '2400', '2880', '3360', '3840', '4320'];
+			const tablet = '(min-width: 480px)';
+			const desktop = '(min-width: 991px)';
+
+		img(
+			src=path + options.file + '/' + options.name + '-' + imagesWidth[0] + '.' + options.format
+			srcset=imagesWidth.map((width) => `${
+				path + options.file + '/' + options.name + '-' + width + '.webp ' + width + 'w' + ', ' + path + options.file + '/' + options.name + '-' + width + '.' + options.format + ' ' + width + 'w'
+			}`).join(', ')
+			sizes=`${desktop + ' ' + options.sizesDesktop + 'vw, ' + tablet + ' ' + options.sizesTablet + 'vw, ' + options.sizesMobile + 'vw'}`
+			alt=(options.alt || ' ')
+			loading=(options.loading ? 'lazy' : null)
+			title=options.title
+			role=(options.decorative ? 'presentation' : 'img')
+		)
+
+		if options.figcaption
+			figcaption.figure__caption.sr-only
+				| !{options.figcaption}

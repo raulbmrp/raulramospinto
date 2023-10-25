@@ -1,6 +1,617 @@
 extends _layouts/base
 
-
+block variables
+	-
+		homepage = true;
+		pageDescription = `${mainTitle} is a UX/UI Designer and Front-End Developer with ${yearsOfExperience} years of experience and a very strong concern for web accessibility.`;
 
 block main
-	h1 Welcome to the Raul Ramos Pinto homepage!
+
+	+intro({
+		modifiers: 'intro',
+		htmlTag: 'h1',
+		text: 'Welcome to <span class="highlight">Raul Ramos Pinto</span>&apos;s portfolio website',
+		textModifiers: '1'
+	})
+
+	+image-text({
+		modifiers: 'about',
+		sectionHeading: 'About',
+		htmlTag: 'h3',
+		text: 'I&apos;m a <span class="highlight"><abbr title="User Experience">UX</abbr>/<abbr title="User Interface">UI</abbr> Designer</span> and <span class="highlight">Front-End Web Developer</span> based in Porto.',
+		textModifiers: '2',
+		file: 'profile',
+		name: 'raul-ramos-pinto',
+		alt: 'Raul Ramos Pinto black and white portrait',
+		title: 'Raul Ramos Pinto portrait',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 33,
+		loading: 'lazy'
+	})(id='about')
+		p
+			| As a passionate Front-End Developer, I have expertise in&nbsp;
+			strong
+				abbr(title='Hypertext Markup Language') HTML
+			| ,&nbsp;
+			strong
+				abbr(title='Cascading Style Sheets') CSS
+			| , and&nbsp;
+			strong JavaScript
+			| , placing a strong emphasis on creating&nbsp;
+			strong accessible
+			| &nbsp;and&nbsp;
+			strong user-friendly
+			| &nbsp;websites. By combining a keen eye for&nbsp;
+			abbr(title='User Experience') UX
+			| &nbsp;and&nbsp;
+			abbr(title='User Interface') UI
+			| &nbsp;Design, I seamlessly blend&nbsp;
+			strong aesthetics
+			| &nbsp;with&nbsp;
+			strong functionality
+			| &nbsp;to deliver captivating and&nbsp;
+			strong responsive digital experiences
+			| . Employing a&nbsp;
+			strong problem-solving mindset
+			| , I tackle challenges head-on, discovering innovative solutions for optimal results.
+		p
+			| In my free time, I enjoy painting and have been creating murals under the name Kilos since&nbsp;
+			time(datetime='2016') 2016
+			| .
+			br
+			| As a professional basketball player since&nbsp;
+			time(datetime='2007') 2007
+			| , I have represented 6 teams, 1 association, and 1 university.
+
+	+tabs({
+		modifiers: 'resume',
+		sectionHeading: 'Resumé',
+		items: [
+			{
+				name: 'Professional Experience',
+				url: 'professional-experience',
+				jobs: [
+					{
+						role: 'Front-End Web Developer',
+						company: 'WYcreative',
+						url: 'https://wycreative.com/',
+						urlLang: 'en',
+						startDate: '<abbr title="March">Mar</abbr> 2022',
+						startDateTime: '2022-03-24',
+						endDate: 'Present',
+						endDateTime: 'Present',
+						description: 'Mostly coded in PugJS, Sass and JavaScript for web development projects. I also took on responsibilities involving <abbr title="Quality Assurance">QA</abbr> testing, <abbr title="Accessibility">A11y</abbr> and newsletters creation, where I wrote in Handlebars and <abbr title="Leaner Style Sheets">Less</abbr> programming languages. I&apos;ve been involved in projects such as <a href="https://isegexecutive.education/en/" target="_blank" rel="noreferrer noopener" hreflang="en-US" class="link link--text">ISEG Executive Education</a>, <a href="https://www.vangproperties.com/en/" target="_blank" rel="noreferrer noopener" hreflang="en" class="link link--text">Vanguard Properties</a>, <a href="https://www.parquesdesintra.pt/en/" target="_blank" rel="noreferrer noopener" hreflang="en-GB" class="link link--text" lang="pt-PT">Parques de Sintra</a>, <a href="https://clubesagres.cervejasagres.pt/" target="_blank" rel="noreferrer noopener" hreflang="pt-PT" class="link link--text" lang="pt-PT">Clube Sagres</a>, <a href="https://www.brisa.pt/en/" target="_blank" rel="noreferrer noopener" hreflang="en-US" class="link link--text" lang="pt-PT">Grupo Brisa</a>, <a href="https://www.mudareganhar.pt/" target="_blank" rel="noreferrer noopener" hreflang="pt" class="link link--text" lang="pt-PT">Mudar É Ganhar</a> and others. Additionally, I helped with the creation of components for the Engineering Team Front-End project generator - <a href="https://github.com/WYcreative/genesis" target="_blank" rel="noreferrer noopener" hreflang="en" class="link link--text">Genesis</a>.'
+					},
+					{
+						role: 'Graffiti Artist',
+						company: 'Kilos',
+						url: 'https://linktr.ee/kilosgraffiti',
+						urlLang: 'en',
+						startDate: '2016',
+						startDateTime: '2016',
+						endDate: 'Present',
+						endDateTime: 'Present',
+						description: 'Started my own artistic expression. Since then, I&apos;ve painted walls in Porto, Lisbon, Algarve, Barcelona, London, Wiesbaden, and Rio de Janeiro. I&apos;ve had three exhibitions so far, from which one of them I was also the curator. More than ten commissioned murals and one participation in the largest international graffiti festival - <a href="https://meetingofstyles.com/" target="_blank" rel="noreferrer noopener" hreflang="en-GB" class="link link--text">Meeting Of Styles</a>.'
+					},
+					{
+						role: 'Graphic Designer',
+						company: 'Dice.pt',
+						url: 'https://dice.pt/',
+						urlLang: 'pt-PT',
+						startDate: '<abbr title="July">Jul</abbr> 2020',
+						startDateTime: '2020-07',
+						endDate: '<abbr title="June">Jun</abbr> 2021',
+						endDateTime: '2021-06',
+						description: 'I&apos;ve enhanced my skills in Illustration, <abbr title="Search Engine Optimization">SEO</abbr>, Branding, Editorial, Motion, and Web Design, by using tools such as Adobe Illustrator, Photoshop, After Effects, InDesign and Figma.'
+					}
+				]
+			},
+			{
+				name: 'Education',
+				url: 'education',
+				courses: [
+					{
+						course: 'Digital Experience Design',
+						school: 'FBAUL',
+						schoolAbbr: '<abbr title="Faculty of Fine Arts of the University of Lisbon">FBAUL</abbr>',
+						url: 'https://www.belasartes.ulisboa.pt/en/',
+						urlLang: 'en-US',
+						startDate: '2021',
+						startDateTime: '2021',
+						endDate: '2022',
+						endDateTime: '2022',
+						description: 'Completed a specialized course in Digital Experience Design, where I honed my skills in Visual Design, User Experience and Coding. Gained a deeper understanding of Digital Marketing and Entrepreneurship. This immersive program allowed me to put my knowledge into practice and become well-rounded in the digital design industry.'
+					},
+					{
+						course: 'Web Design',
+						school: 'LSD Porto',
+						schoolAbbr: '<abbr title="Lisbon School of Design Porto">LSD Porto</abbr>',
+						url: 'https://www.lsd.pt/',
+						urlLang: 'en',
+						startDate: '2020',
+						startDateTime: '2020',
+						endDate: '2021',
+						endDateTime: '2021',
+						description: 'Completed a comprehensive course that introduced me to the world of web development and digital marketing. This program covered a wide range of topics, including <abbr title="User Experience">UX</abbr>/<abbr title="User Interface">UI</abbr> design, digital marketing, and programming languages such as <abbr title="Hypertext Markup Language">HTML</abbr>, <abbr title="Cascading Style Sheets">CSS</abbr>, JavaScript, <abbr title="Hypertext Preprocessor">PHP</abbr>, and <abbr title="Structured Query Language">SQL</abbr>. With hands-on experience and a solid foundation in these technologies, I became equipped to commit myself to the field of web development.'
+					},
+					{
+						course: 'Communication Design',
+						school: 'ESAD Matosinhos',
+						schoolAbbr: '<abbr title="College of Art and Design">ESAD Matosinhos</abbr>',
+						url: 'https://esad.pt/',
+						urlLang: 'pt',
+						startDate: '2016',
+						startDateTime: '2016',
+						endDate: '2019',
+						endDateTime: '2019',
+						description: 'I&apos;ve enhanced my skills in Illustration, Branding, Editorial, Motion, Communication, Design Thinking and <abbr title="User Interface">UI</abbr> Design, by using tools such as Adobe Illustrator, Photoshop, After Effects, InDesign and Figma.'
+					},
+					{
+						course: 'Graphic Design',
+						school: 'Kingston University',
+						url: 'https://www.kingston.ac.uk/',
+						urlLang: 'en-GB',
+						startDate: '<abbr title="September">Sep</abbr> 2018',
+						startDateTime: '2018-09',
+						endDate: '<abbr title="January">Jan</abbr> 2019',
+						endDateTime: '2019-01',
+						description: 'Had the opportunity to study Graphic Design as part of my third academic year at Kingston University, London, <abbr title="United Kingdom">UK</abbr> through the ERASMUS program. This experience provided me with a comprehensive education in the field of graphic design and a deeper understanding of the creative process.'
+					},
+				]
+			},
+			{
+				name: 'Skills',
+				url: 'skills',
+				categories: [
+					{
+						name: 'Programming',
+						skills: [
+							'<abbr title="Hypertext Markup Language">HTML</abbr> / PugJS / <abbr title="Handlebars">HBS</abbr>',
+							'<abbr title="Cascading Style Sheets">CSS</abbr> / <abbr title="syntactically awesome style sheets">SASS</abbr> / <abbr title="Leaner Style Sheets">Less</abbr>',
+							'JavaScript',
+							'Git',
+							'Liquid',
+							'<abbr title="Accessibility">A11y</abbr>',
+							'<abbr title="Search Engine Optimization">SEO</abbr>'
+						]
+					},
+					{
+						name: 'Design',
+						skills: [
+							'Figma',
+							'Adobe XD',
+							'Adobe Illustrator',
+							'Adobe Photoshop',
+							'Adobe InDesign',
+							'Adobe After Effects'
+						]
+					}
+				]
+			},
+			{
+				name: 'Certifications',
+				url: 'certifications',
+				certificates: [
+					{
+						name: 'Introduction to Web Accessibility',
+						company: 'edX',
+						url: 'https://www.edx.org/',
+						urlLang: 'en',
+						date: '2023',
+						documentUrl: 'https://courses.edx.org/certificates/c46f8cba34284e68ab11c55e3293ff44'
+					},
+					{
+						name: 'Microsoft Excel',
+						company: 'LinkedIn Skill Assessment badge',
+						url: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						urlLang: 'en',
+						date: '2023'
+					},
+					{
+						name: 'Adobe InDesign',
+						company: 'LinkedIn Skill Assessment badge',
+						url: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						urlLang: 'en',
+						date: '2022'
+					},
+					{
+						name: 'Dreamweaver',
+						company: 'LinkedIn Skill Assessment badge',
+						url: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						urlLang: 'en',
+						date: '2022'
+					},
+					{
+						name: 'Front-End Development',
+						company: 'LinkedIn Skill Assessment badge',
+						url: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						urlLang: 'en',
+						date: '2022'
+					},
+					{
+						name: 'JavaScript',
+						company: 'LinkedIn Skill Assessment badge',
+						url: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						urlLang: 'en',
+						date: '2022'
+					},
+					{
+						name: 'Search Engine Optimization (SEO)',
+						company: 'LinkedIn Skill Assessment badge',
+						url: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						urlLang: 'en',
+						date: '2022'
+					},
+					{
+						name: 'The Fundamentals of Digital Marketing',
+						company: 'Google Digital Garage',
+						url: 'https://learndigital.withgoogle.com/digitalgarage/',
+						urlLang: 'en',
+						date: '2021',
+						documentUrl: 'https://drive.google.com/file/d/1-mPhZWcPbK84V6Z-mqUa8J-XosbBpi0M/view'
+					},
+					{
+						name: 'Adobe Illustrator',
+						company: 'LinkedIn Skill Assessment badge',
+						url: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						urlLang: 'en',
+						date: '2021'
+					},
+					{
+						name: 'Adobe Photoshop',
+						company: 'LinkedIn Skill Assessment badge',
+						url: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						urlLang: 'en',
+						date: '2021'
+					},
+					{
+						name: 'Adobe XD',
+						company: 'LinkedIn Skill Assessment badge',
+						url: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						urlLang: 'en',
+						date: '2021'
+					},
+					{
+						name: 'Cascading Style Sheets (CSS)',
+						company: 'LinkedIn Skill Assessment badge',
+						url: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						urlLang: 'en',
+						date: '2021'
+					},
+					{
+						name: '<abbr title="Hypertext Markup Language">HTML</abbr>',
+						company: 'LinkedIn Skill Assessment badge',
+						url: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						urlLang: 'en',
+						date: '2021'
+					},
+					{
+						name: 'After Effects',
+						company: 'LinkedIn Skill Assessment badge',
+						url: 'https://www.linkedin.com/in/raul-ramos-pinto/details/skills/',
+						urlLang: 'en',
+						date: '2020'
+					},
+				]
+			},
+			{
+				name: "Brands I've worked with",
+				url: 'brands',
+				brands: [
+					{
+						name: 'BP',
+						url: 'https://www.bp.com/',
+						urlLang: 'en',
+						figure: false,
+						iconId: 'bp'
+					},
+					{
+						name: 'Cerveja Sagres',
+						nameLang: '<span lang="pt-PT">Cerveja Sagres</span>',
+						url: 'https://www.cervejasagres.pt/pt/clube-sagres/',
+						urlLang: 'pt-PT',
+						figure: false,
+						iconId: 'sagres'
+					},
+					{
+						name: 'Être Artisan',
+						nameLang: '<span lang="fr-FR">Être Artisan</span>',
+						url: 'https://www.etreartisan.eu/en/',
+						urlLang: 'en-US',
+						figure: false,
+						iconId: 'etre'
+					},
+					{
+						name: 'Grupo Brisa',
+						nameLang: '<span lang="pt-PT">Grupo Brisa</span>',
+						url: 'https://www.brisa.pt/en/',
+						urlLang: 'en-US',
+						figure: false,
+						iconId: 'brisa'
+					},
+					{
+						name: 'ISEG',
+						nameAbbr: '<abbr title="Institute of Economics and Management">ISEG</abbr>',
+						url: 'https://isegexecutive.education/en/',
+						urlLang: 'en-US',
+						figure: false,
+						iconId: 'iseg'
+					},
+					{
+						name: 'Lamborghini',
+						url: 'https://www.lamborghini.com/en-en',
+						urlLang: 'en',
+						figure: false,
+						iconId: 'lamborghini'
+					},
+					{
+						name: 'Politejo',
+						url: 'https://www.politejo.com/en/',
+						urlLang: 'en-UK',
+						figure: false,
+						iconId: 'politejo'
+					},
+					{
+						name: 'Público',
+						nameLang: '<span lang="pt-PT">Público</span>',
+						url: 'https://www.publico.pt/',
+						urlLang: 'pt',
+						figure: false,
+						iconId: 'publico'
+					},
+					{
+						name: 'Vanguard Properties',
+						url: 'https://www.vangproperties.com/en/',
+						urlLang: 'en',
+						figure: false,
+						iconId: 'vanguard-properties'
+					},
+				]
+			},
+			{
+				name: 'Languages',
+				url: 'languages',
+				idioms: [
+					{
+						idiom: 'Portuguese',
+						level: 'Native'
+					},
+					{
+						idiom: 'English',
+						level: 'Fluent'
+					},
+					{
+						idiom: 'Spanish',
+						level: 'Conversational'
+					},
+				]
+			},
+			{
+				name: 'Volunteering',
+				url: 'volunteering',
+				programs: [
+					{
+						role: 'Coordinator',
+						company: 'Just a Change',
+						url: 'https://justachange.pt/en',
+						urlLang: 'en-US',
+						startDate: '<abbr title="August">Aug</abbr> 22, 2022',
+						startDateTime: '2022-08-22',
+						endDate: '<abbr title="September">Sep</abbr> 04, 2022',
+						endDateTime: '2022-09-04',
+						description: 'Rebuilding homes for needy people in Miranda do Douro.'
+					},
+					{
+						role: 'Coordinator',
+						company: 'Just a Change',
+						url: 'https://justachange.pt/en',
+						urlLang: 'en-US',
+						startDate: '<abbr title="October">Oct</abbr> 18, 2022',
+						startDateTime: '2022-10-18',
+						endDate: '<abbr title="October">Oct</abbr> 21, 2022',
+						endDateTime: '2022-10-21',
+						description: 'Rebuilding homes for needy people in Lisbon.'
+					},
+					{
+						role: 'Coordinator',
+						company: 'Just a Change',
+						url: 'https://justachange.pt/en',
+						urlLang: 'en-US',
+						startDate: '<abbr title="July">Jul</abbr> 11, 2021',
+						startDateTime: '2021-07-11',
+						endDate: '<abbr title="July">Jul</abbr> 25, 2021',
+						endDateTime: '2021-07-25',
+						description: 'Rebuilding homes for needy people in Faro.'
+					},
+					{
+						role: 'Volunteer (Design Department)',
+						company: 'ESN Porto',
+						companyAbbr: '<abbr title="Erasmus Student Network">ESN</abbr> Porto',
+						url: 'https://esnporto.org/',
+						urlLang: 'en',
+						startDate: '<abbr title="February">Feb</abbr> 2019',
+						startDateTime: '2019-02',
+						endDate: '<abbr title="December">Dec</abbr> 2019',
+						endDateTime: '2019-12',
+						description: 'Welcoming international students providing opportunities for cultural understanding and self development.'
+					},
+					{
+						role: 'Volunteer',
+						company: 'Missão País',
+						companyLang: '<span lang="pt-PT">Missão País</span>',
+						url: 'https://www.missaopais.pt/',
+						urlLang: 'pt',
+						startDate: '<abbr title="January">Jan</abbr> 26, 2019',
+						startDateTime: '2019-01-26',
+						endDate: '<abbr title="February">Feb</abbr> 2, 2019',
+						endDateTime: '2019-02-02',
+						description: ''
+					},
+					{
+						role: 'Volunteer',
+						company: 'Just a Change',
+						url: 'https://justachange.pt/en',
+						urlLang: 'en-US',
+						startDate: '<abbr title="August">Aug</abbr> 27, 2019',
+						startDateTime: '2019-08-27',
+						endDate: '<abbr title="September">Sep</abbr> 8, 2019',
+						endDateTime: '2019-09-08',
+						description: 'Rebuilding homes for needy people in Torres Vedras.'
+					},
+					{
+						role: 'Volunteer',
+						company: 'Just a Change',
+						url: 'https://justachange.pt/en',
+						urlLang: 'en-US',
+						startDate: '<abbr title="September">Sep</abbr> 2, 2018',
+						startDateTime: '2018-09-02',
+						endDate: '<abbr title="September">Sep</abbr> 9, 2018',
+						endDateTime: '2018-09-09',
+						description: 'Rebuilding homes for needy people in Tondela.'
+					},
+				]
+			},
+			{
+				name: 'Sports',
+				url: 'sports',
+				achievements: [
+					{
+						role: 'Basketball Athlete',
+						team: 'A.B.Porto',
+						teamAbbr: '<abbr title="Porto Basketball Association">A.B.Porto</abbr>',
+						url: 'https://www.abp.pt/',
+						urlLang: 'pt-PT',
+						date: '2014',
+						description: 'National championship winner.'
+					},
+					{
+						role: 'Basketball Athlete',
+						team: 'Club 5 Basket',
+						url: 'https://club5basket.wixsite.com/club-5basket/',
+						urlLang: 'pt',
+						date: '2014',
+						description: 'District championship winner.'
+					},
+					{
+						role: 'Basketball Athlete',
+						team: 'F.C.Porto',
+						teamAbbr: '<abbr lang="pt-PT" title="Futebol Clube do Porto">F.C.Porto</abbr>',
+						url: 'https://www.fcporto.pt/en/',
+						urlLang: 'en',
+						date: '2011',
+						description: 'District championship winner.'
+					},
+				]
+			}
+		]
+	})(id='resume')
+
+	+cards-grid({
+		modifiers: 'portfolio',
+		sectionHeading: 'Portfolio',
+		hasImage: true,
+		headingTag: 'h3',
+		headingTextModifiers: '3',
+		cards: [
+			{
+				title: 'dope',
+				slogan: 'A safer trip advisor',
+				figureAlt: 'Dope - A safer trip advisor | For an informed drug consumption and testing.',
+				labels: [
+					{
+						text: 'UX/UI Design',
+						labelModifiers: 'design'
+					},
+				],
+				description: 'A service to promote a safer and more informed use of drugs through testing, monitoring consumption sessions and providing information on drug types and strains, as well as emergency procedures.',
+				soon: false
+			},
+			{
+				title: 'airbnb',
+				slogan: 'Guestbook Feature',
+				figureAlt: 'Airbnb - Guestbook Feature',
+				labels: [
+					{
+						text: 'UX/UI Design',
+						labelModifiers: 'design'
+					},
+				],
+				description: 'This feature allows users to share with other guests the experiences they have had not only at the residence but also at the place they are visiting, encouraging others to visit and experience the same.',
+				soon: false
+			},
+			{
+				title: 'fbaul',
+				slogan: 'Alumni website design',
+				figureAlt: 'b-a | creating an alumni community',
+				labels: [
+					{
+						text: 'UX/UI Design',
+						labelModifiers: 'design'
+					}
+				],
+				description: 'Designing an Alumni community website for the Faculty of Fine Arts of the University of Lisbon.',
+				soon: false
+			},
+			{
+				title: 'sango',
+				slogan: 'Handmade creations',
+				figureAlt: 'Sango - Handmade creations',
+				labels: [
+					{
+						text: 'UX/UI Design',
+						labelModifiers: 'design'
+					},
+					{
+						text: 'Front-End',
+						labelModifiers: 'code'
+					}
+				],
+				description: 'This project was a total rebranding, from the logo to the website and online shop. The main aim was to develop the front-end of the whole Sango&apos;s website.',
+				soon: false
+			},
+			{
+				title: 'remind',
+				slogan: 'Helping treat mental health disorders faster',
+				figureAlt: 'Remind - Helping treat mental health disorders faster',
+				labels: [
+					{
+						text: 'UX/UI Design',
+						labelModifiers: 'design'
+					}
+				],
+				description: 'Remind is an <abbr title="Artificial Intelligence">AI</abbr> powered app that bridges the gap between doctor/patient, helping to provide faster and more efficient diagnosis and treatment.',
+				soon: true
+			},
+			{
+				title: 'tinypink',
+				slogan: 'Achieve incredible detail in your spray works ',
+				figureAlt: 'Tinypink - Achieve incredible detail in your spray works ',
+				labels: [
+					{
+						text: 'UX/UI Design',
+						labelModifiers: 'design'
+					}
+				],
+				description: 'Creating a design system and redesigning the Tinypink stencil cap e-commerce website.',
+				soon: true
+			},
+		]
+	})(id='portfolio')
+
+	+cta({
+		modifiers: 'contact',
+		sectionHeading: 'Contact',
+		buttons: [
+			{
+				url: 'mailto:raulbmrp@gmail.com',
+				text: 'Get in touch <span class="sr-only">with Raul</span>',
+				modifiers: 'secondary',
+				iconFile: '/assets/images/contacts.svg',
+				iconId: 'mail'
+			}
+		]
+	})(id='contact')
+		.cta__text
+			h3.heading--2 Let's Work Together!

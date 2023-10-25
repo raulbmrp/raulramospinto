@@ -16,26 +16,49 @@ block main
 	})(class='sr-only')
 
 	+image-text({
-		modifiers: `${section}`,
+		modifiers: 'about',
 		htmlTag: 'h3',
-		text: 'I&apos;m a <span class="highlight">UX/UI Designer</span> and <span class="highlight">Front-End Web Developer</span> based in Porto.',
+		text: 'I&apos;m a <span class="highlight"><abbr title="User Experience">UX</abbr>/<abbr title="User Interface">UI</abbr> Designer</span> and <span class="highlight">Front-End Web Developer</span> based in Porto.',
 		textModifiers: '2',
 		file: 'profile',
 		name: 'raul-ramos-pinto',
 		alt: 'Raul Ramos Pinto black and white portrait',
 		title: 'Raul Ramos Pinto portrait',
-		format: 'png',
+		format: 'jpg',
 		sizesMobile: 100,
-		sizesDesktop: 50,
-		widthMobileX1: 320,
-		widthMobileX2: 475,
-		widthDesktopX1: 768,
-		widthDesktopX2: 1200,
+		sizesTablet: 100,
+		sizesDesktop: 33,
 		loading: 'lazy'
-	})(id=`${section}`)
+	})(id='about')
 		p
-			| As a passionate Front-End Developer, I have expertise in HTML, CSS, and JavaScript, placing a strong emphasis on creating accessible and user-friendly websites. By combining a keen eye for UX and UI Design, I seamlessly blend aesthetics with functionality to deliver captivating and responsive digital experiences. Employing a problem-solving mindset, I tackle challenges head-on, discovering innovative solutions for optimal results.
+			| As a passionate Front-End Developer, I have expertise in&nbsp;
+			strong
+				abbr(title='Hypertext Markup Language') HTML
+			| ,&nbsp;
+			strong
+				abbr(title='Cascading Style Sheets') CSS
+			| , and&nbsp;
+			strong JavaScript
+			| , placing a strong emphasis on creating&nbsp;
+			strong accessible
+			| &nbsp;and&nbsp;
+			strong user-friendly
+			| &nbsp;websites. By combining a keen eye for&nbsp;
+			abbr(title='User Experience') UX
+			| &nbsp;and&nbsp;
+			abbr(title='User Interface') UI
+			| &nbsp;Design, I seamlessly blend&nbsp;
+			strong aesthetics
+			| &nbsp;with&nbsp;
+			strong functionality
+			| &nbsp;to deliver captivating and&nbsp;
+			strong responsive digital experiences
+			| . Employing a&nbsp;
+			strong problem-solving mindset
+			| , I tackle challenges head-on, discovering innovative solutions for optimal results.
 		p
-			| In my free time, I enjoy painting and have been creating murals under the name Kilos since 2016.
-			br
-			| As a professional basketball player since 2007, I have represented 6 teams, 1 association, and 1 university.
+			| In my free time, I enjoy painting and have been creating murals under the name Kilos since&nbsp;
+			time(datetime='2016') 2016
+			| . As a professional basketball player since&nbsp;
+			time(datetime='2007') 2007
+			| , I have represented 6 teams, 1 association, and 1 university.

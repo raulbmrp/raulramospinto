@@ -1,0 +1,19 @@
+extends ../../../src/views/_layouts/base
+
+block variables
+	-
+		error = true;
+		title = 'Error 502';
+
+block main
+
+	+error({
+		headingText: '502 Bad Gateway',
+		description: '<strong>Oops! <br>My servers are playing hide and seek.</strong> <br>They&apos;re pretty good at it. Care to wait a bit while I find them? Stay here, or check out my <abbr title="Curriculum Vitae">CV</abbr>.',
+		modifiers: '502',
+		buttonText: 'Open CV <span class="sr-only">on a new tab</span>',
+		buttonUrl: 'https://drive.google.com/file/d/1Uc-wgqqPp4Uw2_E73tsM8BS1mNxl-8Gs/view?usp=sharing',
+		buttonModifiers: 'primary',
+		buttonTarget: '_blank',
+		buttonTitle: "Open Raul's CV on a new tab"
+	})

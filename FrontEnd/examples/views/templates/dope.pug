@@ -1,19 +1,569 @@
 extends ../../../src/views/_layouts/base
 
 block variables
-	- project = true
-	- title = 'Dope'
-	- slogan = 'A safer trip advisor'
-	- labels = ['UX/UI Design']
-	- tags = ['<abbr title="User Experience">UX</abbr> Design', '<abbr title="User Interface">UI</abbr> Design', 'Product Design', '<abbr title="Application">App</abbr>', 'Sketches', 'Wireframes', 'Design System', 'Mockups', 'Prototype', 'Testing']
-	- pageDescription = 'A service to promote a safer and more informed use of drugs through testing, monitoring consumption sessions and providing information on drug types and strains, as well as emergency procedures.'
 	-
+		project = true;
+		title = 'Dope';
+		slogan = 'A safer trip advisor';
+		labels = ['UX/UI Design'];
+		tags = ['<abbr title="User Experience">UX</abbr> Design', '<abbr title="User Interface">UI</abbr> Design', 'Product Design', '<abbr title="Application">App</abbr>', 'Sketches', 'Wireframes', 'Design System', 'Mockups', 'Prototype', 'Testing'];
+		pageDescription = 'A service to promote a safer and more informed use of drugs through testing, monitoring consumption sessions and providing information on drug types and strains, as well as emergency procedures.';
+		team = ['Ana Marta Sousa', 'Gonçalo Páscoa', 'Inês Bernardino', 'Inês Esteves', 'Raul Ramos Pinto'];
 		buttons = [
 			{
 				social: 'behance',
 				url: 'https://www.behance.net/gallery/154418651/Dope-MOBILE-APP',
 				urlLang: 'en'
 			}
-		]
+		];
+		prototype = 'https://www.figma.com/proto/ioNDVcPeN3Ot4DD38Kk8D2/DXD-Dope__Prototype?page-id=52%3A7193&type=design&node-id=354-21571&viewport=1740%2C1870%2C0.26&t=52grfM463bryQUtx-1&scaling=scale-down&starting-point-node-id=354%3A21571&mode=design';
 
-block main
+block project
+
+	p.sr-only For an informed drug consumption and testing
+
+	+figure-equal-images({
+		modifiers: '0',
+		file: `portfolio/${title}/content`,
+		name: `${title}-0`,
+		title: 'Dope',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	h2.sr-only
+		strong
+			| Recreational drug use&nbsp;
+		| has been around for thousands of years.
+
+	+figure-equal-images({
+		modifiers: '1',
+		file: `portfolio/${title}/content`,
+		name: `${title}-1`,
+		title: 'Recreational drug use',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		blockquote(cite='https://nida.nih.gov/research-topics/addiction-science/drugs-brain-behavior-science-of-addiction')
+			p
+				| When scientists began to study addictive behavior in the 1930s, people addicted to drugs were thought to be morally flawed and lacking in willpower. Groundbreaking discoveries about the brain have revolutionized our understanding of drug use, enabling us to respond effectively.
+		p
+			small
+				| Nora D. Volkow, M.D.
+				br
+				| Director National Institute on Drug Abuse
+
+	+figure-equal-images({
+		modifiers: '2',
+		file: `portfolio/${title}/content`,
+		name: `${title}-2`,
+		title: 'Nora D. Volkow, M.D.',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h3 Lifetime use in the European Union
+		dl
+			dt Cannabis
+			dd 91,2 Million
+			dd 27,4%
+			dt Cocaine
+			dd 18 Million
+			dd 5,4%
+			dt MDMA
+			dd 13,7 Million
+			dd 4,1%
+			dt Amphetamines
+			dd 12,4 Million
+			dd 3,7%
+		p
+			small
+				| European Drug Report; Trends and Developments;&nbsp;
+				time(datetime='2019') 2019
+				| .
+
+	+figure-equal-images({
+		modifiers: '3',
+		file: `portfolio/${title}/content`,
+		name: `${title}-3`,
+		title: 'Lifetime use in the European Union',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	h2.sr-only
+		strong
+			| Recreational drug use&nbsp;
+		| is not going to disappear anytime soon.
+
+	+figure-equal-images({
+		modifiers: '4',
+		file: `portfolio/${title}/content`,
+		name: `${title}-4`,
+		title: 'Recreational drug use',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		dl
+			dt Social implications
+			dd Bad academic performance
+			dd Low employment stability
+			dd Inclination to try other drugs
+			dt Mental health disorders
+			dd Mood and anxiety disorders
+			dd Cognitive deficit
+			dd Paranoid psychosis
+			dt Heart conditions
+			dd Arrhythmias
+			dd Heart attacks
+			dt Brain damage
+			dd Strokes
+			dd Intracerebral hemorrhage
+
+	+figure-equal-images({
+		modifiers: '5',
+		file: `portfolio/${title}/content`,
+		name: `${title}-5`,
+		title: 'Issues',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h3 Problem Space
+		ol
+			li
+				p
+					strong Prior knowledge
+				h4 Lack of awareness
+				ul
+					li Not knowing what you're buying or consuming
+					li Misinformation on substance effects, use and mixing
+			li
+				p
+					strong Personal consumption
+				h4 Oblivious use
+				ul
+					li Ignoring the role personal and biological factors play
+					li Poor tracking and lack of awareness of consumption
+			li
+				p
+					strong Emergency procedures
+				h4 Poor assistance
+				ul
+					li Not knowing what to do in an emergency situation
+					li Failing to get help - fear of asking or not knowing who to ask
+
+	+figure-equal-images({
+		modifiers: '6',
+		file: `portfolio/${title}/content`,
+		name: `${title}-6`,
+		title: 'Problem Space',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h3 Main insights
+		p
+			strong interviews and surveys
+		ol
+			li
+				h4 Information
+				p Understanding the safest way to consume a specific drug and what to in an emergency situation.
+			li
+				h4 Safety
+				p Knowing if the composition of what they use is safe.
+			li
+				h4 Privacy
+				p Having to share personal data in a drug-related app.
+
+	+figure-equal-images({
+		modifiers: '7',
+		file: `portfolio/${title}/content`,
+		name: `${title}-7`,
+		title: 'Main insights',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	h2.sr-only Who faces these problems?
+
+	+figure-equal-images({
+		modifiers: '8',
+		file: `portfolio/${title}/content`,
+		name: `${title}-8`,
+		title: 'Who faces these problems',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h3 User Segments
+		h4 Regular Consumer
+		p Users who consume drugs regularly and are looking for ways to do it more safely;
+		p Looking to:
+		ul
+			li test their drugs to feel safer;
+			li know what to do in emergency cases;
+			li find safer places to buy from.
+		p Uses the app more regularly to have a safer and more informed consumption.
+		h4 John &lpar;Regular consumer&rpar;:
+		ul
+			li
+				q I don't know if the drugs I buy are safe.
+			li
+				q Is it safe to have this kind of information on my phone?
+			li
+				q How will I know I'll get help if I need it?
+
+	+figure-equal-images({
+		modifiers: '9',
+		file: `portfolio/${title}/content`,
+		name: `${title}-9`,
+		title: 'Regular Consumer',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h4 Information Seeker
+		p Users who have friends or family who consume drugs and are looking to be more informed;
+		p Looking to:
+		ul
+			li have more knowledge about drugs;
+			li know hows to help their closed ones if needed, in case of emergency.
+		h4 Cynthia &lpar;Information seeker&rpar;:
+		ul
+			li
+				q I don't know what to do when my friends aren't feeling well at a party.
+			li
+				q Does this product have the information I need?
+			li
+				q Are the information and emergency contacts updated?
+
+	+figure-equal-images({
+		modifiers: '10',
+		file: `portfolio/${title}/content`,
+		name: `${title}-10`,
+		title: 'Information Seeker',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h4 Companies
+		p Collective users of this product would be companies who benefit from quick drug testing and providing a safe platform to drug consumers:
+		ul
+			li music festivals;
+			li night clubs;
+			li ...
+		h4 Mark &lpar;Company owner&rpar;:
+		ul
+			li
+				q I can't control nor provide assistance to my customers, as they consume privately.
+			li
+				q Having people publicly doing drugs may give this club a bad reputation.
+
+	+figure-equal-images({
+		modifiers: '11',
+		file: `portfolio/${title}/content`,
+		name: `${title}-11`,
+		title: 'Companies',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	h2.sr-only
+		strong How might we&nbsp;
+		| make drug use safer and emergency assistance more effective?
+
+	+figure-equal-images({
+		modifiers: '12',
+		file: `portfolio/${title}/content`,
+		name: `${title}-12`,
+		title: 'How might we',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h3 USPs
+		ul
+			li Test and track what you consume and buy
+			li Monitor consumption in real time
+			li Directly access emergency contacts
+			li Learn more about drugs and their effects
+
+	+figure-equal-images({
+		modifiers: '13',
+		file: `portfolio/${title}/content`,
+		name: `${title}-13`,
+		title: 'USPs',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h3 Personal Data Policy
+		p
+			strong No sharing of personal data
+		ul
+			li Optional linking to social accounts
+			li No obligation to use a real name
+			li Data is only used by the monitoring function
+
+	+figure-equal-images({
+		modifiers: '14',
+		file: `portfolio/${title}/content`,
+		name: `${title}-14`,
+		title: 'Personal Data Policy',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h2 Design System
+		ul
+			li Logo &lpar;Symbol and Variations&rpar;
+			li Typography &lpar;Symbol and Variations&rpar;
+			li Color Palette &lpar;Primary&rpar;
+			li Color Palette &lpar;Extended&rpar;
+
+	+figure-equal-images({
+		modifiers: '15',
+		file: `portfolio/${title}/content`,
+		name: `${title}-15`,
+		alt: 'Design kit for Dope app',
+		title: 'Design Kit',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy'
+	}).project__figure
+
+	.sr-only
+		h2 App overview
+		h3 Onboarding and Homepage
+		p
+			| Discover our&nbsp;
+			strong
+				| main features
+			| .
+		p
+			strong
+				| Create an account&nbsp;
+			| easily and safely.
+		p
+			| Quickly share your medical history for a more&nbsp;
+			strong
+				| tailored and effective support
+			| .
+		p
+			strong
+				| Access some of our main features
+			| like tracking and testing.
+
+	+figure-equal-images({
+		modifiers: '16',
+		file: `portfolio/${title}/content`,
+		name: `${title}-16`,
+		title: 'Onboarding and Homepage',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h3 Tracking
+		p
+			strong
+				| Tell how you feel&nbsp;
+			| to ensure the best possible experience.
+		p
+			strong
+				| Get notifications&nbsp;
+			| about habits to keep up, biometric data and pivotal moments during consumption.
+		p
+			| Get a&nbsp;
+			strong
+				| quick glance of time past&nbsp;
+			| to avoid going for the next dose too quickly.
+
+	+figure-equal-images({
+		modifiers: '17',
+		file: `portfolio/${title}/content`,
+		name: `${title}-17`,
+		title: 'Tracking',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h3 Testing
+		p
+			strong
+				| Order drug testing kits&nbsp;
+			| as you need them or through a subscription service.
+		p
+			| Get&nbsp;
+			strong
+				| immediate and reliable results&nbsp;
+			| regarding the safety of substances.
+		p
+			| Input data from the tests onto the app and&nbsp;
+			strong
+				| track your consumption&nbsp;
+			| over time.
+
+	+figure-equal-images({
+		modifiers: '18',
+		file: `portfolio/${title}/content`,
+		name: `${title}-18`,
+		title: 'Testing',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h3 Learning
+		p
+			| A&nbsp;
+			strong
+				| library of different types of drugs&nbsp;
+			| as well as their form, effects and other relevant details.
+
+	+figure-equal-images({
+		modifiers: '19',
+		file: `portfolio/${title}/content`,
+		name: `${title}-19`,
+		title: 'Learning',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	.sr-only
+		h3 Emergency
+		p
+			| Get quick access to a fast symptom quiz to&nbsp;
+			strong
+				| determine if you or a friend need medical help
+			|.
+		p
+			strong
+				| Quickly contact the local emergency number&nbsp;
+			| or friends and family who can assist.
+		p
+			| Get real-time guidance on&nbsp;
+			strong
+				| how to proceed in an emergency situation
+			| .
+
+	+figure-equal-images({
+		modifiers: '20',
+		file: `portfolio/${title}/content`,
+		name: `${title}-20`,
+		title: 'Emergency',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
+
+	p.sr-only Thank you!
+
+	+figure-equal-images({
+		modifiers: '21',
+		file: `portfolio/${title}/content`,
+		name: `${title}-21`,
+		title: 'Thank you',
+		format: 'jpg',
+		sizesMobile: 100,
+		sizesTablet: 100,
+		sizesDesktop: 100,
+		loading: 'lazy',
+		decorative: true
+	}).project__figure
