@@ -28,11 +28,24 @@ html(lang='en' dir='ltr' prefix='og: https://ogp.me/ns#')
 		meta(name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover')
 
 		//- Favicons
-		link(rel='apple-touch-icon' sizes='180x180' href='/assets/images/favicons/favicon-180.ico')
-		link(rel='icon' type='image/x-icon' sizes='32x32' href='/assets/images/favicons/favicon-32.ico')
-		link(rel='icon' type='image/x-icon' sizes='16x16' href='/assets/images/favicons/favicon-16.ico')
+		link(rel='apple-touch-icon' sizes='57x57' href='/assets/images/favicons/apple-icon-57x57.png')
+		link(rel='apple-touch-icon' sizes='60x60' href='/assets/images/favicons/apple-icon-60x60.png')
+		link(rel='apple-touch-icon' sizes='72x72' href='/assets/images/favicons/apple-icon-72x72.png')
+		link(rel='apple-touch-icon' sizes='76x76' href='/assets/images/favicons/apple-icon-76x76.png')
+		link(rel='apple-touch-icon' sizes='114x114' href='/assets/images/favicons/apple-icon-114x114.png')
+		link(rel='apple-touch-icon' sizes='120x120' href='/assets/images/favicons/apple-icon-120x120.png')
+		link(rel='apple-touch-icon' sizes='144x144' href='/assets/images/favicons/apple-icon-144x144.png')
+		link(rel='apple-touch-icon' sizes='152x152' href='/assets/images/favicons/apple-icon-152x152.png')
+		link(rel='apple-touch-icon' sizes='180x180' href='/assets/images/favicons/apple-icon-180x180.png')
+		link(rel='icon' type='image/png' sizes='192x192'  href='/assets/images/favicons/android-icon-192x192.png')
+		link(rel='icon' type='image/png' sizes='32x32' href='/assets/images/favicons/favicon-32x32.png')
+		link(rel='icon' type='image/png' sizes='96x96' href='/assets/images/favicons/favicon-96x96.png')
+		link(rel='icon' type='image/png' sizes='16x16' href='/assets/images/favicons/favicon-16x16.png')
+		link(rel='manifest' href='/assets/images/favicons/manifest.json')
+		meta(name='msapplication-TileColor' content='#ffffff')
+		meta(name='msapplication-TileImage' content='/assets/images/favicons/ms-icon-144x144.png')
+		meta(name='theme-color' content='#ffffff')
 
-		base(href='/')
 		title= (title ? `${title} | ` : '') + `${mainTitle}` + ' - UX/UI & Front-End Developer'
 		meta(name='description' content=(pageDescription ? `${pageDescription}` : `${mainDescription}`))
 		meta(name='keywords' content=(pageKeywords ? `${pageKeywords}` : `${mainKeywords}`))
@@ -40,7 +53,7 @@ html(lang='en' dir='ltr' prefix='og: https://ogp.me/ns#')
 
 		//- Open Graph
 		meta(property='og:site_name' content=`${mainTitle}`)
-		meta(property='og:url' content='https://www.raulramospinto.github.io')
+		meta(property='og:url' content='https://www.raulramospinto.com')
 		meta(property='og:type' content='website')
 		meta(property='og:title' content=`${mainTitle}`)
 		meta(property='og:description' content=(pageDescription ? `${pageDescription}` : `${mainDescription}`))
@@ -59,10 +72,12 @@ html(lang='en' dir='ltr' prefix='og: https://ogp.me/ns#')
 		meta(name='twitter:description' content=(pageDescription ? `${pageDescription}` : `${mainDescription}`))
 		meta(name='twitter:image' content='/assets/images/open-graph/og-image.png')
 
-		link(rel='canonical' href='http://raulramospinto.github.io/')
-		link(rel='alternate' hreflang='x-default' href='http://raulramospinto.github.io/' )
-		link(rel='alternate' hreflang='en-us' href='http://raulramospinto.github.io/')
-		link(rel='prerender' href='http://raulramospinto.github.io/')
+		meta(name='robots' content='index, follow')
+		link(rel='sitemap' type='application/xml' href='/sitemap.xml')
+		link(rel='canonical' href='http://raulramospinto.com/')
+		link(rel='alternate' hreflang='x-default' href='http://raulramospinto.com/' )
+		link(rel='alternate' hreflang='en-us' href='http://raulramospinto.com/')
+		link(rel='prerender' href='http://raulramospinto.com/')
 
 		//- Schema
 		script(type='application/ld+json').
@@ -72,14 +87,14 @@ html(lang='en' dir='ltr' prefix='og: https://ogp.me/ns#')
 				"givenName": "Raul",
 				"familyName": "Ramos Pinto",
 				"nationality": "Portugal",
-				"url": "http://raulramospinto.github.io/",
+				"url": "http://raulramospinto.com/",
 				"logo": "http://raul-ramos-pinto.com/assets/symbols/logos/logo-raul-ramos-pinto.svg",
 				"sameAs": [
 					"https://www.linkedin.com/in/raul-ramos-pinto/",
 					"https://github.com/raulbmrp",
 					"https://www.behance.net/raulramospinto"
 				],
-				"image": "http://raul-ramos-pinto.com/assets/images/profile/raul-ramos-pinto-mobile@1x.jpg",
+				"image": "http://raul-ramos-pinto.com/assets/images/profile/raul-ramos-pinto-1440.jpg",
 				"jobTitle": "UX/UI Designer \u0026 Front-End Web Developer",
 				"email": "raulbmrp@gmail.com",
 				"description": "Raul Ramos Pinto is a UX/UI Designer and Front-End Developer with a very strong concern for web accessibility.",
@@ -135,6 +150,70 @@ html(lang='en' dir='ltr' prefix='og: https://ogp.me/ns#')
 
 		//- Styles
 		block styles
+			style.
+				@font-face {
+					font-family: 'Text';
+					src: url('/assets/fonts/text/text-bold.woff2') format('woff2');
+					font-weight: 700;
+					font-style: normal;
+					unicode-range: U+0000-00FF;
+					font-display: swap;
+				}
+
+				@font-face {
+					font-family: 'Text';
+					src: url('/assets/fonts/text/text-semibold.woff2') format('woff2');
+					font-weight: 600;
+					font-style: normal;
+					unicode-range: U+0000-00FF;
+					font-display: swap;
+				}
+
+				@font-face {
+					font-family: 'Text';
+					src: url('/assets/fonts/text/text-regular.woff2') format('woff2');
+					font-weight: 400;
+					font-style: normal;
+					unicode-range: U+0000-00FF;
+					font-display: swap;
+				}
+
+				@font-face {
+					font-family: 'Text';
+					src: url('/assets/fonts/text/text-thin.woff2') format('woff2');
+					font-weight: 200;
+					font-style: normal;
+					unicode-range: U+0000-00FF;
+					font-display: swap;
+				}
+
+				@font-face {
+					font-family: 'Text';
+					src: url('/assets/fonts/text/text-regular-italic.woff2') format('woff2');
+					font-weight: 400;
+					font-style: italic;
+					unicode-range: U+0000-00FF;
+					font-display: swap;
+				}
+
+				@font-face {
+					font-family: 'Textu';
+					src: url('/assets/fonts/textu/textu-medium.woff2') format('woff2');
+					font-weight: 500;
+					font-style: normal;
+					unicode-range: U+0000-00FF;
+					font-display: swap;
+				}
+
+				@font-face {
+					font-family: 'Textu';
+					src: url('/assets/fonts/textu/textu-light.woff2') format('woff2');
+					font-weight: 300;
+					font-style: normal;
+					unicode-range: U+0000-00FF;
+					font-display: swap;
+				}
+
 			link(href='/assets/styles/main.css' rel='stylesheet')
 
 		//- Scripts

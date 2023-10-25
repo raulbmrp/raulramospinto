@@ -40,6 +40,11 @@
 			position: sticky
 			top: 0px
 			overflow-x: auto
+			-ms-overflow-style: none
+			scrollbar-width: none
+
+			&::-webkit-scrollbar
+				display: none
 
 	&__button
 		padding: 12px !important
@@ -54,6 +59,10 @@
 
 			+abstracts.hover(hover focus-visible)
 				+abstracts.background(neutral dirty-white)
+
+		@for $index from 1 through 7
+			&#tab--#{$index}
+				animation-delay: .15s * $index
 
 		.button__text
 			display: none

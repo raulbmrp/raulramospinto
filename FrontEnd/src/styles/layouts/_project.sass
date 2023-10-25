@@ -13,7 +13,7 @@
 		position: relative
 
 	&__cover
-		height: 100vh
+		height: 100dvh
 		display: flex
 		flex-direction: column
 		justify-content: space-between
@@ -199,3 +199,16 @@
 				background-image: url(../images/portfolio/airbnb/content/videos/guestbook-profile-0.gif)
 				left: 7.8%
 				top: 40.8%
+
+	&__progress
+		&-bar
+			height: 2px
+			width: 100%
+			position: fixed
+			bottom: 0
+			left: 0
+			+abstracts.background(alpha semi-transparent-dirty-white)
+
+		height: 100%
+		width: 0%
+		+abstracts.background(neutral dirty-white)

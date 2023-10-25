@@ -15,13 +15,9 @@ block main
 		textModifiers: '1'
 	})
 
-	+heading({
-		htmlTag: 'h2',
-		text: 'About'
-	})(class='sr-only')
-
 	+image-text({
 		modifiers: 'about',
+		sectionHeading: 'About',
 		htmlTag: 'h3',
 		text: 'I&apos;m a <span class="highlight"><abbr title="User Experience">UX</abbr>/<abbr title="User Interface">UI</abbr> Designer</span> and <span class="highlight">Front-End Web Developer</span> based in Porto.',
 		textModifiers: '2',
@@ -70,13 +66,9 @@ block main
 			time(datetime='2007') 2007
 			| , I have represented 6 teams, 1 association, and 1 university.
 
-	+heading({
-		htmlTag: 'h2',
-		text: 'Resumé'
-	})(class='sr-only')
-
 	+tabs({
 		modifiers: 'resume',
+		sectionHeading: 'Resumé',
 		items: [
 			{
 				name: 'Professional Experience',
@@ -517,13 +509,9 @@ block main
 		]
 	})(id='resume')
 
-	+heading({
-		htmlTag: 'h2',
-		text: 'Portfolio'
-	})(class='sr-only')
-
 	+cards-grid({
 		modifiers: 'portfolio',
+		sectionHeading: 'Portfolio',
 		hasImage: true,
 		headingTag: 'h3',
 		headingTextModifiers: '3',
@@ -613,13 +601,9 @@ block main
 		]
 	})(id='portfolio')
 
-	+heading({
-		htmlTag: 'h2',
-		text: 'Contact'
-	})(class='sr-only')
-
 	+cta({
 		modifiers: 'contact',
+		sectionHeading: 'Contact',
 		buttons: [
 			{
 				url: 'mailto:raulbmrp@gmail.com',

@@ -3,6 +3,13 @@ mixin tabs(options)
 	block variables
 
 	section.module.tabs(class=setModifiers(options.modifiers, 'tabs--'))&attributes(attributes)
+
+		if sectionHeading
+			+heading({
+				htmlTag: 'h2',
+				text: `${sectionHeading}`
+			})(class='sr-only')
+
 		.tabs__layout
 			.tabs__buttons-container
 				menu.tabs__buttons-list#tabs__buttons-list(
@@ -19,6 +26,8 @@ mixin tabs(options)
 								iconId: `${item.url}`
 							})(
 								id=`tab--${index}`
+								class=`tab--${index}`
+								aria-label=`${item.name}`
 								aria-describedby='tabs__buttons-description'
 							).tabs__button
 					p#tabs__buttons-description.sr-only Press tab to move to the tabpanel.

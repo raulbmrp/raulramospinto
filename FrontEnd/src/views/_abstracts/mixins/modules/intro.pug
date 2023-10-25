@@ -1,6 +1,13 @@
 mixin intro(options)
 
 	section.module.intro(class=setModifiers(options.modifiers, 'intro--'))&attributes(attributes)
+
+		if sectionHeading
+			+heading({
+				htmlTag: 'h2',
+				text: `${sectionHeading}`
+			})(class='sr-only')
+
 		.intro__layout
 			+heading({
 				htmlTag: options.htmlTag,

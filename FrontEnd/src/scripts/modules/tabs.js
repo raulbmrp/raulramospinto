@@ -138,6 +138,16 @@ class Tabs {
 			}
 		});
 
+		window.addEventListener('scroll', () => {
+			if (this.#tabsButtonsContainer.getBoundingClientRect().top <= 0) {
+				for (const tabsButton of [...this.#tabsButtons].slice(1)) {
+					tabsButton.style.animationName = 'cascade';
+					tabsButton.style.animationDuration = '2s';
+					tabsButton.style.animationTimingFunction = 'ease';
+				}
+			}
+		});
+
 		this.addBackground();
 		this.activeTabsRectTop();
 		this.ariaOrientation();

@@ -47,6 +47,7 @@ const modules = {
 	'homepage-page': './templates/homepage.js',
 	cursor: './components/cursor.js',
 	'project-page': './layout/project.js',
+	footer: './modules/footer.js',
 };
 
 

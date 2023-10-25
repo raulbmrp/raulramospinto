@@ -1,10 +1,17 @@
 mixin cards-grid(options)
 
 	section.module.cards-grid(class=setModifiers(options.modifiers, 'cards-grid--'))&attributes(attributes)
+
+		if sectionHeading
+			+heading({
+				htmlTag: 'h2',
+				text: `${sectionHeading}`
+			})(class='sr-only')
+
 		.cards-grid__layout
 			each card in options.cards
 				a.card(
-					href=`/projects/${card.title}`
+					href=`/${card.title}`
 					title=`${card.soon ? card.title + ' project is not currently available' : 'Open ' + card.title + ' project'}`
 					target='_self'
 					class=`${card.soon ? 'soon disabled' : ''}`

@@ -1,46 +1,52 @@
 // /* eslint-disable unicorn/prefer-at */
 class Project {
 	/**
-	 * The `project-page` element.
+	 * The `.project-page` element.
 	 * @type {HTMLElement}
 	 */
 	#project;
 
 	/**
-	 * The `blur-circles` element.
+	 * The `.blur-circles` element.
 	 * @type {HTMLElement}
 	 */
 	#blurCircle;
 
 	/**
-	 * The `blur-circle--design` element.
+	 * The `.blur-circle--design` element.
 	 * @type {HTMLElement}
 	 */
 	#blurCircleDesign;
 
 	/**
-	 * The `blur-circle--code` element.
+	 * The `.blur-circle--code` element.
 	 * @type {HTMLElement}
 	 */
 	#blurCircleCode;
 
 	/**
-	 * The `project__cover` element.
+	 * The `.project__cover` element.
 	 * @type {HTMLElement}
 	 */
 	#projectCover;
 
 	/**
-	 * The `button__back` element.
+	 * The `.button__back` element.
 	 * @type {HTMLElement}
 	 */
 	#buttonBack;
 
 	/**
-	 * The `project__content` element.
+	 * The `.project__content` element.
 	 * @type {HTMLElement}
 	 */
 	#projectContent;
+
+	/**
+	 * The `.project__progress` element.
+	 * @type {HTMLElement}
+	 */
+	#projectProgress;
 
 	/**
 	 * Instantiates the Facts module.
@@ -56,9 +62,11 @@ class Project {
 		this.#projectCover = this.#project.querySelector('.project__cover');
 		this.#buttonBack = this.#project.querySelector('.button__back');
 		this.#projectContent = this.#project.querySelector('.project__content');
+		this.#projectProgress = this.#project.querySelector('.project__progress');
 		const divisions = [this.#projectCover, this.#projectContent];
 
 		window.addEventListener('scroll', () => {
+			this.progressUpdate();
 			if (this.#projectContent.getBoundingClientRect().top <= 0) {
 				this.#buttonBack.classList.add('fix');
 			} else {
@@ -123,6 +131,14 @@ class Project {
 		for (const division of divisions) {
 			intersectionObserverProject.observe(division);
 		}
+	}
+
+	progressUpdate() {
+		const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
+		const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+		const scrolled = (windowScroll / height) * 100;
+		this.#projectProgress.style.width = scrolled + '%';
+		this.#projectProgress.style.opacity = scrolled > 99.9 ? '0' : '1';
 	}
 }
 

@@ -1,6 +1,13 @@
 mixin cta(options)
 
 	section.module.cta(class=setModifiers(options.modifiers, 'cta--'))&attributes(attributes)
+
+		if sectionHeading
+			+heading({
+				htmlTag: 'h2',
+				text: `${sectionHeading}`
+			})(class='sr-only')
+
 		.cta__layout
 			.cta__content
 				.cta__buttons

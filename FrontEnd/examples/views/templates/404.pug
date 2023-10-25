@@ -1,0 +1,20 @@
+extends ../../../src/views/_layouts/base
+
+block variables
+	-
+		error = true;
+		title = 'Error 404';
+
+block main
+
+	+error({
+		headingText: '404 Not Found',
+		description: '<strong>Everybody makes mistakes.</strong> <br>Even the cosmos has its mysteries. Unfortunately, this <abbr title="Uniform Resource Locator">URL</abbr> isn&apos;t one I&apos;ve charted yet. But don&apos;t fret, you can embark on a new journey from the Homepage.',
+		modifiers: '404',
+		buttonText: 'Homepage',
+		buttonUrl: '/',
+		buttonModifiers: 'primary',
+		buttonTarget: '_self',
+		buttonUrlLang: 'en',
+		buttonTitle: 'Go to the Homepage'
+	})

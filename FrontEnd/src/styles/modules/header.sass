@@ -33,7 +33,7 @@
 		&--menu
 			display: grid
 			pointer-events: none
-			height: calc(100% - $header-height)
+			height: calc(100dvh - $header-height)
 			padding-inline: 24px
 
 			&.on
@@ -145,6 +145,7 @@
 				opacity: 1
 				pointer-events: all
 				+abstracts.transition(opacity)
+				height: calc(100% - $header-height)
 
 		&__menu
 			position: relative

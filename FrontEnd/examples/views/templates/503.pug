@@ -1,0 +1,19 @@
+extends ../../../src/views/_layouts/base
+
+block variables
+	-
+		error = true;
+		title = 'Error 503';
+
+block main
+
+	+error({
+		headingText: '503 Service Unavailable',
+		description: '<strong>Bummer! <br>I&apos;m out to lunch, and my servers are taking a nap.</strong> <br>Check back in a bit, they love surprises. Hang tight or explore my <abbr title="Curriculum Vitae">CV</abbr>.',
+		modifiers: '503',
+		buttonText: 'Open CV <span class="sr-only">on a new tab</span>',
+		buttonUrl: 'https://drive.google.com/file/d/1Uc-wgqqPp4Uw2_E73tsM8BS1mNxl-8Gs/view?usp=sharing',
+		buttonModifiers: 'primary',
+		buttonTarget: '_blank',
+		buttonTitle: "Open Raul's CV on a new tab"
+	})
