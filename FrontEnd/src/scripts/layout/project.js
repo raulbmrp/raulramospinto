@@ -43,6 +43,12 @@ class Project {
 	#projectContent;
 
 	/**
+	 * The `.project__progress-bar` element.
+	 * @type {HTMLElement}
+	 */
+	#projectProgressBar;
+
+	/**
 	 * The `.project__progress` element.
 	 * @type {HTMLElement}
 	 */
@@ -62,6 +68,7 @@ class Project {
 		this.#projectCover = this.#project.querySelector('.project__cover');
 		this.#buttonBack = this.#project.querySelector('.button__back');
 		this.#projectContent = this.#project.querySelector('.project__content');
+		this.#projectProgressBar = this.#project.querySelector('.project__progress-bar');
 		this.#projectProgress = this.#project.querySelector('.project__progress');
 		const divisions = [this.#projectCover, this.#projectContent];
 
@@ -138,7 +145,7 @@ class Project {
 		const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 		const scrolled = (windowScroll / height) * 100;
 		this.#projectProgress.style.width = scrolled + '%';
-		this.#projectProgress.style.opacity = scrolled > 99.9 ? '0' : '1';
+		this.#projectProgressBar.style.opacity = scrolled < 1 || scrolled > 99 ? '0' : '1';
 	}
 }
 
